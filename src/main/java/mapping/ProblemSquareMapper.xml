@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ProblemSquareMapper" >
+  <resultMap id="BaseResultMap" type="model.ProblemSquare" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="problem_square_name" property="problemSquareName" jdbcType="VARCHAR" />
+    <result column="problem_square_description" property="problemSquareDescription" jdbcType="VARCHAR" />
+    <result column="attention_num" property="attentionNum" jdbcType="INTEGER" />
+    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="problem_square_icon" property="problemSquareIcon" jdbcType="VARCHAR" />
+    <result column="message_num" property="messageNum" jdbcType="INTEGER" />
+    <result column="build_time" property="buildTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, problem_square_name, problem_square_description, attention_num, owner_id, problem_square_icon, 
+    message_num, build_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.ProblemSquareExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from problem_square
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from problem_square
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from problem_square
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.ProblemSquareExample" >
+    delete from problem_square
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.ProblemSquare" useGeneratedKeys="true" keyProperty="id">
+    insert into problem_square (id, problem_square_name, problem_square_description, 
+      attention_num, owner_id, problem_square_icon, 
+      message_num, build_time)
+    values (#{id,jdbcType=INTEGER}, #{problemSquareName,jdbcType=VARCHAR}, #{problemSquareDescription,jdbcType=VARCHAR}, 
+      #{attentionNum,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, #{problemSquareIcon,jdbcType=VARCHAR}, 
+      #{messageNum,jdbcType=INTEGER}, #{buildTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="model.ProblemSquare" useGeneratedKeys="true" keyProperty="id">
+    insert into problem_square
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="problemSquareName != null" >
+        problem_square_name,
+      </if>
+      <if test="problemSquareDescription != null" >
+        problem_square_description,
+      </if>
+      <if test="attentionNum != null" >
+        attention_num,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="problemSquareIcon != null" >
+        problem_square_icon,
+      </if>
+      <if test="messageNum != null" >
+        message_num,
+      </if>
+      <if test="buildTime != null" >
+        build_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="problemSquareName != null" >
+        #{problemSquareName,jdbcType=VARCHAR},
+      </if>
+      <if test="problemSquareDescription != null" >
+        #{problemSquareDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionNum != null" >
+        #{attentionNum,jdbcType=INTEGER},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="problemSquareIcon != null" >
+        #{problemSquareIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="messageNum != null" >
+        #{messageNum,jdbcType=INTEGER},
+      </if>
+      <if test="buildTime != null" >
+        #{buildTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.ProblemSquareExample" resultType="java.lang.Integer" >
+    select count(*) from problem_square
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update problem_square
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.problemSquareName != null" >
+        problem_square_name = #{record.problemSquareName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.problemSquareDescription != null" >
+        problem_square_description = #{record.problemSquareDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attentionNum != null" >
+        attention_num = #{record.attentionNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.ownerId != null" >
+        owner_id = #{record.ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.problemSquareIcon != null" >
+        problem_square_icon = #{record.problemSquareIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageNum != null" >
+        message_num = #{record.messageNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.buildTime != null" >
+        build_time = #{record.buildTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update problem_square
+    set id = #{record.id,jdbcType=INTEGER},
+      problem_square_name = #{record.problemSquareName,jdbcType=VARCHAR},
+      problem_square_description = #{record.problemSquareDescription,jdbcType=VARCHAR},
+      attention_num = #{record.attentionNum,jdbcType=INTEGER},
+      owner_id = #{record.ownerId,jdbcType=INTEGER},
+      problem_square_icon = #{record.problemSquareIcon,jdbcType=VARCHAR},
+      message_num = #{record.messageNum,jdbcType=INTEGER},
+      build_time = #{record.buildTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.ProblemSquare" >
+    update problem_square
+    <set >
+      <if test="problemSquareName != null" >
+        problem_square_name = #{problemSquareName,jdbcType=VARCHAR},
+      </if>
+      <if test="problemSquareDescription != null" >
+        problem_square_description = #{problemSquareDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionNum != null" >
+        attention_num = #{attentionNum,jdbcType=INTEGER},
+      </if>
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="problemSquareIcon != null" >
+        problem_square_icon = #{problemSquareIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="messageNum != null" >
+        message_num = #{messageNum,jdbcType=INTEGER},
+      </if>
+      <if test="buildTime != null" >
+        build_time = #{buildTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.ProblemSquare" >
+    update problem_square
+    set problem_square_name = #{problemSquareName,jdbcType=VARCHAR},
+      problem_square_description = #{problemSquareDescription,jdbcType=VARCHAR},
+      attention_num = #{attentionNum,jdbcType=INTEGER},
+      owner_id = #{ownerId,jdbcType=INTEGER},
+      problem_square_icon = #{problemSquareIcon,jdbcType=VARCHAR},
+      message_num = #{messageNum,jdbcType=INTEGER},
+      build_time = #{buildTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectProblemSquareOrderByTime" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from problem_square
+    order by build_time
+    LIMIT #{beginNum,jdbcType=INTEGER}, #{sizeNum,jdbcType=INTEGER};
+  </select>
+
+</mapper>

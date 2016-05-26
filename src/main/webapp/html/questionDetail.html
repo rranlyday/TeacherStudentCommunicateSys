@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://v3.bootcss.com/examples/offcanvas/ -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--最后替换为自己的网页图标-->
+    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+
+    <title>问题回复</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/offcanvas.css" rel="stylesheet">
+
+    <link href="../css/index.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">师生互动教学系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="">主页</a></li>
+                <li><a href="">问题广场</a></li>
+                <li><a href="">发现</a></li>
+                <li><a href="">消息</a></li>
+            </ul>
+            <ul class="nav navbar-nav" style="margin-right: 20px;float: right;">
+                <li>
+                    <div class="btn-group" style="margin-top:8px">
+                        <button type="button" class="btn btn-primary">欢迎，余帅</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">我的主页</a></li>
+                            <li><a href="#">切换用户</a></li>
+                            <li><a href="#">更改密码</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- Split button -->
+
+            </ul>
+        </div>
+        <!-- /.nav-collapse -->
+
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- /.navbar -->
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-11 col-sm-9">
+
+            <div class="top-title">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-xs-3 col-md-2">
+                            <a href="#" class="thumbnail">
+                                <img src="../pic/1.jpg" alt="...">
+                            </a>
+                        </div>
+                        <div class="card_top">
+                            <div class="card_title">
+                                <span class="card_title_name">高数</span>
+                                <span class="islike_focus"></span>
+                                <span class="atention-text"><a>关注</a></span>
+                                <span class="atention_message_container">
+                                    <span class="card_numLabel">关注:</span>
+                                    <span class="card_menNum">200</span>
+                                    <span class="card_numLabel">问题:</span>
+                                    <span class="card_menNum">500</span>
+                                </span>
+                            </div>
+                            <div class="card_slogan">
+                                <span class="square_info">山有木兮木有枝，心悦君兮君不知。</span>
+                                <span class="subject_Lable">科目：</span>
+                                <span class="subject_Name">高数</span>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+
+            </div>
+
+            <!--row-->
+            <div class="row question-container">
+
+                <div class="qustion-content">
+                    <div class="question_title">
+                        <a class="question_link" target="_blank" href="">老年人应该怎么补钙？</a>
+                    </div>
+                    <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
+                        </span>
+                    </div>
+                    <div class="question_description">
+                        <p>老妈缺钙，夜里睡觉经常抽筋疼醒，我给她买了钙片，她却说她没病，不想吃那药片似的东西。倒是定的鲜牛奶每天都喝，但是，也许是人到岁数了，吸收能力不太好了，总之一直不是很见效。请问，老年人补钙，还有什么其他的方法吗？（不要鸡汤，求干货）</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="question_info_Lable "></span>
+                        <span class="question_lable_description">500 条回答</span>
+                        <span class="question_lable_description">发布时间</span>
+                        <span class="question_lable_description">2016-05-20 12:10:20</span>
+                    </div>
+                </div> <!--题目描述-->
+
+                <div class="question-relpy-num">
+                    <h3 data-num="250" id="zh-question-answer-num">250 个回答</h3>
+                    <span class="sort-type">
+                        按投票排序
+                     <!--   <a href="">按时间排序</a>-->
+                    <i class="zg-icon"></i>
+                    </span>
+
+                </div>
+
+                <div class="qustion-content">
+                    <div class="question-replyer">
+                        专家
+                    </div>
+                    <div class="question_description">
+                        <p>传统药片的弊端在于它进入胃以后胃需要花三到四个小时去消化和分解，但由于胃部强酸环境会破坏其营养成分，所以最终被你身体吸收的钙可能只有原来含量的20%-40%。我给我家人用的是等渗钙， 它具有与身体血液和泪液的相等的渗透压，不需要经过胃的消化，直接被小肠吸收，这样钙的利用率就提高到了90%。所以一般用几次腿部抽经就会明显改善。</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <i class="question-reply-ico"></i>
+                        <span class="question_lable_description">500 条评论</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <span class="support-ico"></span>
+                        <span class="question_lable_description">500 人赞同</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <span class="disagreement-ico"></span>
+                        <span class="question_lable_description">100 人反对</span>
+                    </div>
+                    <div class="question-reply-comment">
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="paging">
+                            <nav>
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="reply_comment_container">
+                            <div>
+                                <input type="text"   class="reply_commet_input" placeholder="写下你的评论" aria-describedby="basic-addon1"> </input>
+                            </div>
+                            <button class="reply_commet_button"> 评论 </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="qustion-content">
+                    <div class="question-replyer">
+                        专家
+                    </div>
+                    <div class="question_description">
+                        <p>传统药片的弊端在于它进入胃以后胃需要花三到四个小时去消化和分解，但由于胃部强酸环境会破坏其营养成分，所以最终被你身体吸收的钙可能只有原来含量的20%-40%。我给我家人用的是等渗钙， 它具有与身体血液和泪液的相等的渗透压，不需要经过胃的消化，直接被小肠吸收，这样钙的利用率就提高到了90%。所以一般用几次腿部抽经就会明显改善。</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <i class="question-reply-ico"></i>
+                        <span class="question_lable_description">500 条评论</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <span class="support-ico"></span>
+                        <span class="question_lable_description">500 人赞同</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <span class="disagreement-ico"></span>
+                        <span class="question_lable_description">100 人反对</span>
+                    </div>
+                    <div class="question-reply-comment">
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="paging">
+                            <nav>
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="reply_comment_container">
+                            <div>
+                                <input type="text"   class="reply_commet_input" placeholder="写下你的评论" aria-describedby="basic-addon1"> </input>
+                            </div>
+                            <button class="reply_commet_button"> 评论 </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="qustion-content">
+                    <div class="question-replyer">
+                        专家
+                    </div>
+                    <div class="question_description">
+                        <p>传统药片的弊端在于它进入胃以后胃需要花三到四个小时去消化和分解，但由于胃部强酸环境会破坏其营养成分，所以最终被你身体吸收的钙可能只有原来含量的20%-40%。我给我家人用的是等渗钙， 它具有与身体血液和泪液的相等的渗透压，不需要经过胃的消化，直接被小肠吸收，这样钙的利用率就提高到了90%。所以一般用几次腿部抽经就会明显改善。</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <i class="question-reply-ico"></i>
+                        <span class="question_lable_description">500 条评论</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <span class="support-ico"></span>
+                        <span class="question_lable_description">500 人赞同</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <span class="disagreement-ico"></span>
+                        <span class="question_lable_description">100 人反对</span>
+                    </div>
+                    <div class="question-reply-comment">
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="paging">
+                            <nav>
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="reply_comment_container">
+                            <div>
+                                <input type="text"   class="reply_commet_input" placeholder="写下你的评论" aria-describedby="basic-addon1"> </input>
+                            </div>
+                            <button class="reply_commet_button"> 评论 </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="qustion-content">
+                    <div class="question-replyer">
+                        专家
+                    </div>
+                    <div class="question_description">
+                        <p>传统药片的弊端在于它进入胃以后胃需要花三到四个小时去消化和分解，但由于胃部强酸环境会破坏其营养成分，所以最终被你身体吸收的钙可能只有原来含量的20%-40%。我给我家人用的是等渗钙， 它具有与身体血液和泪液的相等的渗透压，不需要经过胃的消化，直接被小肠吸收，这样钙的利用率就提高到了90%。所以一般用几次腿部抽经就会明显改善。</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <i class="question-reply-ico"></i>
+                        <span class="question_lable_description">500 条评论</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <span class="support-ico"></span>
+                        <span class="question_lable_description">500 人赞同</span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                        <span class="disagreement-ico"></span>
+                        <span class="question_lable_description">100 人反对</span>
+                    </div>
+                    <div class="question-reply-comment">
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="paging">
+                            <nav>
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="reply_comment_container">
+                            <div>
+                                <input type="text"   class="reply_commet_input" placeholder="写下你的评论" aria-describedby="basic-addon1"> </input>
+                            </div>
+                            <button class="reply_commet_button"> 评论 </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="paging">
+                    <nav>
+                        <ul class="pagination">
+                            <li><a href="#">上一页</a></li>
+                            <li class="active"> <a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li> <a href="#">2<span class="sr-only">(current)</span></a></li>
+                            <li> <a href="#">3 <span class="sr-only">(current)</span></a></li>
+                            <li> <a href="#">4 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">下一页</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+
+            </div>
+            <!--/row-->
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" style="float: right">
+            <div class="list-group">
+                <a href="" class="list-group-item active" >友情链接</a>
+                <a href="http://www.swust.edu.cn/" class="list-group-item" target="_blank">西南科技大学</a>
+                <a href="http://www.cs.swust.edu.cn/" class="list-group-item" target="_blank">计算机科学与技术学院</a>
+                <a href="http://www.dean.swust.edu.cn/xml/index.xml" class="list-group-item" target="_blank">教务处</a>
+                <a href="http://www.lib.swust.edu.cn/" class="list-group-item" target="_blank">图书馆</a>
+                <a href="http://bbs.swust.edu.cn/" class="list-group-item" target="_blank">校园BBS</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/11/c/4244/d/4255/list.htm" class="list-group-item" target="_blank">校园风光</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/22/list.htm" class="list-group-item" target="_blank">焦点新闻</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/24/list.htm" class="list-group-item" target="_blank">通知公告</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/25/list.htm" class="list-group-item" target="_blank">学术交流</a>
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+
+    </div>    <!--/.col-xs-12.col-sm-9-->
+    <hr>
+    <!--row row-offcanvas row-offcanvas-right-->
+    <footer>
+        <p>© Company 2014</p>
+    </footer>
+
+</div><!--/.container-->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../js/jquery-1.12.3.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<script src="../js/offcanvas.js"></script>
+
+
+</body>
+</html>

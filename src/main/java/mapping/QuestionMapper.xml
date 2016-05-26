@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="model.Question" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="question_title" property="questionTitle" jdbcType="VARCHAR" />
+    <result column="question_description" property="questionDescription" jdbcType="VARCHAR" />
+    <result column="questioner_id" property="questionerId" jdbcType="INTEGER" />
+    <result column="question_time" property="questionTime" jdbcType="TIMESTAMP" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="problem_square_id" property="problemSquareId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, question_title, question_description, questioner_id, question_time, reply_number, 
+    problem_square_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="model.QuestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from question
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from question
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.QuestionExample" >
+    delete from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.Question" useGeneratedKeys="true" keyProperty="id">
+    insert into question (id, question_title, question_description, 
+      questioner_id, question_time, reply_number, 
+      problem_square_id)
+    values (#{id,jdbcType=INTEGER}, #{questionTitle,jdbcType=VARCHAR}, #{questionDescription,jdbcType=VARCHAR}, 
+      #{questionerId,jdbcType=INTEGER}, #{questionTime,jdbcType=TIMESTAMP}, #{replyNumber,jdbcType=INTEGER}, 
+      #{problemSquareId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="model.Question" useGeneratedKeys="true" keyProperty="id">
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="questionTitle != null" >
+        question_title,
+      </if>
+      <if test="questionDescription != null" >
+        question_description,
+      </if>
+      <if test="questionerId != null" >
+        questioner_id,
+      </if>
+      <if test="questionTime != null" >
+        question_time,
+      </if>
+      <if test="replyNumber != null" >
+        reply_number,
+      </if>
+      <if test="problemSquareId != null" >
+        problem_square_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="questionTitle != null" >
+        #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionDescription != null" >
+        #{questionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="questionerId != null" >
+        #{questionerId,jdbcType=INTEGER},
+      </if>
+      <if test="questionTime != null" >
+        #{questionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyNumber != null" >
+        #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="problemSquareId != null" >
+        #{problemSquareId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.QuestionExample" resultType="java.lang.Integer" >
+    select count(*) from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update question
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionTitle != null" >
+        question_title = #{record.questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionDescription != null" >
+        question_description = #{record.questionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionerId != null" >
+        questioner_id = #{record.questionerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionTime != null" >
+        question_time = #{record.questionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.replyNumber != null" >
+        reply_number = #{record.replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.problemSquareId != null" >
+        problem_square_id = #{record.problemSquareId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update question
+    set id = #{record.id,jdbcType=INTEGER},
+      question_title = #{record.questionTitle,jdbcType=VARCHAR},
+      question_description = #{record.questionDescription,jdbcType=VARCHAR},
+      questioner_id = #{record.questionerId,jdbcType=INTEGER},
+      question_time = #{record.questionTime,jdbcType=TIMESTAMP},
+      reply_number = #{record.replyNumber,jdbcType=INTEGER},
+      problem_square_id = #{record.problemSquareId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.Question" >
+    update question
+    <set >
+      <if test="questionTitle != null" >
+        question_title = #{questionTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionDescription != null" >
+        question_description = #{questionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="questionerId != null" >
+        questioner_id = #{questionerId,jdbcType=INTEGER},
+      </if>
+      <if test="questionTime != null" >
+        question_time = #{questionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyNumber != null" >
+        reply_number = #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="problemSquareId != null" >
+        problem_square_id = #{problemSquareId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.Question" >
+    update question
+    set question_title = #{questionTitle,jdbcType=VARCHAR},
+      question_description = #{questionDescription,jdbcType=VARCHAR},
+      questioner_id = #{questionerId,jdbcType=INTEGER},
+      question_time = #{questionTime,jdbcType=TIMESTAMP},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      problem_square_id = #{problemSquareId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectQuestionOrderByTimeByProblemSquareId" resultMap="BaseResultMap" resultType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from question
+    WHERE problem_square_id  = #{problemSquareId,jdbcType=INTEGER}
+    ORDER BY question_time
+    limit  #{beginPos,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  </select>
+
+  <select id="searchQuestioNumByProblemSquareId" resultMap="BaseResultMap" resultType="java.lang.Integer" >
+    select  count(*) from question
+    WHERE problem_square_id  = #{problemSquareId,jdbcType=INTEGER}
+  </select>
+
+
+</mapper>

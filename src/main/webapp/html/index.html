@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://v3.bootcss.com/examples/offcanvas/ -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--最后替换为自己的网页图标-->
+    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+
+    <title>主页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/offcanvas.css" rel="stylesheet">
+
+    <!-- 自定义CSS -->
+    <link href="../css/index.css" rel="stylesheet">
+    <link href="../css/model.css" rel="stylesheet">
+    <link href="../css/userinfo.css" rel="stylesheet">
+    <link href="../css/page.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">师生互动教学系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="">主页</a></li>
+                <li><a href="">我的关注</a></li>
+                <li><a href="">发现</a></li>
+                <li><a href="">消息</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav" style="margin-right: 20px;float: right;">
+                <li style="margin-top: 8px ;margin-right: 30px;">
+                    <button class="btn btn-primary " data-toggle="modal"
+                            data-target="#newQuestionSquareModel">
+                        创建广场
+                    </button>
+                </li>
+                <li>
+                    <div class="btn-group" style="margin-top:8px">
+                        <button type="button" class="btn btn-primary" id = "userBtn" >欢迎，余方焱</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="userInfo.html">更改信息</a></li>
+                            <li><a href="login.html">切换用户</a></li>
+                            <li><a href="#">更改密码</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="login.html" id="loginOutBtn">退出</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- Split button -->
+
+            </ul>
+        </div>
+        <!-- /.nav-collapse -->
+
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- /.navbar -->
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>
+            <div class="jumbotron">
+                <h1>欢迎来到，问题广场!</h1>
+                <p>你可以在这里寻找你感兴趣的学习话题，尽情的遨游在知识的海洋吧！</p>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="寻找你感兴趣的问题广场">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">搜索</button>
+                          </span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!--row-->
+            <div class="row" id = "qsContainer">
+                <template id="qsTemplate" >
+                    <div class="col-xs-4 col-lg-3">
+                        <div class="thumbnail">
+                            <!--<div class="list-group">-->
+                            <img src="../pic/1.jpg"  id="qsPic"  alt="图片">
+                            <div class="caption">
+                                <div class="headline"> <a href="" id="qsHeadline"> 高数 </a> </div>
+                                <div class="description" id="qsDescription">
+                                    让我们一起来感受数学之美吧！
+                                </div>
+                                <div class="attention_message_container">
+                                    <span class="attention_icon"></span>
+                                    <span class="attention_peopel myfont" id="qsPeople">200</span>
+                                    <span class="message_icon"></span>
+                                    <span class="message_num myfont" id="qsMessage">500</span>
+                                </div>
+                                <div class="author_time_container">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <span class="author myfont" id="qsAuthor">赵松泉</span>
+                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="time myfont" id="qsTime">2016-05-17</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <div class="col-xs-4 col-lg-3">
+                    <div class="thumbnail">
+                        <!--<div class="list-group">-->
+                        <img src="../pic/1.jpg" alt="图片">
+                        <div class="caption">
+                            <div class="headline"> <a href=""> 高数 </a> </div>
+                            <div class="description">
+                                让我们一起来感受数学之美吧！
+                            </div>
+                            <div class="myfont">
+                                <div class="attention_message_container">
+                                    <span class="attention_icon"></span>
+                                    <span class="attention_peopel">200</span>
+                                    <span class="message_icon"></span>
+                                    <span class="message_num ">500</span>
+                                </div>
+                                <div class="author_time_container">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <span class="author">赵松泉</span>
+                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="time">2016-05-17</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-lg-3">
+                    <div class="thumbnail">
+                        <!--<div class="list-group">-->
+                        <img src="../pic/1.jpg" alt="图片">
+                        <div class="caption">
+                            <div class="headline"> <a href=""> 高数 </a> </div>
+                            <div class="description">
+                                让我们一起来感受数学之美吧！
+                            </div>
+                            <div class="attention_message_container">
+                                <span class="attention_icon"></span>
+                                <span class="attention_peopel myfont">200</span>
+                                <span class="message_icon"></span>
+                                <span class="message_num myfont">500</span>
+                            </div>
+                            <div class="author_time_container">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="author myfont">赵松泉</span>
+                                <span class="glyphicon glyphicon-time"></span>
+                                <span class="time myfont">2016-05-17</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-lg-3">
+                    <div class="thumbnail">
+                        <!--<div class="list-group">-->
+                        <img src="../pic/1.jpg" alt="图片">
+                        <div class="caption">
+                            <div class="headline"> <a href=""> 高数 </a> </div>
+                            <div class="description">
+                                让我们一起来感受数学之美吧！
+                            </div>
+                            <div class="attention_message_container">
+                                <span class="attention_icon"></span>
+                                <span class="attention_peopel myfont">200</span>
+                                <span class="message_icon"></span>
+                                <span class="message_num myfont">500</span>
+                            </div>
+                            <div class="author_time_container">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="author myfont">赵松泉</span>
+                                <span class="glyphicon glyphicon-time"></span>
+                                <span class="time myfont">2016-05-17</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-lg-3">
+                    <div class="thumbnail">
+                        <!--<div class="list-group">-->
+                        <img src="../pic/1.jpg" alt="图片">
+                        <div class="caption">
+                            <div class="headline"> <a href=""> 高数 </a> </div>
+                            <div class="description">
+                                让我们一起来感受数学之美吧！
+                            </div>
+                            <div class="attention_message_container">
+                                <span class="attention_icon"></span>
+                                <span class="attention_peopel myfont">200</span>
+                                <span class="message_icon"></span>
+                                <span class="message_num myfont">500</span>
+                            </div>
+                            <div class="author_time_container">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="author myfont">赵松泉</span>
+                                <span class="glyphicon glyphicon-time"></span>
+                                <span class="time myfont">2016-05-17</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-lg-3">
+                    <div class="thumbnail">
+                        <!--<div class="list-group">-->
+                        <img src="../pic/1.jpg" alt="图片">
+                        <div class="caption">
+                            <div class="headline"> <a href=""> 高数 </a> </div>
+                            <div class="description">
+                                让我们一起来感受数学之美吧！
+                            </div>
+                            <div class="attention_message_container">
+                                <span class="attention_icon"></span>
+                                <span class="attention_peopel myfont">200</span>
+                                <span class="message_icon"></span>
+                                <span class="message_num myfont">500</span>
+                            </div>
+                            <div class="author_time_container">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="author myfont">赵松泉</span>
+                                <span class="glyphicon glyphicon-time"></span>
+                                <span class="time myfont">2016-05-17</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-lg-3">
+                    <div class="thumbnail">
+                        <!--<div class="list-group">-->
+                        <img src="../pic/1.jpg" alt="图片">
+                        <div class="caption">
+                            <div class="headline"> <a href=""> 高数 </a> </div>
+                            <div class="description">
+                                让我们一起来感受数学之美吧！
+                            </div>
+                            <div class="attention_message_container">
+                                <span class="attention_icon"></span>
+                                <span class="attention_peopel myfont">200</span>
+                                <span class="message_icon"></span>
+                                <span class="message_num myfont">500</span>
+                            </div>
+                            <div class="author_time_container">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="author myfont">赵松泉</span>
+                                <span class="glyphicon glyphicon-time"></span>
+                                <span class="time myfont">2016-05-17</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tcdPageCode"></div>
+            <!--/row-->
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" style="float: right">
+            <div class="list-group">
+                <a href="" class="list-group-item active" >友情链接</a>
+                <a href="http://www.swust.edu.cn/" class="list-group-item" target="_blank">西南科技大学</a>
+                <a href="http://www.cs.swust.edu.cn/" class="list-group-item" target="_blank">计算机科学与技术学院</a>
+                <a href="http://www.dean.swust.edu.cn/xml/index.xml" class="list-group-item" target="_blank">教务处</a>
+                <a href="http://www.lib.swust.edu.cn/" class="list-group-item" target="_blank">图书馆</a>
+                <a href="http://bbs.swust.edu.cn/" class="list-group-item" target="_blank">校园BBS</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/11/c/4244/d/4255/list.htm" class="list-group-item" target="_blank">校园风光</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/22/list.htm" class="list-group-item" target="_blank">焦点新闻</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/24/list.htm" class="list-group-item" target="_blank">通知公告</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/25/list.htm" class="list-group-item" target="_blank">学术交流</a>
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+
+    </div>    <!--/.col-xs-12.col-sm-9-->
+    <hr>
+   <!--row row-offcanvas row-offcanvas-right-->
+    <footer>
+        <p>© Company 2014</p>
+    </footer>
+
+</div><!--/.container-->
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="newQuestionSquareModel" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form id ="bulidForm" action="/questionSquareController/build.do" method="post" enctype="multipart/form-data" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新建问题广场
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="publish_question_container">
+                        <span class="question_editor_labels" style="vertical-align: top">
+                            图标:
+                        </span>
+                        <em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                        <span class="user-pic" id="box">
+                            <a href="#" class="thumbnail">
+                                <img id="userPic" src="../pic/user_pic.jpg" alt="...">
+                            </a>
+                        </span>
+                        <div class="none">
+                            <input type="file" id="filePic" name="file" size="15" maxlength="10" onchange="imagesSelected(this.files)" >
+                        </div>
+                    </div>
+                    <div class="publish_question_container">
+                        <div class="question_editor_labels">
+                            <span>问题广场名称：</span>
+                            <span class="question_lable">
+                                限10字以内
+                            </span>
+                        </div>
+                        <div class="question_editor">
+                            <div class="input-group">
+                                <textarea type="text" class=" input_lable input_lable_height"  name = "problemSquareName" aria-describedby="basic-addon1"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="publish_question_container">
+                        <div class="question_editor_labels">
+                            <span>问题广场描述：</span>
+                            <span class="question_lable">
+                                限20字以内
+                            </span>
+                        </div>
+                        <div class="question_editor">
+                            <div class="input-group">
+                                <textarea type="text" class="input_lable"  id = "qsNewDescription" name = "problemSquareDescription" aria-describedby="basic-addon1"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary" id = "qsNewBtn">
+                        新建
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+
+    </div><!-- /.modal -->
+</div>
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../js/jquery-1.12.3.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<script src="../js/offcanvas.js"></script>
+
+<!--通用js-->
+<script src="../js/common.js"></script>
+
+<script type="text/javascript" language="javascript" src="../js/index.js" charset="gb2312"></script>
+
+<!--上传图片并预览-->
+<script src="../js/upload.js"></script>
+
+<!--分页js-->
+<script   language="javascript" type="text/javascript" src="../js/page.js" charset="gb2312"></script>
+
+</body>
+</html>

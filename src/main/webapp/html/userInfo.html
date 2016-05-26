@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://v3.bootcss.com/examples/offcanvas/ -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--最后替换为自己的网页图标-->
+    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+
+    <title>个人主页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/offcanvas.css" rel="stylesheet">
+
+    <link href="../css/index.css" rel="stylesheet">
+
+    <link href="../css/userinfo.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">师生互动教学系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="">主页</a></li>
+                <li><a href="">问题广场</a></li>
+                <li><a href="">发现</a></li>
+                <li><a href="">消息</a></li>
+            </ul>
+            <ul class="nav navbar-nav" style="margin-right: 20px;float: right;">
+                <li>
+                    <div class="btn-group" style="margin-top:8px">
+                        <button type="button" class="btn btn-primary">欢迎，余帅</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="userInfo.html">更改信息</a></li>
+                            <li><a href="login.html">切换用户</a></li>
+                            <li><a href="#">更改密码</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="login.html" id="loginOutBtn">退出</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- Split button -->
+
+            </ul>
+        </div>
+        <!-- /.nav-collapse -->
+
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- /.navbar -->
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-11 col-sm-9">
+            <div class="question-container">
+                <div class="user-info">
+                    <div class="user-title">
+                        <span class="name">
+                            余方焱
+                        </span>
+                        <span class="glyphicon glyphicon-menu-right"></span>
+                        <span class="nameLable">
+                            编辑个人资料
+                        </span>
+                        <span class="returnIndex">
+                            <a href="">返回个人主页</a>
+                        </span>
+                    </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                            头像
+                        </span>
+                        <span class="user-pic" id="box">
+                            <a href="#" class="thumbnail">
+                                <img id="userPic" src="../pic/user_pic.jpg" alt="...">
+                            </a>
+                        </span>
+                        <div class="none">
+                            <input type="file" id="filePic" name="" size="15"  input enctype="multipart/form-data" maxlength="10" onchange="imagesSelected(this.files)" >
+                        </div>
+                    </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                           用户类型
+                        </span>
+                        <span>
+                            <input type="radio" name="b" checked>学生
+                            <em>&nbsp;&nbsp; </em>
+                            <input type="radio" name="b" >老师
+                        </span>
+                    </div>
+                    <div class="user-title">
+                         <span class="user-info-Lable">
+                            姓名
+                        </span>
+                        <span class="">
+                              <input type="text"  class="Input" placeholder="姓名" aria-describedby="basic-addon1">
+                        </span>
+                    </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                           性别
+                        </span>
+                        <span>
+                            <input type="radio" name="a" checked>男
+                            <em>&nbsp;&nbsp; </em>
+                            <input type="radio" name="a" >女
+                        </span>
+                    </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                            学校
+                        </span>
+                        <span>
+                             <input type="text"  class="Input" placeholder="学校" aria-describedby="basic-addon1">
+                        </span>
+                    </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                            专业
+                        </span>
+                        <span>
+                             <input type="text"  class="Input" placeholder="专业" aria-describedby="basic-addon1">
+                        </span>
+                    </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                            班级
+                        </span>
+                        <span>
+                             <input type="text"  class="Input" placeholder="班级" aria-describedby="basic-addon1">
+                        </span>
+                    </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                            学号
+                        </span>
+                        <span>
+                             <input type="text"  class="Input" placeholder="学号" aria-describedby="basic-addon1">
+                        </span>
+                </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                            电话
+                        </span>
+                        <span>
+                             <input type="text"  class="Input" placeholder="电话" aria-describedby="basic-addon1">
+                        </span>
+                    </div>
+                    <div class="user-title">
+                        <span class="user-info-Lable">
+                            邮箱
+                        </span>
+                        <span>
+                             <input type="text"  class="Input" placeholder="邮箱" aria-describedby="basic-addon1">
+                        </span>
+                    </div>
+                    <div class="user_submit">
+                        <button  type="button" class="Button">保存</button>
+                        <button  type="button" class="Button">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" style="float: right">
+            <div class="list-group">
+                <a href="" class="list-group-item active" >友情链接</a>
+                <a href="http://www.swust.edu.cn/" class="list-group-item" target="_blank">西南科技大学</a>
+                <a href="http://www.cs.swust.edu.cn/" class="list-group-item" target="_blank">计算机科学与技术学院</a>
+                <a href="http://www.dean.swust.edu.cn/xml/index.xml" class="list-group-item" target="_blank">教务处</a>
+                <a href="http://www.lib.swust.edu.cn/" class="list-group-item" target="_blank">图书馆</a>
+                <a href="http://bbs.swust.edu.cn/" class="list-group-item" target="_blank">校园BBS</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/11/c/4244/d/4255/list.htm" class="list-group-item" target="_blank">校园风光</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/22/list.htm" class="list-group-item" target="_blank">焦点新闻</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/24/list.htm" class="list-group-item" target="_blank">通知公告</a>
+                <a href="http://www.swust.edu.cn/s/2/t/851/p/25/list.htm" class="list-group-item" target="_blank">学术交流</a>
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+
+    </div>    <!--/.col-xs-12.col-sm-9-->
+    <hr>
+    <!--row row-offcanvas row-offcanvas-right-->
+    <footer>
+        <p>© Company 2014</p>
+    </footer>
+
+</div><!--/.container-->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../js/jquery-1.12.3.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<script src="../js/offcanvas.js"></script>
+<script src="../js/upload.js"></script>
+
+</body>
+</html>
