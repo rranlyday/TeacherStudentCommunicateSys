@@ -41,11 +41,13 @@ public class QuestionController {
             List<QuestionDTO> questionDTOList = new ArrayList<QuestionDTO>();
             List<Question> questionList = questionService.searchQuestionOrderByTimeByProblemSquareId(problemSquareId,curPage,pageSize);
             for (Question question:questionList){
-                User user = userService.selectById(question.getId());
-                QuestionDTO questionDTO = new QuestionDTO();
-                questionDTO.setQuestion(question);
-                questionDTO.setUser(user);
-                questionDTOList.add(questionDTO);
+                User user = userService.selectById(question.getQuestionerId());
+                if (user != null){
+                    QuestionDTO questionDTO = new QuestionDTO();
+                    questionDTO.setQuestion(question);
+                    questionDTO.setUser(user);
+                    questionDTOList.add(questionDTO);
+                }
             }
             int questionTotal = questionService.searchQuestioNumByProblemSquareId(problemSquareId);
             int pageTotal = MathUtil.numToPageTotal(questionTotal, pageSize);

@@ -151,7 +151,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
-                        data-dismiss="modal">关闭
+                        data-dismiss="modal" id="publishQuestionCancleBtn">关闭
                 </button>
                 <button type="button" id = "publishQuestionBtn" class="btn btn-primary" >
                     发布
@@ -311,31 +311,31 @@
                     <span class="zg-section-ico"></span>
                     <span class="zg-section-lable">最新动态</span>
                 </div>
-                <div id = "qContainer">
-                    <template id="qTemplate" >
-                        <div class="qustion-content">
-                            <div class="question_title">
-                                <a class="question_link" target="_blank" href="" id="qTitle">管理</a>
-                            </div>
-                            <div class="question_author">
+                <template id="qTemplate" >
+                    <div class="qustion-content">
+                        <div class="question_title">
+                            <a class="question_link" target="_blank" href="" id="qTitle">时间</a>
+                        </div>
+                        <div class="question_author">
                         <span class="question_author_Lable">
                             提问者：
                         </span>
                         <span>
-                            <a class="author-link" target="_blank" href="" id="questioner">KellyWeaver</a>
+                            <a class="author-link" target="_blank" href="" id="questioner">时间</a>
                         </span>
-                            </div>
-                            <div class="question_description">
-                                <p id="questionDescription" > 说出管理与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
-                            </div>
-                            <div class="question_label" >
-                                <span class="question_info_Lable"></span>
-                                <span class="question_lable_description" id = "replyNumber">500 条回答</span>
-                                <span class="question_lable_description">发布时间</span>
-                                <span class="question_lable_description" id = "questionTime">2016-05-20 12:10:20</span>
-                            </div>
                         </div>
-                    </template>
+                        <div class="question_description">
+                            <p id="questionDescription" >啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+                        </div>
+                        <div class="question_label" >
+                            <span class="question_info_Lable"></span>
+                            <span class="question_lable_description" id = "replyNumber">20</span>
+                            <span class="question_lable_description">发布时间</span>
+                            <span class="question_lable_description" id = "questionTime">2016-05-20 12:10:20</span>
+                        </div>
+                    </div>
+                </template>
+                <div class="row" id = "qContainer">
                 </div>
 
       <!--          <div class="qustion-content">
@@ -597,7 +597,7 @@
 <!--通用js-->
 <script src="../js/common.js"></script>
 
-<script language="javascript" type="text/javascript" src="../js/question.js" charset="gb2312"></script>
+<script language="javascript" type="text/javascript" src="../js/question.js" ></script>
 
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

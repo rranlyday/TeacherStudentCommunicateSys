@@ -13,9 +13,19 @@ $(document).ready(function(){
 
 })
 
-function f (){
-    console.log("1111111111");
+function loadQuestion(questionDTO){
+    console.log(questionDTO);
+    var temp = document.querySelector("#qTemplate");
+    temp.content.querySelector("#qTitle").innerHTML  = questionDTO.question.questionTitle;
+    temp.content.querySelector("#qTitle").href = "questionDetail.html?questionId="+ questionDTO.question.id;      //设置跳转链接
+    temp.content.querySelector("#questioner").innerHTML  = questionDTO.user.userName;
+    temp.content.querySelector("#questionDescription").innerHTML  = questionDTO.question.questionDescription;
+    temp.content.querySelector("#replyNumber").innerHTML  = questionDTO.question.replyNumber;
+    temp.content.querySelector("#questionTime").innerHTML  = new Date(questionDTO.question.questionTime);
+    document.querySelector("#qContainer").appendChild(temp.content.cloneNode(true)); //加进去
+
 }
+
 function enterQuestionPage(curPage,pageSize){
 
     var problemSquareId = GetUrlParam("id");
@@ -34,8 +44,9 @@ function enterQuestionPage(curPage,pageSize){
         success : function(msg) {
             if (msg.result == true){
                 var questionDTOList = msg.questionDTOList;
-                questionDTOList.forEach(function(questionDTO){
-                    loadQuestion(questionDTO);
+                console.log(questionDTOList);
+                questionDTOList.forEach(function(e){
+                    loadQuestion(e);
                 })
             }
             else{
@@ -48,17 +59,7 @@ function enterQuestionPage(curPage,pageSize){
 }
 
 
-function loadQuestion(questionDTO){
-    var template = document.querySelector('#qTemplate');
-    template.content.querySelector('#qTitle').src = questionDTO.question.questionTitle;
-    template.content.querySelector('#qTitle').href ="questionDetail.html?questionId="+ questionDTO.question.id;      //设置跳转链接
-    template.content.querySelector('#questioner').src = questionDTO.user.userName;
-    template.content.querySelector('#questionDescription').src = questionDTO.question.questionDescription;
-    template.content.querySelector('#replyNumber').src = questionDTO.question.replyNumber;
-    template.content.querySelector('#questionTime').src = questionDTO.question.questionTime;
 
-    document.querySelector('#qContainer').appendChild(template.content.cloneNode(true)); //加进去
-}
 
 
 function addTask(){
@@ -115,7 +116,8 @@ function addQuestion(){
             dataType : 'json',
             success : function(msg) {
                 if (msg.result == true){
-                    console.log("提问成功！")
+                    console.log("提问成功！");
+                   $("#publishQuestionCancleBtn").click();
                 }
                 else{
                     console.log("提问失败！")
