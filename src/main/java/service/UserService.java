@@ -15,4 +15,9 @@ public interface UserService {
 
      User selectById(int id);
 
+     int updatePassword(Integer userId,String password,String newPassword);
+
+     int updateUserInfo(Integer userId,String userName, Integer userType,String sex,
+                        String school,String major,String grade,String no,
+                        String tel,String email,String userInco);
 }

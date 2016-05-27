@@ -1,7 +1,6 @@
 package controller;
 
 import DTO.QuestionReplyDTO;
-import com.sun.jmx.remote.internal.ArrayQueue;
 import model.QuestionReply;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -178,7 +177,7 @@ public class QuestionReplyController {
         }
     }
 
-    //根据时间查询回答
+    //根据采纳率查询回答
     @RequestMapping(value="/searchByAdoptionRate",method = RequestMethod.POST)
     public ModelAndView searchByAdoptionRate(Integer questionId,Integer curPage,Integer pageSize) {
         ModelAndView mav = new ModelAndView();

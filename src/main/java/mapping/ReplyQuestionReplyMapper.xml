@@ -242,4 +242,14 @@
       reply_inverse_num = #{replyInverseNum,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="searchReplyQuestionReplyOrderByTime" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from reply_question_reply
+    where question_reply_id = #{questionReplyId,jdbcType=INTEGER}
+    order by relpy_time DESC
+    limit #{beginPos,jdbcType=INTEGER} ,#{pageSize,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

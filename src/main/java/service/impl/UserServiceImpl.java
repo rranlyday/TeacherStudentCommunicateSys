@@ -47,4 +47,35 @@ public class UserServiceImpl implements UserService{
     public User selectById(int id) {
         return userMapper.selectByPrimaryKey(id);
     }
+
+    public int updatePassword(Integer userId, String password, String newPassword) {
+        if (password == null || password.equals(""))
+            return  -1;
+        User user = userMapper.selectByPrimaryKey(userId);
+        if (password.equals(user.getPassword())){
+            user.setPassword(password);
+            return userMapper.updateByPrimaryKey(user);
+        }else{
+            return  -2;
+        }
+    }
+
+    public int updateUserInfo(Integer userId, String userName, Integer userType,
+                              String sex, String school, String major, String grade,
+                              String no, String tel, String email, String userInco) {
+        User user = new User();
+        user.setId(userId);
+        user.setUserName(userName);
+        user.setUserType(userType);
+        user.setSex(sex);
+        user.setSchool(school);
+        user.setMajor(major);
+        user.setGrade(grade);
+        user.setNo(no);
+        user.setTel(tel);
+        user.setEmail(email);
+        user.setUserInco(userInco);
+
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
 }
