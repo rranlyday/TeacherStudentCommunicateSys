@@ -31,5 +31,5 @@ public interface QuestionMapper {
     List<Question> selectQuestionOrderByTimeByProblemSquareId(@Param("problemSquareId") int problemSquareId,@Param("beginPos") int beginPos,
                                                               @Param("pageSize")int pageSize);
 
-    int searchQuestioNumByProblemSquareId(Integer problemSquareId);
+    Integer searchQuestioNumByProblemSquareId(Integer problemSquareId);
 }

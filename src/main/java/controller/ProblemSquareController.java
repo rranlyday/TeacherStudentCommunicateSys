@@ -88,6 +88,8 @@ public class ProblemSquareController {
         Map map = new HashMap();
         System.out.println("I am coming!!");
         try {
+            System.out.println("pageNum: "+pageNum);
+            System.out.println("pageSize: "+pageSize);
             List<ProblemSquare> problemSquareList = problemSquareService.selectProblemSquareOrderByTime(pageNum,pageSize,condition);
             List<ProblemSquareDTO> problemSquareDTOList = new ArrayList<ProblemSquareDTO>();
             for (int i = 0 ;i<problemSquareList.size();i++){
@@ -107,6 +109,26 @@ public class ProblemSquareController {
             map.put("problemSquareDTOList",problemSquareDTOList);
             map.put("pageTotal",pageTotal);
             System.out.println("problemSquareDTOList: " + problemSquareDTOList.size());
+        } catch (Exception e) {
+            map.put("result", Boolean.FALSE);
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
+    @RequestMapping(value = "/getProblemSquareTotal", method = RequestMethod.POST)
+    public ModelAndView getProblemSquareTotal(Integer pageSize, String condition) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            int problemSquareTotal = problemSquareService.selectProblemSquareCount(condition);
+            int pageTotal = MathUtil.numToPageTotal(problemSquareTotal, pageSize);
+            map.put("pageTotal",pageTotal);
+
         } catch (Exception e) {
             map.put("result", Boolean.FALSE);
             e.printStackTrace();

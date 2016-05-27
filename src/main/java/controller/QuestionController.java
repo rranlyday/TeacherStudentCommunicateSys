@@ -66,13 +66,15 @@ public class QuestionController {
     }
 
     @RequestMapping(value="/buildQuestion",method = RequestMethod.POST)
-    public ModelAndView buildQuestion(Integer questionerId,Integer problemSquareId,
+    public ModelAndView buildQuestion(Integer problemSquareId,
                                       String questionTitle,String questionDescription,
                                       HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
         try {
+            User user = (User)request.getSession().getAttribute("user");
+            Integer questionerId = user.getId();
             int rs = questionService.buildQuestion(questionerId,problemSquareId,questionTitle,questionDescription);
             if (rs > 0){
                 map.put("result", Boolean.TRUE);

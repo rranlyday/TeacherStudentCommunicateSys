@@ -6,6 +6,8 @@ var user = null ;
 
 $(document).ready(function(){
 
+    var pageSize = 8 ;
+
     //设置导航栏
     //setnav() ;
 
@@ -13,16 +15,15 @@ $(document).ready(function(){
    // setMid();
 
     //进入页面时动态加载问题广场
-    entryPage();
+    entryPage(0,pageSize);
 
     $(".tcdPageCode").createPage({
-        pageCount:6,
+        pageCount:getProblemSquarePageNum(pageSize,null),
         current:1,
-        backFn:function(p){
-            console.log(p);
+        backFn:function(curPage){
+            entryPage(curPage-1,pageSize) ;
         }
     });
-
 });
 
 //设置导航栏
@@ -37,33 +38,57 @@ function setnav(){
     }
 }
 
+function getProblemSquarePageNum(pageSize,condition){
+    var num = -1;
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/problemSquareController/getProblemSquareTotal.do',
+        async : false,
+        data : {
+            pageSize:pageSize,
+            condition:condition
+        },
+        dataType : 'json',
+        success : function(msg) {
+            if (msg.result == true){
+                num = msg.pageTotal;
+            }
+            else{
+                console.log("获取总页数失败！");
+            }
+        },error: function(msg){
+
+        }
+    });
+    return num;
+}
+
+
 //设置中间数据，动态加载
 function setMid(problemSquareDto) {
 
     var template = document.querySelector('#qsTemplate');
     template.content.querySelector('#qsPic').src = problemSquareDto.problemSquare.problemSquareIcon;    //设置图标
     template.content.querySelector("#qsHeadline").value = problemSquareDto.problemSquare.problemSquareName;
-    template.content.querySelector("#qsHeadline").href ="question.html?id="+problemSquareDto.problemSquare.id;
+    template.content.querySelector("#qsHeadline").href ="question.html?id="+problemSquareDto.problemSquare.id;   //设置跳转链接
     template.content.querySelector("#qsDescription").value = problemSquareDto.problemSquare.problemSquareDescription;
     template.content.querySelector("#qsPeople").value = problemSquareDto.problemSquare.attentionNum;
     template.content.querySelector("#qsMessage").value = problemSquareDto.problemSquare.messageNum;
     template.content.querySelector("#qsAuthor").value = problemSquareDto.user.userName;
     template.content.querySelector("#qsTime").value = problemSquareDto.user.buildTime;
-
     document.querySelector('#qsContainer').appendChild(template.content.cloneNode(true)); //加进去
 }
 
-
-
-function entryPage(){
+function entryPage(curPage,pageSize){
     $.ajax({
         type : "post",
         contentType : "application/x-www-form-urlencoded;charset=UTF-8",
         url : '/problemSquareController/getProblemSquare.do',
         async : false,
         data : {
-            pageNum:0,
-            pageSize:8
+            pageNum:curPage,
+            pageSize:pageSize
         },
         dataType : 'json',
         success : function(msg) {
@@ -71,6 +96,7 @@ function entryPage(){
                var problemSquareDTOList = msg.problemSquareDTOList;
                 console.log(problemSquareDTOList)
                 if(problemSquareDTOList != null){
+                    $("#qsContainer").empty();
                     problemSquareDTOList.forEach(function(e){
                         setMid(e);
                     }); //循环处理
@@ -83,9 +109,18 @@ function entryPage(){
 
         }
     });
-
 }
 
+
+function removeAllChild()
+{
+    var div = document.getElementById("#qsContainer");
+    console.log(div);
+    while(div.hasChildNodes()) //当div下还存在子节点时 循环继续
+    {
+        div.removeChild(div.firstChild);
+    }
+}
 
 
 

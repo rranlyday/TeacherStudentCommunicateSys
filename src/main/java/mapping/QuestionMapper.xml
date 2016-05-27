@@ -253,7 +253,7 @@
   </select>
 
   <select id="searchQuestioNumByProblemSquareId" resultMap="BaseResultMap" resultType="java.lang.Integer" >
-    select  count(*) from question
+    select count(*) from question
     WHERE problem_square_id  = #{problemSquareId,jdbcType=INTEGER}
   </select>
 

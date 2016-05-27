@@ -57,12 +57,31 @@
                 <li><a href="">我的关注</a></li>
             </ul>
             <ul class="nav navbar-nav" style="margin-right: 5px;float: right;">
+                <!--提问按钮-->
                 <li style="margin-top: 8px ;margin-right: 30px;">
                     <button class="btn btn-primary " data-toggle="modal"
-                            data-target="#myModal">
+                            data-target="#question">
                         提问
                     </button>
                 </li>
+
+                <!--发布作业按钮-->
+                <li style="margin-top: 8px ;margin-right: 30px;">
+                    <button class="btn btn-primary " data-toggle="modal"
+                            data-target="#task">
+                        发布作业
+                    </button>
+                </li>
+
+                <!--上传资料按钮-->
+                <li style="margin-top: 8px ;margin-right: 30px;">
+                    <button class="btn btn-primary " data-toggle="modal"
+                            data-target="#material">
+                        上传资料
+                    </button>
+                </li>
+
+                <!--个人资料按钮-->
                 <li>
                     <div class="btn-group" style="margin-top:8px">
                         <button type="button" class="btn btn-primary">欢迎，余方焱</button>
@@ -91,8 +110,8 @@
 </nav>
 <!-- /.navbar -->
 
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+<!-- 提问模态框（Modal） -->
+<div class="modal fade" id="question" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -115,7 +134,7 @@
                     </div>
                     <div class="question_editor">
                         <div class="input-group">
-                            <textarea type="text" class=" input_lable input_lable_height"  aria-describedby="basic-addon1"></textarea>
+                            <textarea type="text" class=" input_lable input_lable_height" id = "publishQuestionTitle"  aria-describedby="basic-addon1"></textarea>
                         </div>
                     </div>
                 </div>
@@ -125,7 +144,115 @@
                     </div>
                     <div class="question_editor">
                         <div class="input-group">
-                            <textarea type="text" class="input_lable"  aria-describedby="basic-addon1"></textarea>
+                            <textarea type="text" class="input_lable" id = "publishQuestionDesc" aria-describedby="basic-addon1"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" id = "publishQuestionBtn" class="btn btn-primary" >
+                    发布
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 发布作业模态框（Modal） -->
+<div class="modal fade" id="task" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" >
+                    发布作业
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span>作业标题：</span>
+                            <span class="question_lable">
+                                限10字以内
+                            </span>
+                    </div>
+                    <div class="question_editor">
+                        <div class="input-group">
+                            <textarea type="text" class=" input_lable input_lable_height"  id = "taskTitle" aria-describedby="basic-addon1"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span>作业描述</span>
+                            <span class="question_lable">
+                            </span>
+                    </div>
+                    <div class="question_editor">
+                        <div class="input-group">
+                            <textarea type="text" class="input_lable"  id = "taskDesc" aria-describedby="basic-addon1"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" id = "publishTaskBtn" class="btn btn-primary"  >
+                    发布
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 上传资料模态框（Modal） -->
+<div class="modal fade" id="material" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" >
+                    上传资料
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span>资料描述：</span>
+                            <span class="question_lable">
+                                限10字以内
+                            </span>
+                    </div>
+                    <div class="question_editor">
+                        <div class="input-group">
+                            <textarea type="text" class=" input_lable input_lable_height"  aria-describedby="basic-addon1"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span>上传资料</span>
+                            <span class="question_lable">
+                            </span>
+                    </div>
+                    <div class="question_editor">
+                        <div class="input-group">
+                            <input type="file"  name="" size="15"  input enctype="multipart/form-data" maxlength="10">
+                            <input type="file"  name="" size="15"  input enctype="multipart/form-data" maxlength="10">
+                            <input type="file"  name="" size="15"  input enctype="multipart/form-data" maxlength="10">
+                            <input type="file"  name="" size="15"  input enctype="multipart/form-data" maxlength="10">
                         </div>
                     </div>
                 </div>
@@ -135,7 +262,7 @@
                         data-dismiss="modal">关闭
                 </button>
                 <button type="button" class="btn btn-primary">
-                    发布
+                    上传
                 </button>
             </div>
         </div><!-- /.modal-content -->
@@ -178,14 +305,40 @@
                 </div><!-- /.row -->
 
             </div>
-
             <!--row-->
             <div class="row question-container">
                 <div class="zg-section">
                     <span class="zg-section-ico"></span>
                     <span class="zg-section-lable">最新动态</span>
                 </div>
-                <div class="qustion-content">
+                <div id = "qContainer">
+                    <template id="qTemplate" >
+                        <div class="qustion-content">
+                            <div class="question_title">
+                                <a class="question_link" target="_blank" href="" id="qTitle">管理</a>
+                            </div>
+                            <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="" id="questioner">KellyWeaver</a>
+                        </span>
+                            </div>
+                            <div class="question_description">
+                                <p id="questionDescription" > 说出管理与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
+                            </div>
+                            <div class="question_label" >
+                                <span class="question_info_Lable"></span>
+                                <span class="question_lable_description" id = "replyNumber">500 条回答</span>
+                                <span class="question_lable_description">发布时间</span>
+                                <span class="question_lable_description" id = "questionTime">2016-05-20 12:10:20</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+      <!--          <div class="qustion-content">
                     <div class="question_title">
                         <a class="question_link" target="_blank" href="">管理</a>
                     </div>
@@ -294,29 +447,7 @@
                         <span class="question_lable_description">发布时间</span>
                         <span class="question_lable_description">2016-05-20 12:10:20</span>
                     </div>
-                </div>
-                <div class="qustion-content">
-                    <div class="question_title">
-                        <a class="question_link" target="_blank" href="">管理</a>
-                    </div>
-                    <div class="question_author">
-                        <span class="question_author_Lable">
-                            提问者：
-                        </span>
-                        <span>
-                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
-                        </span>
-                    </div>
-                    <div class="question_description">
-                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
-                    </div>
-                    <div class="question_label">
-                        <span class="question_info_Lable"></span>
-                        <span class="question_lable_description">500 条回答</span>
-                        <span class="question_lable_description">发布时间</span>
-                        <span class="question_lable_description">2016-05-20 12:10:20</span>
-                    </div>
-                </div>
+                </div>-->
                 <div class="paging">
                     <nav>
                         <ul class="pagination">
@@ -465,6 +596,9 @@
 
 <!--通用js-->
 <script src="../js/common.js"></script>
+
+<script language="javascript" type="text/javascript" src="../js/question.js" charset="gb2312"></script>
+
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>

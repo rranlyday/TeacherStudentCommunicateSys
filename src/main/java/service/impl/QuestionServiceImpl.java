@@ -28,7 +28,7 @@ public class QuestionServiceImpl implements QuestionService {
         Question question = new Question();
         question.setQuestionerId(questionerId);
         question.setQuestionTitle(questionTitle);
-        question.setQuestionTitle(questionDescription);
+        question.setQuestionDescription(questionDescription);
         question.setProblemSquareId(problemSquareId);
 
         Date questionTime = TimeUtil.getNowSysTime();
@@ -39,7 +39,10 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     public int searchQuestioNumByProblemSquareId(Integer problemSquareId) {
-        return questionMapper.searchQuestioNumByProblemSquareId(problemSquareId);
+        Integer rs = questionMapper.searchQuestioNumByProblemSquareId(problemSquareId);
+        if (rs == null)
+            return  0;
+        return rs;
     }
 
     public int deleteQuestion(Integer questionId) {

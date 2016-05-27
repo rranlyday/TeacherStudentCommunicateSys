@@ -46,7 +46,10 @@ public class ProblemSquareServiceImpl implements ProblemSquareService {
   }
 
     public int selectProblemSquareCount(String condition) {
-        return 0;
+        if (condition == null)
+            return selectProblemSquareCount();
+        else
+            return 0;
     }
 
     public int addQuestionNum(Integer problemSquareId,Integer questionNum) {
