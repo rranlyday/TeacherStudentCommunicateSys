@@ -46,10 +46,7 @@ public class ProblemSquareServiceImpl implements ProblemSquareService {
   }
 
     public int selectProblemSquareCount(String condition) {
-        if (condition == null)
-            return selectProblemSquareCount();
-        else
-            return 0;
+        return selectProblemSquareCount();
     }
 
     public int addQuestionNum(Integer problemSquareId,Integer questionNum) {
@@ -80,5 +77,9 @@ public class ProblemSquareServiceImpl implements ProblemSquareService {
             return attention+attentionNum ;
         }
         return  -1;
+    }
+
+    public ProblemSquare getProblemSquareById(Integer id) {
+        return problemSquareMapper.selectByPrimaryKey(id);
     }
 }

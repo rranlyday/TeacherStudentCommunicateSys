@@ -25,6 +25,6 @@ public interface ProblemSquareService {
 
     int reduceAttentionNum(Integer problemSquareId,Integer attentionNum);
 
-
+    ProblemSquare getProblemSquareById(Integer id);
 
 }

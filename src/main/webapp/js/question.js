@@ -3,13 +3,26 @@
  */
 $(document).ready(function(){
 
+    var pageSize = 8;
+
     addQuestion();
+
+    setTop();
 
     //发布作业
     addTask();
 
     //初次进入页面
-    enterQuestionPage(0,8);
+    enterQuestionPage(0,pageSize);
+
+
+    $(".tcdPageCode").createPage({
+        pageCount:getProblemSquarePageNum(pageSize),
+        current:1,
+        backFn:function(curPage){
+            enterQuestionPage(curPage-1,8);
+        }
+    });
 
 })
 
@@ -23,7 +36,6 @@ function loadQuestion(questionDTO){
     temp.content.querySelector("#replyNumber").innerHTML  = questionDTO.question.replyNumber;
     temp.content.querySelector("#questionTime").innerHTML  = new Date(questionDTO.question.questionTime);
     document.querySelector("#qContainer").appendChild(temp.content.cloneNode(true)); //加进去
-
 }
 
 function enterQuestionPage(curPage,pageSize){
@@ -43,8 +55,8 @@ function enterQuestionPage(curPage,pageSize){
         dataType : 'json',
         success : function(msg) {
             if (msg.result == true){
+                $("#qContainer").empty();
                 var questionDTOList = msg.questionDTOList;
-                console.log(questionDTOList);
                 questionDTOList.forEach(function(e){
                     loadQuestion(e);
                 })
@@ -58,12 +70,41 @@ function enterQuestionPage(curPage,pageSize){
     });
 }
 
+function setTop(){
 
+    var id = GetUrlParam("id");
+    var problemSquare = null ;
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/problemSquareController/getProblemSquareById.do',
+        async : false,
+        data : {
+            id:id
+        },
+        dataType : 'json',
+        success : function(msg) {
+            if (msg.result == true){
+                problemSquare = msg.problemSquare;
+            }
+            else{
+                console.log("发布作业失败！")
+            }
+        },error: function(msg){
+            alert("网络超时!");
+        }
+    });
 
-
+    if(problemSquare){
+        document.getElementById("qsPic").src = problemSquare.problemSquareIcon;
+        document.getElementById("qsTitle").innerHTML = problemSquare.problemSquareName;
+        document.getElementById("qsAttentionNum").innerHTML = problemSquare.attentionNum;
+        document.getElementById("qsQuestionNum").innerHTML = problemSquare.messageNum;
+        document.getElementById("qsDesc").innerHTML = problemSquare.problemSquareDescription;
+    }
+}
 
 function addTask(){
-
     $("#publishTaskBtn").click(function(){
         var problemSquareId = GetUrlParam("id");
         var taskTitle = $("#taskTitle").val();
@@ -138,4 +179,33 @@ function GetUrlParam(name)
     if(r!=null)
         return  unescape(r[2]);
     return null;
+}
+
+
+function getProblemSquarePageNum(pageSize){
+    var num = -1;
+    var  problemSquareId = GetUrlParam("id");
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/questionController/getQuestionNumTotal.do',
+        async : false,
+        data : {
+            pageSize:pageSize,
+            problemSquareId:problemSquareId
+        },
+        dataType : 'json',
+        success : function(msg) {
+            if (msg.result == true){
+                num = msg.pageTotal;
+                console.log("num: "+num);
+            }
+            else{
+                console.log("获取总页数失败！");
+            }
+        },error: function(msg){
+
+        }
+    });
+    return num;
 }

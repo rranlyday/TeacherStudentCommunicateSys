@@ -24,7 +24,7 @@ public class TaskController {
     TaskService taskService;
 
     //发布作业
-    @RequestMapping(value="/buildTask",method = RequestMethod.GET)
+    @RequestMapping(value="/buildTask",method = RequestMethod.POST)
     public ModelAndView buildTask(Integer problemSquareId, String taskTitle,
                                   String taskDecription,HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();

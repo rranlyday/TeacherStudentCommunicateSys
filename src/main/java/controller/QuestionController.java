@@ -67,6 +67,30 @@ public class QuestionController {
         }
     }
 
+
+    @RequestMapping(value="/getQuestionNumTotal",method = RequestMethod.POST)
+    public ModelAndView getQuestionNumTotal(Integer problemSquareId,Integer pageSize) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            int questionTotal = questionService.searchQuestioNumByProblemSquareId(problemSquareId);
+            int pageTotal = MathUtil.numToPageTotal(questionTotal, pageSize);
+
+            map.put("result", Boolean.TRUE);
+            map.put("pageTotal",pageTotal);
+            map.put("message", "查询成功!");
+        } catch (Exception e) {
+            map.put("result", Boolean.FALSE);
+            map.put("message", "执行出现出错！");
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
     @RequestMapping(value="/buildQuestion",method = RequestMethod.POST)
     public ModelAndView buildQuestion(Integer problemSquareId,
                                       String questionTitle,String questionDescription,

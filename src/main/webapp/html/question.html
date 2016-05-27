@@ -19,10 +19,10 @@
 
     <!-- Custom styles for this template -->
     <link href="../css/offcanvas.css" rel="stylesheet">
-
     <link href="../css/index.css" rel="stylesheet">
-
+    <link href="../css/userinfo.css" rel="stylesheet">
     <link href="../css/model.css" rel="stylesheet">
+    <link href="../css/page.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
@@ -109,6 +109,307 @@
     <!-- /.container -->
 </nav>
 <!-- /.navbar -->
+
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-11 col-sm-9">
+            <div class="top-title">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-xs-3 col-md-2">
+                            <a href="#" class="thumbnail">
+                                <img src="../pic/ex.jpg" alt="..." id = "qsPic">
+                            </a>
+                        </div>
+                        <div class="card_top">
+                            <div class="card_title">
+                                <span class="card_title_name" id="qsTitle" >经济管理概论</span>
+                                <span class="islike_focus"></span>
+                                <span class="atention-text"><a class="atention_word" id = "qsAttention">关注</a></span>
+                                <span class="atention_message_container">
+                                    <span class="card_numLabel">关注:</span>
+                                    <span class="card_menNum" id = "qsAttentionNum">200</span>
+                                    <span class="card_numLabel">问题:</span>
+                                    <span class="card_menNum" id = "qsQuestionNum">500</span>
+                                </span>
+                            </div>
+                            <div class="card_slogan">
+                                <span class="square_info" id="qsDesc">企事业单位经济管理人员的必修课！</span>
+                               <!-- <span class="subject_Lable">科目：</span>
+                                <span class="subject_Name">高数</span>-->
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+
+            </div>
+            <!--row-->
+            <div class="row question-container">
+                <div class="zg-section">
+                    <span class="zg-section-ico"></span>
+                    <span class="zg-section-lable">最新动态</span>
+                </div>
+                <template id="qTemplate" >
+                    <div class="qustion-content">
+                        <div class="question_title">
+                            <a class="question_link" target="_blank" href="" id="qTitle">时间</a>
+                        </div>
+                        <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="" id="questioner">时间</a>
+                        </span>
+                        </div>
+                        <div class="question_description">
+                            <p id="questionDescription" >啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+                        </div>
+                        <div class="question_label" >
+                            <span class="question_info_Lable"></span>
+                            <span class="question_lable_description" id = "replyNumber">20</span>
+                            <span class="question_lable_description">发布时间</span>
+                            <span class="question_lable_description" id = "questionTime">2016-05-20 12:10:20</span>
+                        </div>
+                    </div>
+                </template>
+                <div class="row" id = "qContainer">
+                </div>
+
+      <!--          <div class="qustion-content">
+                    <div class="question_title">
+                        <a class="question_link" target="_blank" href="">管理</a>
+                    </div>
+                    <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
+                        </span>
+                    </div>
+                    <div class="question_description">
+                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="question_info_Lable"></span>
+                        <span class="question_lable_description">500 条回答</span>
+                        <span class="question_lable_description">发布时间</span>
+                        <span class="question_lable_description">2016-05-20 12:10:20</span>
+                    </div>
+                </div>
+                <div class="qustion-content">
+                    <div class="question_title">
+                        <a class="question_link" target="_blank" href="">管理</a>
+                    </div>
+                    <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
+                        </span>
+                    </div>
+                    <div class="question_description">
+                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="question_info_Lable"></span>
+                        <span class="question_lable_description">500 条回答</span>
+                        <span class="question_lable_description">发布时间</span>
+                        <span class="question_lable_description">2016-05-20 12:10:20</span>
+                    </div>
+                </div>
+                <div class="qustion-content">
+                    <div class="question_title">
+                        <a class="question_link" target="_blank" href="">管理</a>
+                    </div>
+                    <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
+                        </span>
+                    </div>
+                    <div class="question_description">
+                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="question_info_Lable"></span>
+                        <span class="question_lable_description">500 条回答</span>
+                        <span class="question_lable_description">发布时间</span>
+                        <span class="question_lable_description">2016-05-20 12:10:20</span>
+                    </div>
+                </div>
+                <div class="qustion-content">
+                    <div class="question_title">
+                        <a class="question_link" target="_blank" href="">管理</a>
+                    </div>
+                    <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
+                        </span>
+                    </div>
+                    <div class="question_description">
+                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="question_info_Lable"></span>
+                        <span class="question_lable_description">500 条回答</span>
+                        <span class="question_lable_description">发布时间</span>
+                        <span class="question_lable_description">2016-05-20 12:10:20</span>
+                    </div>
+                </div>
+                <div class="qustion-content">
+                    <div class="question_title">
+                        <a class="question_link" target="_blank" href="">管理</a>
+                    </div>
+                    <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
+                        </span>
+                    </div>
+                    <div class="question_description">
+                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
+                    </div>
+                    <div class="question_label">
+                        <span class="question_info_Lable"></span>
+                        <span class="question_lable_description">500 条回答</span>
+                        <span class="question_lable_description">发布时间</span>
+                        <span class="question_lable_description">2016-05-20 12:10:20</span>
+                    </div>
+                </div>-->
+            </div>
+            <div class="tcdPageCode"></div>
+            <!--/row-->
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" style="float: right">
+            <div class="task_container">
+                <div class="task_headline">
+                    最新作业
+                </div>
+                <div class="task_content">
+
+                    <a><div class="task_item">
+                        <span class="task_no">1</span>
+                        <span class="task_title">第五章课后作业</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <a><div class="task_item">
+                        <span class="task_no">2</span>
+                        <span class="task_title">第五章课后作业</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <a><div class="task_item">
+                        <span class="task_no">3</span>
+                        <span class="task_title">第五章课后作业</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <a><div class="task_item">
+                        <span class="task_no">4</span>
+                        <span class="task_title">第五章课后作业</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <a><div class="task_item">
+                        <span class="task_no">5</span>
+                        <span class="task_title">第五章课后作业</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <div class="paging">
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div> <!--最新作业-->
+            <div class="task_container">
+                <div class="task_headline">
+                    最新资料
+                </div>
+                <div class="task_content">
+
+                    <a><div class="task_item">
+                        <span class="task_no">1</span>
+                        <span class="task_title">第五章考试题</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <a><div class="task_item">
+                        <span class="task_no">2</span>
+                        <span class="task_title">第五章考试题</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <a><div class="task_item">
+                        <span class="task_no">3</span>
+                        <span class="task_title">第五章考试题</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <a><div class="task_item">
+                        <span class="task_no">4</span>
+                        <span class="task_title">第五章考试题</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <a><div class="task_item">
+                        <span class="task_no">5</span>
+                        <span class="task_title">第五章考试题</span>
+                        <span class="task_date">2016-05-22</span>
+                    </div></a>
+                    <div class="paging">
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div> <!--最新资料-->
+        </div>
+    </div><!--/.sidebar-offcanvas-->
+
+    <footer>
+        <p>© Company 2014</p>
+    </footer>
+
+</div><!--/.container-->
 
 <!-- 提问模态框（Modal） -->
 <div class="modal fade" id="question" tabindex="-1" role="dialog"
@@ -269,325 +570,6 @@
     </div><!-- /.modal -->
 </div>
 
-<div class="container">
-
-    <div class="row row-offcanvas row-offcanvas-right">
-
-        <div class="col-xs-11 col-sm-9">
-
-            <div class="top-title">
-                <div class="row">
-                    <div class="row">
-                        <div class="col-xs-3 col-md-2">
-                            <a href="#" class="thumbnail">
-                                <img src="../pic/ex.jpg" alt="...">
-                            </a>
-                        </div>
-                        <div class="card_top">
-                            <div class="card_title">
-                                <span class="card_title_name">经济管理概论</span>
-                                <span class="islike_focus"></span>
-                                <span class="atention-text"><a class="atention_word">关注</a></span>
-                                <span class="atention_message_container">
-                                    <span class="card_numLabel">关注:</span>
-                                    <span class="card_menNum">200</span>
-                                    <span class="card_numLabel">问题:</span>
-                                    <span class="card_menNum">500</span>
-                                </span>
-                            </div>
-                            <div class="card_slogan">
-                                <span class="square_info">企事业单位经济管理人员的必修课！</span>
-                               <!-- <span class="subject_Lable">科目：</span>
-                                <span class="subject_Name">高数</span>-->
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /.row -->
-
-            </div>
-            <!--row-->
-            <div class="row question-container">
-                <div class="zg-section">
-                    <span class="zg-section-ico"></span>
-                    <span class="zg-section-lable">最新动态</span>
-                </div>
-                <template id="qTemplate" >
-                    <div class="qustion-content">
-                        <div class="question_title">
-                            <a class="question_link" target="_blank" href="" id="qTitle">时间</a>
-                        </div>
-                        <div class="question_author">
-                        <span class="question_author_Lable">
-                            提问者：
-                        </span>
-                        <span>
-                            <a class="author-link" target="_blank" href="" id="questioner">时间</a>
-                        </span>
-                        </div>
-                        <div class="question_description">
-                            <p id="questionDescription" >啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                        </div>
-                        <div class="question_label" >
-                            <span class="question_info_Lable"></span>
-                            <span class="question_lable_description" id = "replyNumber">20</span>
-                            <span class="question_lable_description">发布时间</span>
-                            <span class="question_lable_description" id = "questionTime">2016-05-20 12:10:20</span>
-                        </div>
-                    </div>
-                </template>
-                <div class="row" id = "qContainer">
-                </div>
-
-      <!--          <div class="qustion-content">
-                    <div class="question_title">
-                        <a class="question_link" target="_blank" href="">管理</a>
-                    </div>
-                    <div class="question_author">
-                        <span class="question_author_Lable">
-                            提问者：
-                        </span>
-                        <span>
-                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
-                        </span>
-                    </div>
-                    <div class="question_description">
-                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
-                    </div>
-                    <div class="question_label">
-                        <span class="question_info_Lable"></span>
-                        <span class="question_lable_description">500 条回答</span>
-                        <span class="question_lable_description">发布时间</span>
-                        <span class="question_lable_description">2016-05-20 12:10:20</span>
-                    </div>
-                </div>
-                <div class="qustion-content">
-                    <div class="question_title">
-                        <a class="question_link" target="_blank" href="">管理</a>
-                    </div>
-                    <div class="question_author">
-                        <span class="question_author_Lable">
-                            提问者：
-                        </span>
-                        <span>
-                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
-                        </span>
-                    </div>
-                    <div class="question_description">
-                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
-                    </div>
-                    <div class="question_label">
-                        <span class="question_info_Lable"></span>
-                        <span class="question_lable_description">500 条回答</span>
-                        <span class="question_lable_description">发布时间</span>
-                        <span class="question_lable_description">2016-05-20 12:10:20</span>
-                    </div>
-                </div>
-                <div class="qustion-content">
-                    <div class="question_title">
-                        <a class="question_link" target="_blank" href="">管理</a>
-                    </div>
-                    <div class="question_author">
-                        <span class="question_author_Lable">
-                            提问者：
-                        </span>
-                        <span>
-                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
-                        </span>
-                    </div>
-                    <div class="question_description">
-                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
-                    </div>
-                    <div class="question_label">
-                        <span class="question_info_Lable"></span>
-                        <span class="question_lable_description">500 条回答</span>
-                        <span class="question_lable_description">发布时间</span>
-                        <span class="question_lable_description">2016-05-20 12:10:20</span>
-                    </div>
-                </div>
-                <div class="qustion-content">
-                    <div class="question_title">
-                        <a class="question_link" target="_blank" href="">管理</a>
-                    </div>
-                    <div class="question_author">
-                        <span class="question_author_Lable">
-                            提问者：
-                        </span>
-                        <span>
-                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
-                        </span>
-                    </div>
-                    <div class="question_description">
-                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
-                    </div>
-                    <div class="question_label">
-                        <span class="question_info_Lable"></span>
-                        <span class="question_lable_description">500 条回答</span>
-                        <span class="question_lable_description">发布时间</span>
-                        <span class="question_lable_description">2016-05-20 12:10:20</span>
-                    </div>
-                </div>
-                <div class="qustion-content">
-                    <div class="question_title">
-                        <a class="question_link" target="_blank" href="">管理</a>
-                    </div>
-                    <div class="question_author">
-                        <span class="question_author_Lable">
-                            提问者：
-                        </span>
-                        <span>
-                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
-                        </span>
-                    </div>
-                    <div class="question_description">
-                        <p>说出“管理”与领导的差异，结合实际谈谈如何提高领导力。管理与领导的区别主要表现在哪些方面？</p>
-                    </div>
-                    <div class="question_label">
-                        <span class="question_info_Lable"></span>
-                        <span class="question_lable_description">500 条回答</span>
-                        <span class="question_lable_description">发布时间</span>
-                        <span class="question_lable_description">2016-05-20 12:10:20</span>
-                    </div>
-                </div>-->
-                <div class="paging">
-                    <nav>
-                        <ul class="pagination">
-                            <li><a href="#">上一页</a></li>
-                            <li class="active"> <a href="#">1 <span class="sr-only">(current)</span></a></li>
-                            <li> <a href="#">2<span class="sr-only">(current)</span></a></li>
-                            <li> <a href="#">3 <span class="sr-only">(current)</span></a></li>
-                            <li> <a href="#">4 <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">下一页</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!--/row-->
-        </div>
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" style="float: right">
-            <div class="task_container">
-                <div class="task_headline">
-                    最新作业
-                </div>
-                <div class="task_content">
-
-                    <a><div class="task_item">
-                        <span class="task_no">1</span>
-                        <span class="task_title">第五章课后作业</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <a><div class="task_item">
-                        <span class="task_no">2</span>
-                        <span class="task_title">第五章课后作业</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <a><div class="task_item">
-                        <span class="task_no">3</span>
-                        <span class="task_title">第五章课后作业</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <a><div class="task_item">
-                        <span class="task_no">4</span>
-                        <span class="task_title">第五章课后作业</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <a><div class="task_item">
-                        <span class="task_no">5</span>
-                        <span class="task_title">第五章课后作业</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <div class="paging">
-                        <nav>
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                </div>
-            </div> <!--最新作业-->
-            <div class="task_container">
-                <div class="task_headline">
-                    最新资料
-                </div>
-                <div class="task_content">
-
-                    <a><div class="task_item">
-                        <span class="task_no">1</span>
-                        <span class="task_title">第五章考试题</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <a><div class="task_item">
-                        <span class="task_no">2</span>
-                        <span class="task_title">第五章考试题</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <a><div class="task_item">
-                        <span class="task_no">3</span>
-                        <span class="task_title">第五章考试题</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <a><div class="task_item">
-                        <span class="task_no">4</span>
-                        <span class="task_title">第五章考试题</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <a><div class="task_item">
-                        <span class="task_no">5</span>
-                        <span class="task_title">第五章考试题</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
-                    <div class="paging">
-                        <nav>
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                </div>
-            </div> <!--最新资料-->
-
-            </div>
-        </div><!--/.sidebar-offcanvas-->
-
-    </div>    <!--/.col-xs-12.col-sm-9-->
-    <hr>
-    <!--row row-offcanvas row-offcanvas-right-->
-    <footer>
-        <p>© Company 2014</p>
-    </footer>
-
-</div><!--/.container-->
-
-
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -605,6 +587,8 @@
 
 <script src="../js/offcanvas.js"></script>
 
+<!--分页js-->
+<script   language="javascript" type="text/javascript" src="../js/page.js" charset="gb2312"></script>
 
 </body>
 </html>

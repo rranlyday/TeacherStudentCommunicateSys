@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import DTO.ProblemSquareDTO;
 import model.ProblemSquare;
+import model.QuestionReply;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -103,11 +104,8 @@ public class ProblemSquareController {
                     problemSquareDTOList.add(problemSquareDTO);
                 }
             }
-            int problemSquareTotal = problemSquareService.selectProblemSquareCount();
-            int pageTotal = MathUtil.numToPageTotal(problemSquareTotal, pageSize);
             map.put("result", Boolean.TRUE);
             map.put("problemSquareDTOList",problemSquareDTOList);
-            map.put("pageTotal",pageTotal);
             System.out.println("problemSquareDTOList: " + problemSquareDTOList.size());
         } catch (Exception e) {
             map.put("result", Boolean.FALSE);
@@ -119,6 +117,24 @@ public class ProblemSquareController {
         }
     }
 
+    @RequestMapping(value = "/getProblemSquareById", method = RequestMethod.POST)
+    public ModelAndView getProblemSquareById(Integer id) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            ProblemSquare problemSquare = problemSquareService.getProblemSquareById(id);
+            map.put("problemSquare",problemSquare);
+            map.put("result", Boolean.TRUE);
+        } catch (Exception e) {
+            map.put("result", Boolean.FALSE);
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
     @RequestMapping(value = "/getProblemSquareTotal", method = RequestMethod.POST)
     public ModelAndView getProblemSquareTotal(Integer pageSize, String condition) {
         ModelAndView mav = new ModelAndView();
@@ -128,7 +144,8 @@ public class ProblemSquareController {
             int problemSquareTotal = problemSquareService.selectProblemSquareCount(condition);
             int pageTotal = MathUtil.numToPageTotal(problemSquareTotal, pageSize);
             map.put("pageTotal",pageTotal);
-
+            System.out.println("pageTotal"+pageTotal);
+            map.put("result", Boolean.TRUE);
         } catch (Exception e) {
             map.put("result", Boolean.FALSE);
             e.printStackTrace();

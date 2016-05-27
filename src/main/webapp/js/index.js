@@ -53,6 +53,7 @@ function getProblemSquarePageNum(pageSize,condition){
         success : function(msg) {
             if (msg.result == true){
                 num = msg.pageTotal;
+                console.log("num: "+num);
             }
             else{
                 console.log("获取总页数失败！");
@@ -67,16 +68,15 @@ function getProblemSquarePageNum(pageSize,condition){
 
 //设置中间数据，动态加载
 function setMid(problemSquareDto) {
-
     var template = document.querySelector('#qsTemplate');
     template.content.querySelector('#qsPic').src = problemSquareDto.problemSquare.problemSquareIcon;    //设置图标
-    template.content.querySelector("#qsHeadline").value = problemSquareDto.problemSquare.problemSquareName;
+    template.content.querySelector("#qsHeadline").innerHTML = problemSquareDto.problemSquare.problemSquareName;
     template.content.querySelector("#qsHeadline").href ="question.html?id="+problemSquareDto.problemSquare.id;   //设置跳转链接
-    template.content.querySelector("#qsDescription").value = problemSquareDto.problemSquare.problemSquareDescription;
-    template.content.querySelector("#qsPeople").value = problemSquareDto.problemSquare.attentionNum;
-    template.content.querySelector("#qsMessage").value = problemSquareDto.problemSquare.messageNum;
-    template.content.querySelector("#qsAuthor").value = problemSquareDto.user.userName;
-    template.content.querySelector("#qsTime").value = problemSquareDto.user.buildTime;
+    template.content.querySelector("#qsDescription").innerHTML = problemSquareDto.problemSquare.problemSquareDescription;
+    template.content.querySelector("#qsPeople").innerHTML = problemSquareDto.problemSquare.attentionNum;
+    template.content.querySelector("#qsMessage").innerHTML = problemSquareDto.problemSquare.messageNum;
+    template.content.querySelector("#qsAuthor").innerHTML = problemSquareDto.user.userName;
+    template.content.querySelector("#qsTime").innerHTML = new Date(problemSquareDto.problemSquare.buildTime);
     document.querySelector('#qsContainer').appendChild(template.content.cloneNode(true)); //加进去
 }
 
@@ -112,8 +112,7 @@ function entryPage(curPage,pageSize){
 }
 
 
-function removeAllChild()
-{
+function removeAllChild() {
     var div = document.getElementById("#qsContainer");
     console.log(div);
     while(div.hasChildNodes()) //当div下还存在子节点时 循环继续
