@@ -27,4 +27,8 @@ public interface TaskMapper {
     int updateByPrimaryKeySelective(Task record);
 
     int updateByPrimaryKey(Task record);
+
+    List<Task> searchTaskByProblemSquareId(@Param("problemSquareId")Integer problemSquareId,
+                                           @Param("beginPos") Integer beginPos,
+                                           @Param("pageSize")Integer pageSize);
 }

@@ -10,6 +10,13 @@ public class MathUtil {
         if (perPageSzie == 0){
             throw new RuntimeException("除数不能为0");
         }
-        return  num/perPageSzie + (num%perPageSzie) == 0 ? 0:1;
+        int count = num/perPageSzie;
+        if (num%perPageSzie !=0)
+            count++;
+        return  count;
+    }
+
+    public static void main(String[] args){
+        System.out.println(numToPageTotal(11,8));
     }
 }

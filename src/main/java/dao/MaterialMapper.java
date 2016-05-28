@@ -27,4 +27,8 @@ public interface MaterialMapper {
     int updateByPrimaryKeySelective(Material record);
 
     int updateByPrimaryKey(Material record);
+
+    List<Material> searchMaterialByProblemSquareId(@Param("problemSquareId")Integer problemSquareId,
+                                                   @Param("beginPos")Integer beginPos,
+                                                   @Param("pageSize")Integer pageSize);
 }

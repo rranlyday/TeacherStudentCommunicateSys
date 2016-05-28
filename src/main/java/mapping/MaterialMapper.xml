@@ -257,4 +257,14 @@
       data_size = #{dataSize,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="searchMaterialByProblemSquareId" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from material
+    where problem_square_id = #{problemSquareId,jdbcType=INTEGER}
+    order by upload_time DESC
+    limit #{beginPos,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
 </mapper>

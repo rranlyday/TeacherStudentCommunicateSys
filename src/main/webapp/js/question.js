@@ -2,7 +2,6 @@
  * Created by Administrator on 2016/5/25 0025.
  */
 $(document).ready(function(){
-
     var pageSize = 8;
 
     addQuestion();
@@ -14,7 +13,6 @@ $(document).ready(function(){
 
     //初次进入页面
     enterQuestionPage(0,pageSize);
-
 
     $(".tcdPageCode").createPage({
         pageCount:getProblemSquarePageNum(pageSize),
@@ -34,7 +32,8 @@ function loadQuestion(questionDTO){
     temp.content.querySelector("#questioner").innerHTML  = questionDTO.user.userName;
     temp.content.querySelector("#questionDescription").innerHTML  = questionDTO.question.questionDescription;
     temp.content.querySelector("#replyNumber").innerHTML  = questionDTO.question.replyNumber;
-    temp.content.querySelector("#questionTime").innerHTML  = new Date(questionDTO.question.questionTime);
+    var  date = new Date(questionDTO.question.questionTime);
+    temp.content.querySelector("#questionTime").innerHTML  = getTimeStr(date);
     document.querySelector("#qContainer").appendChild(temp.content.cloneNode(true)); //加进去
 }
 
@@ -170,10 +169,7 @@ function addQuestion(){
     });
 }
 
-
-
-function GetUrlParam(name)
-{
+function GetUrlParam(name) {
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
     if(r!=null)
@@ -181,6 +177,26 @@ function GetUrlParam(name)
     return null;
 }
 
+function getTimeStr(date){
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day =  date.getDay();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+
+    if(month<10)
+        month = "0"+month;
+    if(day<10)
+       day = "0" +day ;
+    if(hours < 10)
+        hours = "0"+hours;
+    if(minutes < 10)
+        minutes = "0"+minutes;
+    if(seconds < 10)
+        seconds = "0"+seconds;
+    return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds ;
+}
 
 function getProblemSquarePageNum(pageSize){
     var num = -1;
@@ -209,3 +225,76 @@ function getProblemSquarePageNum(pageSize){
     });
     return num;
 }
+
+
+function showTask(taskCurPage,taskPagSize){
+
+    var  problemSquareId = GetUrlParam("id");
+    var taskList = null ;
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/taskController/searchTask.do',
+        async : false,
+        data :{
+            curPage:taskCurPage,
+            pageSize:taskPagSize,
+            problemSquareId:problemSquareId
+        },
+        dataType : 'json',
+        success : function(msg) {
+            if (msg.result == true){
+                taskList = msg.taskList;
+            }
+            else{
+                console.log("获取作业失败！");
+            }
+        },error: function(msg){
+            console.log("网络错误！");
+        }
+    });
+    if(taskList){
+        $("#taskContainer").empty();
+        taskList.forEach(function(task,index){
+            var temp = document.querySelector("#taskTemplate");
+            temp.content.querySelector("#tNo").innerHTML  = index+1;
+            temp.content.querySelector("#tTitle").innerHTML  = task.taskTitle;
+            temp.content.querySelector("#tDate").innerHTML  = task.taskDecription;
+            document.querySelector("#taskContainer").appendChild(temp.content.cloneNode(true));   //加进去
+        });
+    }
+}
+
+
+function showMaterial(materialCurPage,materialPagSize){
+    var  problemSquareId = GetUrlParam("id");
+    var materialList = null ;
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/materialController/searchMaterial.do',
+        async : false,
+        data :{
+            curPage:materialCurPage,
+            pageSize:materialPagSize,
+            problemSquareId:problemSquareId
+        },
+        dataType : 'json',
+        success : function(msg) {
+            if (msg.result == true){
+                materialList = msg.materialList;
+            }
+            else{
+                console.log("获取资料失败！");
+            }
+        },error: function(msg){
+            console.log("网络错误！");
+        }
+    });
+    if(materialList){
+        materialList.forEach(function(material,index){
+
+        })
+    }
+}
+

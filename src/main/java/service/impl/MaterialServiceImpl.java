@@ -8,6 +8,7 @@ import service.MaterialService;
 import util.TimeUtil;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/5/26 0026.
@@ -34,5 +35,14 @@ public class MaterialServiceImpl implements MaterialService {
 
     public int deleteMaterial(int materialId) {
         return materialMapper.deleteByPrimaryKey(materialId);
+    }
+
+    public List<Material> searchMaterialByProblemSquareId(Integer problemSquareId, Integer curPage, Integer pageSize) {
+        int beginPos = curPage*pageSize;
+        return materialMapper.searchMaterialByProblemSquareId(problemSquareId,beginPos,pageSize);
+    }
+
+    public Material searchMaterialById(int id) {
+        return materialMapper.selectByPrimaryKey(id);
     }
 }

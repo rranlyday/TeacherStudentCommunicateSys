@@ -8,15 +8,10 @@
 
 </body>
 <script>
-    function GetQueryString(name)
-    {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if(r!=null)
-            return  unescape(r[2]);
-        return null;
-    }
-
-    console.log("id: "+GetQueryString("id"));
+    var arr = [2,3,4,5,6];
+    arr.forEach(function(num,index){
+        console.log("index: "+index);
+        console.log("num: "+num);
+    })
 </script>
 </html>

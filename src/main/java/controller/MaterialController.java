@@ -1,5 +1,6 @@
 package controller;
 
+import model.Material;
 import model.ProblemSquare;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +101,46 @@ public class MaterialController {
             }else{
                 map.put("result",Boolean.FALSE);
             }
+        } catch (Exception e) {
+            map.put("result",Boolean.FALSE);
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
+    //查询作业
+    @RequestMapping(value="/searchMaterial",method = RequestMethod.POST)
+    public ModelAndView searchMaterial(Integer problemSquareId,Integer curPage,Integer pageSize) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            List<Material> materialList = materialService.searchMaterialByProblemSquareId(problemSquareId,curPage,pageSize);
+            map.put("materialList",materialList);
+            map.put("result",Boolean.TRUE);
+        } catch (Exception e) {
+            map.put("result",Boolean.FALSE);
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
+    //查询作业ById
+    @RequestMapping(value="/searchMaterialById",method = RequestMethod.POST)
+    public ModelAndView searchMaterialById(Integer materialId) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            Material material = materialService.searchMaterialById(materialId);
+            map.put("material",material);
+            map.put("result",Boolean.TRUE);
         } catch (Exception e) {
             map.put("result",Boolean.FALSE);
             e.printStackTrace();

@@ -8,6 +8,18 @@ import java.util.List;
  * Created by Administrator on 2016/5/22 0022.
  */
 public class StringUtil {
+
+    private static  String SERVER_PATH = null;
+
+    static{
+        try {
+            SERVER_PATH = Thread.currentThread().getContextClassLoader().getResource("/").toURI().getPath();
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public  static  String refileName(){
         Long time = new Date().getTime();
         return  time.toString();
@@ -16,6 +28,10 @@ public class StringUtil {
     public static  String getSysPath(){
         String path =  "D:/myproject/TeacherStudentCommunicateSys/src/main/webapp";
         return  path;
+    }
+
+    public static String getServerPath(){
+        return SERVER_PATH;
     }
 
     public static  String  manyPicAdressToOne(List<String> pathList,String separator){

@@ -8,6 +8,7 @@ import service.TaskService;
 import util.TimeUtil;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/5/25 0025.
@@ -44,5 +45,14 @@ public class TaskServiceImpl implements TaskService {
         task.setTaskDecription(taskDecription);
 
         return taskMapper.updateByPrimaryKey(task);
+    }
+
+    public List<Task> searchTaskByProblemSquareId(Integer problemSquareId, Integer curPage, Integer pageSize){
+        int beginPos = curPage*pageSize;
+        return taskMapper.searchTaskByProblemSquareId(problemSquareId,beginPos,pageSize);
+    }
+
+    public Task searchTaskById(int id) {
+        return taskMapper.selectByPrimaryKey(id);
     }
 }

@@ -46,22 +46,25 @@ public class ProblemSquareController {
             for (int modelAndView = 0; modelAndView < files.length; ++modelAndView) {
                 System.out.println("fileName---------->" + files[modelAndView].getOriginalFilename());
                 if (!files[modelAndView].isEmpty()) {
-                    int pre = (int) System.currentTimeMillis();
                     try {
-                        String photoPath = "/picture/psPic/" + StringUtil.refileName() + files[modelAndView].getOriginalFilename();
-                        System.out.println(photoPath);
+                        String fileName = StringUtil.refileName() + files[modelAndView].getOriginalFilename();
+                        String photoPath = "/picture/psPic/" + fileName;
+                        String serverPath = request.getSession().getServletContext().getRealPath("/") +"picture/psPic/" + fileName;
                         FileOutputStream os = new FileOutputStream(StringUtil.getSysPath() + photoPath);
+                        FileOutputStream serverOs =  new FileOutputStream(serverPath);
                         ByteArrayInputStream in = (ByteArrayInputStream) files[modelAndView].getInputStream();
 
                         int b = 0;
                         while ((b = in.read()) != -1) {
                             os.write(b);
+                            serverOs.write(b);
                         }
                         os.flush();
+                        serverOs.flush();
                         os.close();
+                        serverOs.close();
                         in.close();
-                        int finaltime = (int) System.currentTimeMillis();
-                        System.out.println(finaltime - pre);
+
                         ProblemSquare problemSquare = new ProblemSquare();
                         problemSquare.setProblemSquareName(problemSquareName);
                         problemSquare.setProblemSquareDescription(problemSquareDescription);
@@ -69,6 +72,7 @@ public class ProblemSquareController {
                         HttpSession session = request.getSession();
                         User user = (User) session.getAttribute("user");
                         problemSquare.setOwnerId(user.getId());
+
                         problemSquareService.bulidProblemSquare(problemSquare);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -142,9 +146,10 @@ public class ProblemSquareController {
         Map map = new HashMap();
         try {
             int problemSquareTotal = problemSquareService.selectProblemSquareCount(condition);
+            System.out.print("problemSquareTotal: "+problemSquareTotal);
             int pageTotal = MathUtil.numToPageTotal(problemSquareTotal, pageSize);
             map.put("pageTotal",pageTotal);
-            System.out.println("pageTotal"+pageTotal);
+            System.out.println("pageTotal: "+pageTotal);
             map.put("result", Boolean.TRUE);
         } catch (Exception e) {
             map.put("result", Boolean.FALSE);

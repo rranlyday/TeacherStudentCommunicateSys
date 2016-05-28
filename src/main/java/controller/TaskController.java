@@ -1,5 +1,6 @@
 package controller;
 
+import model.Task;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import service.TaskService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,7 +42,7 @@ public class TaskController {
                 map.put("result",Boolean.FALSE);
             }
         } catch (Exception e) {
-            map.put("result",Boolean.TRUE);
+            map.put("result",Boolean.FALSE);
             e.printStackTrace();
 
         } finally {
@@ -51,7 +53,7 @@ public class TaskController {
     }
 
     //删除作业
-    @RequestMapping(value="/deleteTask",method = RequestMethod.GET)
+    @RequestMapping(value="/deleteTask",method = RequestMethod.POST)
     public ModelAndView deleteTask(int taskId) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
@@ -63,7 +65,7 @@ public class TaskController {
                 map.put("result",Boolean.FALSE);
             }
         } catch (Exception e) {
-            map.put("result",Boolean.TRUE);
+            map.put("result",Boolean.FALSE);
             e.printStackTrace();
 
         } finally {
@@ -74,7 +76,7 @@ public class TaskController {
     }
 
     //更改作业
-    @RequestMapping(value="/updateTask",method = RequestMethod.GET)
+    @RequestMapping(value="/updateTask",method = RequestMethod.POST)
     public ModelAndView updateTask(int taskId,String taskTitle, String taskDecription) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
@@ -86,9 +88,49 @@ public class TaskController {
                 map.put("result",Boolean.FALSE);
             }
         } catch (Exception e) {
-            map.put("result",Boolean.TRUE);
+            map.put("result",Boolean.FALSE);
             e.printStackTrace();
 
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
+    //查询作业
+    @RequestMapping(value="/searchTask",method = RequestMethod.POST)
+    public ModelAndView searchTask(Integer problemSquareId,Integer curPage,Integer pageSize) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            List<Task> taskList = taskService.searchTaskByProblemSquareId(problemSquareId,curPage,pageSize);
+            map.put("taskList",taskList);
+            map.put("result",Boolean.TRUE);
+        } catch (Exception e) {
+            map.put("result",Boolean.FALSE);
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
+    //查询作业ById
+    @RequestMapping(value="/searchTaskById",method = RequestMethod.POST)
+    public ModelAndView searchTaskById(Integer taskId) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            Task task = taskService.searchTaskById(taskId);
+            map.put("task",task);
+            map.put("result",Boolean.TRUE);
+        } catch (Exception e) {
+            map.put("result",Boolean.FALSE);
+            e.printStackTrace();
         } finally {
             view.setAttributesMap(map);
             mav.setView(view);

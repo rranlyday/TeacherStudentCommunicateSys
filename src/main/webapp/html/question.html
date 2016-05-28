@@ -292,17 +292,19 @@
             <!--/row-->
         </div>
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" style="float: right">
+            <!--最新作业-->
             <div class="task_container">
                 <div class="task_headline">
                     最新作业
                 </div>
-                <div class="task_content">
-
-                    <a><div class="task_item">
-                        <span class="task_no">1</span>
-                        <span class="task_title">第五章课后作业</span>
-                        <span class="task_date">2016-05-22</span>
-                    </div></a>
+                <div class="task_content" id="taskContainer">
+                    <template id="taskTemplate">
+                        <a><div class="task_item">
+                            <span class="task_no" id="tNo">1</span>
+                            <span class="task_title" id="tTitle">第五章课后作业</span>
+                            <span class="task_date" id="tDate">2016-05-22</span>
+                        </div></a>
+                    </template>
                     <a><div class="task_item">
                         <span class="task_no">2</span>
                         <span class="task_title">第五章课后作业</span>
@@ -346,7 +348,9 @@
                     </div>
 
                 </div>
-            </div> <!--最新作业-->
+            </div>
+
+            <!--最新资料-->
             <div class="task_container">
                 <div class="task_headline">
                     最新资料
@@ -401,7 +405,7 @@
                     </div>
 
                 </div>
-            </div> <!--最新资料-->
+            </div>
         </div>
     </div><!--/.sidebar-offcanvas-->
 

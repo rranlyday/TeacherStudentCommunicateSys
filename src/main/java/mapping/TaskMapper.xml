@@ -226,4 +226,14 @@
       pulish_time = #{pulishTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="searchTaskByProblemSquareId" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from task
+    where problem_square_id = #{problemSquareId,jdbcType=INTEGER}
+    order by pulish_time DESC
+    limit #{beginPos,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
 </mapper>
