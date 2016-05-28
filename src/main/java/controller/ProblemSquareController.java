@@ -167,6 +167,7 @@ public class ProblemSquareController {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         HashMap map = new HashMap();
+        System.out.println("开始上传！");
         try {
             int userId = ((User) (request.getSession().getAttribute("user"))).getId();
             if (userProblemSquareService.addAttention(userId, problemSquareId) > 0) {   //关注

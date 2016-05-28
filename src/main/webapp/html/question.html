@@ -363,8 +363,9 @@
                     上传资料
                 </h4>
             </div>
-            <div class="modal-body">
-                <div class="publish_question_container">
+            <form  action="/materialController/uploadMaterial.do" method="post" enctype="multipart/form-data" >
+                <div class="modal-body">
+                    <div class="publish_question_container">
                     <div class="question_editor_labels">
                         <span>资料描述：</span>
                             <span class="question_lable">
@@ -377,7 +378,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="publish_question_container">
+                    <div class="publish_question_container">
                     <div class="question_editor_labels">
                         <span>上传资料</span>
                             <span class="question_lable">
@@ -385,22 +386,20 @@
                     </div>
                     <div class="question_editor">
                         <div class="input-group">
-                            <input type="file"  name="" size="15"  input enctype="multipart/form-data" maxlength="10">
-                            <input type="file"  name="" size="15"  input enctype="multipart/form-data" maxlength="10">
-                            <input type="file"  name="" size="15"  input enctype="multipart/form-data" maxlength="10">
-                            <input type="file"  name="" size="15"  input enctype="multipart/form-data" maxlength="10">
+                            <input type="file"  name="file" size="15"  input enctype="multipart/form-data" maxlength="10">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
+                </div>
+                <div class="modal-footer">
                 <button type="button" class="btn btn-default"
                         data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary">
                     上传
                 </button>
             </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>

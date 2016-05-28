@@ -157,17 +157,21 @@ public class QuestionController {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
+        System.out.println("id: "+id);
         try {
             Question question = questionService.searchQuestionById(id);
-            User user = userService.selectById(question.getQuestionerId());
-            QuestionDTO questionDTO = new QuestionDTO();
-            questionDTO.setUser(user);
-            questionDTO.setQuestion(question);
-
-            ProblemSquare problemSquare = problemSquareService.getProblemSquareById(question.getProblemSquareId());
-            map.put("questionDTO",questionDTO);
-            map.put("problemSquare",problemSquare);
-            map.put("result", Boolean.TRUE);
+            if (question != null){
+                User user = userService.selectById(question.getQuestionerId());
+                QuestionDTO questionDTO = new QuestionDTO();
+                questionDTO.setUser(user);
+                questionDTO.setQuestion(question);
+                ProblemSquare problemSquare = problemSquareService.getProblemSquareById(question.getProblemSquareId());
+                map.put("questionDTO",questionDTO);
+                map.put("problemSquare",problemSquare);
+                map.put("result", Boolean.TRUE);
+            }else{
+                map.put("result", Boolean.FALSE);
+            }
         } catch (Exception e) {
             map.put("result", Boolean.FALSE);
             map.put("message", "执行出现出错！");

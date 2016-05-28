@@ -3,6 +3,8 @@
  */
 $(document).ready(function(){
     setTop();
+    addReply();
+    showReply(0,20);
 });
 
 function getUrlParam(name) {
@@ -14,7 +16,7 @@ function getUrlParam(name) {
 }
 
 function setTop(){
-    var id = getUrlParam("id");
+    var id = getUrlParam("questionId");
     var problemSquare = null ;
     var questionDTO = null ;
     $.ajax({
@@ -32,7 +34,7 @@ function setTop(){
                 questionDTO = msg.questionDTO;
             }
             else{
-                console.log("发布作业失败！")
+                console.log("获取问题失败！")
             }
         },error: function(msg){
             alert("网络超时!");
@@ -46,19 +48,19 @@ function setTop(){
         document.getElementById("qsDesc").innerHTML = problemSquare.problemSquareDescription;
     }
     if(questionDTO){
-        document.getElementById("#qTitle").innerHTML  = questionDTO.question.questionTitle;
-        document.getElementById("#qTitle").href = "questionDetail.html?questionId="+ questionDTO.question.id;      //设置跳转链接
-        document.getElementById("#questioner").innerHTML  = questionDTO.user.userName;
-        document.getElementById("#questionDescription").innerHTML  = questionDTO.question.questionDescription;
-        document.getElementById("#replyNumber").innerHTML  = questionDTO.question.replyNumber;
+        document.getElementById("qTitle").innerHTML  = questionDTO.question.questionTitle;
+        document.getElementById("qTitle").href = "questionDetail.html?questionId="+ questionDTO.question.id;      //设置跳转链接
+        document.getElementById("questioner").innerHTML  = questionDTO.user.userName;
+        document.getElementById("questionDescription").innerHTML  = questionDTO.question.questionDescription;
+        document.getElementById("replyNumber").innerHTML  = questionDTO.question.replyNumber;
         var date = new Date(questionDTO.question.questionTime);
-        document.getElementById("#questionTime").innerHTML  = getTimeStr(date);
+        document.getElementById("questionTime").innerHTML  = getTimeStr(date);
     }
 }
 
 function showReply(curPage,pageSize){
     var questionReplyDTOList = null;
-    var id = getUrlParam("id");
+    var id = getUrlParam("questionId");
     $.ajax({
         type : "post",
         contentType : "application/x-www-form-urlencoded;charset=UTF-8",
@@ -170,4 +172,33 @@ function getDate(date){
     if(day<10)
         day = "0" +day ;
     return year+"-"+month+"-"+day ;
+}
+
+function addReply(){
+    $("#replyInputBtn").click(function(){
+        var reply = $("#replyInput").val();
+        var  id = getUrlParam("questionId") ;
+
+        $.ajax({
+            type : "post",
+            contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+            url : '/questionReplyController/addQuestionReply.do',
+            async : false,
+            data : {
+                questionId:id,
+                replyDescription:reply
+            },
+            dataType : 'json',
+            success : function(msg) {
+                if (msg.result == true){
+                    console.log("回答成功！");
+                }
+                else{
+                    console.log("回答失败！")
+                }
+            },error: function(msg){
+                alert("网络超时!");
+            }
+        });
+    });
 }

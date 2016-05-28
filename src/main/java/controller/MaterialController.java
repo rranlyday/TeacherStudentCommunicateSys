@@ -54,7 +54,6 @@ public class MaterialController {
                         System.out.println(filePath);
                         FileOutputStream os = new FileOutputStream(StringUtil.getSysPath() + filePath);
                         ByteArrayInputStream in = (ByteArrayInputStream) files[modelAndView].getInputStream();
-
                         int b = 0;
                         while ((b = in.read()) != -1) {
                             os.write(b);
@@ -111,7 +110,7 @@ public class MaterialController {
         }
     }
 
-    //查询作业
+    //查询资料
     @RequestMapping(value="/searchMaterial",method = RequestMethod.POST)
     public ModelAndView searchMaterial(Integer problemSquareId,Integer curPage,Integer pageSize) {
         ModelAndView mav = new ModelAndView();
@@ -131,7 +130,7 @@ public class MaterialController {
         }
     }
 
-    //查询作业ById
+    //查询资料ById
     @RequestMapping(value="/searchMaterialById",method = RequestMethod.POST)
     public ModelAndView searchMaterialById(Integer materialId) {
         ModelAndView mav = new ModelAndView();

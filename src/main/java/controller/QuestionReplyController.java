@@ -37,7 +37,7 @@ public class QuestionReplyController {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
-
+        System.out.println("questionId: "+questionId);
         try {
             User user  = (User)request.getSession().getAttribute("user");
             Integer responderId = user.getId();

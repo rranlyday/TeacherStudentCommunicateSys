@@ -105,7 +105,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="model.QuestionReply" >
+  <insert id="insert" parameterType="model.QuestionReply" useGeneratedKeys="true" keyProperty="id">
     insert into question_reply (id, question_id, reply_description,
     responder_id, reply_time, pro_num,
     inverse_num, adoption_rate, reply_number
@@ -115,7 +115,7 @@
     #{inverseNum,jdbcType=INTEGER}, #{adoptionRate,jdbcType=REAL}, #{replyNumber,jdbcType=INTEGER}
     )
   </insert>
-  <insert id="insertSelective" parameterType="model.QuestionReply" >
+  <insert id="insertSelective" parameterType="model.QuestionReply" useGeneratedKeys="true" keyProperty="id">
     insert into question_reply
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
