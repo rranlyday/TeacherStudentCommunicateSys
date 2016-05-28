@@ -3,15 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src="../js/jquery-1.12.3.js"></script>
 </head>
 <body>
-
+<div id="container">
+</div>
+<template id="parentT">
+    <h1> parent begin</h1>
+    <div id="parentC">
+    </div>
+    <h1> parent end </h1>
+</template>
+<template id="sonT">
+    <div class="sonC" id="sonC">
+        <div class="myson"><p>myson<p></div>
+    </div>
+</template>
 </body>
 <script>
-    var arr = [2,3,4,5,6];
-    arr.forEach(function(num,index){
-        console.log("index: "+index);
-        console.log("num: "+num);
-    })
+    for(var i = 0 ;i<10;i++){
+        var template = document.querySelector('#parentT');
+
+        var parentC =  template. content.querySelector('#parentC')
+        parentC.innerHTML="";
+
+        var sonT  = document.querySelector('#sonT');
+        parentC.appendChild(sonT.content.cloneNode(true));
+        parentC.appendChild(sonT.content.cloneNode(true));
+        parentC.appendChild(sonT.content.cloneNode(true));
+        parentC.appendChild(sonT.content.cloneNode(true));
+        parentC.appendChild(sonT.content.cloneNode(true));
+
+        document.getElementById("container").appendChild(template.content.cloneNode(true));
+    }
 </script>
 </html>

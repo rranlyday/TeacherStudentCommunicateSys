@@ -14,6 +14,10 @@ $(document).ready(function(){
     //初次进入页面
     enterQuestionPage(0,pageSize);
 
+    showTask(0,5);
+
+    showMaterial(0,5);
+
     $(".tcdPageCode").createPage({
         pageCount:getProblemSquarePageNum(pageSize),
         current:1,
@@ -22,10 +26,31 @@ $(document).ready(function(){
         }
     });
 
+    $.jqPaginator('#taskPage', {
+        totalPages: 5,
+        visiblePages: 4,
+        currentPage: 1,
+        prev: '<li class="prev"><a href="javascript:;">《</a></li>',
+        next: '<li class="next"><a href="javascript:;">》</a></li>',
+        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+        onPageChange: function (num, type) {
+        }
+    });
+
+    $.jqPaginator('#materialPage', {
+        totalPages: 5,
+        visiblePages: 4,
+        currentPage: 1,
+        prev: '<li class="prev"><a href="javascript:;">《</a></li>',
+        next: '<li class="next"><a href="javascript:;">》</a></li>',
+        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+        onPageChange: function (num, type) {
+        }
+    });
+
 })
 
 function loadQuestion(questionDTO){
-    console.log(questionDTO);
     var temp = document.querySelector("#qTemplate");
     temp.content.querySelector("#qTitle").innerHTML  = questionDTO.question.questionTitle;
     temp.content.querySelector("#qTitle").href = "questionDetail.html?questionId="+ questionDTO.question.id;      //设置跳转链接
@@ -198,6 +223,21 @@ function getTimeStr(date){
     return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds ;
 }
 
+function getDate(date){
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day =  date.getDay();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+
+    if(month<10)
+        month = "0"+month;
+    if(day<10)
+        day = "0" +day ;
+    return year+"-"+month+"-"+day ;
+}
+
 function getProblemSquarePageNum(pageSize){
     var num = -1;
     var  problemSquareId = GetUrlParam("id");
@@ -254,17 +294,17 @@ function showTask(taskCurPage,taskPagSize){
         }
     });
     if(taskList){
-        $("#taskContainer").empty();
+        console.log(taskList);
+       // $("#taskContainer").empty();
         taskList.forEach(function(task,index){
             var temp = document.querySelector("#taskTemplate");
             temp.content.querySelector("#tNo").innerHTML  = index+1;
             temp.content.querySelector("#tTitle").innerHTML  = task.taskTitle;
-            temp.content.querySelector("#tDate").innerHTML  = task.taskDecription;
+            temp.content.querySelector("#tDate").innerHTML  = getDate(new Date(task.pulishTime));
             document.querySelector("#taskContainer").appendChild(temp.content.cloneNode(true));   //加进去
         });
     }
 }
-
 
 function showMaterial(materialCurPage,materialPagSize){
     var  problemSquareId = GetUrlParam("id");
@@ -292,8 +332,13 @@ function showMaterial(materialCurPage,materialPagSize){
         }
     });
     if(materialList){
+        console.log(materialList);
         materialList.forEach(function(material,index){
-
+            var temp = document.querySelector("#materialTemplate");
+            temp.content.querySelector("#mNo").innerHTML  = index+1;
+            temp.content.querySelector("#mTitle").innerHTML  = material.taskTitle;
+            temp.content.querySelector("#mDate").innerHTML  = getDate(new Date(material.uploadTime));
+            document.querySelector("#materialContainer").appendChild(temp.content.cloneNode(true));   //加进去
         })
     }
 }

@@ -48,4 +48,8 @@ public class QuestionServiceImpl implements QuestionService {
     public int deleteQuestion(Integer questionId) {
         return questionMapper.deleteByPrimaryKey(questionId);
     }
+
+    public Question searchQuestionById(Integer id) {
+        return questionMapper.selectByPrimaryKey(id);
+    }
 }

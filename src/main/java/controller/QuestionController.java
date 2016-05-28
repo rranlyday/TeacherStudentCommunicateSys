@@ -1,6 +1,7 @@
 package controller;
 
 import DTO.QuestionDTO;
+import model.ProblemSquare;
 import model.Question;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
+import service.ProblemSquareService;
 import service.QuestionService;
 import service.UserService;
 import util.MathUtil;
@@ -31,6 +33,9 @@ public class QuestionController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ProblemSquareService problemSquareService;
 
     @RequestMapping(value="/searchQuestion",method = RequestMethod.POST)
     public ModelAndView searchQuestion(int problemSquareId,int curPage,int pageSize) {
@@ -136,6 +141,33 @@ public class QuestionController {
                 map.put("result", Boolean.FALSE);
                 map.put("message", "删除失败！");
             }
+        } catch (Exception e) {
+            map.put("result", Boolean.FALSE);
+            map.put("message", "执行出现出错！");
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
+    @RequestMapping(value="/searchQuestionById",method = RequestMethod.POST)
+    public ModelAndView searchQuestionById(Integer id) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            Question question = questionService.searchQuestionById(id);
+            User user = userService.selectById(question.getQuestionerId());
+            QuestionDTO questionDTO = new QuestionDTO();
+            questionDTO.setUser(user);
+            questionDTO.setQuestion(question);
+
+            ProblemSquare problemSquare = problemSquareService.getProblemSquareById(question.getProblemSquareId());
+            map.put("questionDTO",questionDTO);
+            map.put("problemSquare",problemSquare);
+            map.put("result", Boolean.TRUE);
         } catch (Exception e) {
             map.put("result", Boolean.FALSE);
             map.put("message", "执行出现出错！");

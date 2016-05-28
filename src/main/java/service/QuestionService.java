@@ -16,4 +16,6 @@ public interface QuestionService {
     int searchQuestioNumByProblemSquareId(Integer problemSquareId);
 
     int deleteQuestion(Integer questionId);
+
+    Question searchQuestionById(Integer id);
 }

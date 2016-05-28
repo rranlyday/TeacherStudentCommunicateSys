@@ -88,42 +88,38 @@
     <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-11 col-sm-9">
-
             <div class="top-title">
                 <div class="row">
                     <div class="row">
                         <div class="col-xs-3 col-md-2">
                             <a href="#" class="thumbnail">
-                                <img src="../pic/1.jpg" alt="...">
+                                <img src="../pic/ex.jpg" alt="..." id = "qsPic">
                             </a>
                         </div>
                         <div class="card_top">
                             <div class="card_title">
-                                <span class="card_title_name">高数</span>
+                                <span class="card_title_name" id="qsTitle" >经济管理概论</span>
                                 <span class="islike_focus"></span>
-                                <span class="atention-text"><a>关注</a></span>
+                                <span class="atention-text"><a class="atention_word" id = "qsAttention">关注</a></span>
                                 <span class="atention_message_container">
                                     <span class="card_numLabel">关注:</span>
-                                    <span class="card_menNum">200</span>
+                                    <span class="card_menNum" id = "qsAttentionNum">200</span>
                                     <span class="card_numLabel">问题:</span>
-                                    <span class="card_menNum">500</span>
+                                    <span class="card_menNum" id = "qsQuestionNum">500</span>
                                 </span>
                             </div>
                             <div class="card_slogan">
-                                <span class="square_info">山有木兮木有枝，心悦君兮君不知。</span>
-                                <span class="subject_Lable">科目：</span>
-                                <span class="subject_Name">高数</span>
+                                <span class="square_info" id="qsDesc">企事业单位经济管理人员的必修课！</span>
                             </div>
                         </div>
                     </div>
                 </div><!-- /.row -->
 
             </div>
-
             <!--row-->
             <div class="row question-container">
 
-                <div class="qustion-content">
+                <!--<div class="qustion-content">
                     <div class="question_title">
                         <a class="question_link" target="_blank" href="">老年人应该怎么补钙？</a>
                     </div>
@@ -144,8 +140,30 @@
                         <span class="question_lable_description">发布时间</span>
                         <span class="question_lable_description">2016-05-20 12:10:20</span>
                     </div>
-                </div> <!--题目描述-->
-
+                </div>-->
+                <!--题目描述-->
+                <div class="qustion-content">
+                    <div class="question_title">
+                        <a class="question_link" target="_blank" href="" id="qTitle">时间</a>
+                    </div>
+                    <div class="question_author">
+                        <span class="question_author_Lable">
+                            提问者：
+                        </span>
+                        <span>
+                            <a class="author-link" target="_blank" href="" id="questioner">时间</a>
+                        </span>
+                    </div>
+                    <div class="question_description">
+                        <p id="questionDescription" >啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+                    </div>
+                    <div class="question_label" >
+                        <span class="question_info_Lable"></span>
+                        <span class="question_lable_description" id = "replyNumber">20</span>
+                        <span class="question_lable_description">发布时间</span>
+                        <span class="question_lable_description" id = "questionTime">2016-05-20 12:10:20</span>
+                    </div>
+                </div>
                 <div class="question-relpy-num">
                     <h3 data-num="250" id="zh-question-answer-num">250 个回答</h3>
                     <span class="sort-type">
@@ -155,7 +173,125 @@
                     </span>
 
                 </div>
-
+                <template id="replyDetail">
+                    <div class="qustion-content">
+                        <div class="question-replyer">
+                            专家
+                        </div>
+                        <div class="question_description">
+                            <p>传统药片的弊端在于它进入胃以后胃需要花三到四个小时去消化和分解，但由于胃部强酸环境会破坏其营养成分，所以最终被你身体吸收的钙可能只有原来含量的20%-40%。我给我家人用的是等渗钙， 它具有与身体血液和泪液的相等的渗透压，不需要经过胃的消化，直接被小肠吸收，这样钙的利用率就提高到了90%。所以一般用几次腿部抽经就会明显改善。</p>
+                        </div>
+                        <div class="question_label">
+                            <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                            <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                            <i class="question-reply-ico"></i>
+                            <span class="question_lable_description">500 条评论</span>
+                            <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                            <span class="support-ico"></span>
+                            <span class="question_lable_description">500 人赞同</span>
+                            <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                            <span class="disagreement-ico"></span>
+                            <span class="question_lable_description">100 人反对</span>
+                        </div>
+                        <div class="question-reply-comment">
+                            <div class="reply-item ">
+                                <div class="reply-replier">
+                                    <a href="">我是高手</a>
+                                </div>
+                                <div class="question_description">
+                                    <p>说得好</p>
+                                </div>
+                                <div class="question_label">
+                                    <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                    <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                    <span class="support-ico"></span>
+                                    <span class="question_lable_description">500 人赞同</span>
+                                    <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                    <span class="disagreement-ico"></span>
+                                    <span class="question_lable_description">100 人反对</span>
+                                </div>
+                            </div>
+                            <div class="reply-item ">
+                                <div class="reply-replier">
+                                    <a href="">我是高手</a>
+                                </div>
+                                <div class="question_description">
+                                    <p>说得好</p>
+                                </div>
+                                <div class="question_label">
+                                    <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                    <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                    <span class="support-ico"></span>
+                                    <span class="question_lable_description">500 人赞同</span>
+                                    <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                    <span class="disagreement-ico"></span>
+                                    <span class="question_lable_description">100 人反对</span>
+                                </div>
+                            </div>
+                            <div class="reply-item ">
+                                <div class="reply-replier">
+                                    <a href="">我是高手</a>
+                                </div>
+                                <div class="question_description">
+                                    <p>说得好</p>
+                                </div>
+                                <div class="question_label">
+                                    <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                    <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                    <span class="support-ico"></span>
+                                    <span class="question_lable_description">500 人赞同</span>
+                                    <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                    <span class="disagreement-ico"></span>
+                                    <span class="question_lable_description">100 人反对</span>
+                                </div>
+                            </div>
+                            <div class="reply-item ">
+                                <div class="reply-replier">
+                                    <a href="">我是高手</a>
+                                </div>
+                                <div class="question_description">
+                                    <p>说得好</p>
+                                </div>
+                                <div class="question_label">
+                                    <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                    <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                    <span class="support-ico"></span>
+                                    <span class="question_lable_description">500 人赞同</span>
+                                    <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                    <span class="disagreement-ico"></span>
+                                    <span class="question_lable_description">100 人反对</span>
+                                </div>
+                            </div>
+                            <div class="paging">
+                                <nav>
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li>
+                                            <a href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="reply_comment_container">
+                                <div>
+                                    <input type="text"   class="reply_commet_input" placeholder="写下你的评论" aria-describedby="basic-addon1"> </input>
+                                </div>
+                                <button class="reply_commet_button"> 评论 </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
                 <div class="qustion-content">
                     <div class="question-replyer">
                         专家
@@ -640,8 +776,6 @@
                         </ul>
                     </nav>
                 </div>
-
-
             </div>
             <!--/row-->
         </div>
