@@ -397,3 +397,23 @@
 .none{
     display: none;
 }
+
+.reply_input{
+    font-size: 12px;
+    margin-bottom: 10px;
+    width: 600px;
+    height: 85px;
+}
+
+.reply_input_container {
+    margin: 10px;
+}
+.reply_input_button{
+    margin-right: 60px;
+    float: right;
+    color: RGB(255,255,255);
+    background: RGB(14,109,204);
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
