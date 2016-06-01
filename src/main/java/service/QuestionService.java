@@ -18,4 +18,6 @@ public interface QuestionService {
     int deleteQuestion(Integer questionId);
 
     Question searchQuestionById(Integer id);
+
+    int addReplyNum(Integer questionId, Integer num);
 }

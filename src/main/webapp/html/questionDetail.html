@@ -55,9 +55,10 @@
                 <li><a href="">消息</a></li>
             </ul>
             <ul class="nav navbar-nav" style="margin-right: 20px;float: right;">
+                <!--个人资料按钮-->
                 <li>
                     <div class="btn-group" style="margin-top:8px">
-                        <button type="button" class="btn btn-primary">欢迎，余帅</button>
+                        <button type="button" class="btn btn-primary" id="userBtn">欢迎，余方焱</button>
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
@@ -66,14 +67,13 @@
                         <ul class="dropdown-menu">
                             <li><a href="#">我的主页</a></li>
                             <li><a href="#">切换用户</a></li>
-                            <li><a href="#">更改密码</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#updatePasswordModal">更改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">退出</a></li>
                         </ul>
                     </div>
                 </li>
                 <!-- Split button -->
-
             </ul>
         </div>
         <!-- /.nav-collapse -->
@@ -118,29 +118,6 @@
             </div>
             <!--row-->
             <div class="row question-container">
-
-                <!--<div class="qustion-content">
-                    <div class="question_title">
-                        <a class="question_link" target="_blank" href="">老年人应该怎么补钙？</a>
-                    </div>
-                    <div class="question_author">
-                        <span class="question_author_Lable">
-                            提问者：
-                        </span>
-                        <span>
-                            <a class="author-link" target="_blank" href="">KellyWeaver</a>
-                        </span>
-                    </div>
-                    <div class="question_description">
-                        <p>老妈缺钙，夜里睡觉经常抽筋疼醒，我给她买了钙片，她却说她没病，不想吃那药片似的东西。倒是定的鲜牛奶每天都喝，但是，也许是人到岁数了，吸收能力不太好了，总之一直不是很见效。请问，老年人补钙，还有什么其他的方法吗？（不要鸡汤，求干货）</p>
-                    </div>
-                    <div class="question_label">
-                        <span class="question_info_Lable "></span>
-                        <span class="question_lable_description">500 条回答</span>
-                        <span class="question_lable_description">发布时间</span>
-                        <span class="question_lable_description">2016-05-20 12:10:20</span>
-                    </div>
-                </div>-->
                 <!--题目描述-->
                 <div class="qustion-content">
                     <div class="question_title">
@@ -161,7 +138,7 @@
                         <span class="question_info_Lable"></span>
                         <span class="question_lable_description" id = "replyNumber">20</span>
                         <span class="question_lable_description">发布时间</span>
-                        <span class="question_lable_description" id = "questionTime">2016-05-20 12:10:20</span>
+                        <span class="question_lable_description" id = "questionTime">2016-05-20 12:10:20 </span>
                     </div>
                 </div>
                 <div class="question-relpy-num">
@@ -174,7 +151,7 @@
 
                 </div>
                 <template id="commentTemplate">
-                    <div class="reply-item ">
+                    <div class="reply-item">
                         <div class="reply-replier">
                             <a href="" id="commenter">我是高手</a>
                         </div>
@@ -182,38 +159,37 @@
                             <p id="commentDesc">说得好</p>
                         </div>
                         <div class="question_label">
-                            <span class="reply-time" id = "commentTime">编辑于 2016-05-12 19:18:05</span>
+                            <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
                             <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
                             <span class="support-ico"></span>
-                            <span class="question_lable_description" id = "commentProNum">500 人赞同</span>
-                            <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
-                            <span class="disagreement-ico"></span>
-                            <span class="question_lable_description" id = "commentInverseNum">100 人反对</span>
+                            <a class="question_lable_description" >赞</a>
+                                <span class="commentStyle">
+                                    <span class="support-ico"></span>
+                                    <span class="question_lable_description">500 人赞同</span>
+                                </span>
                         </div>
                     </div>
                 </template>
                 <template id="replyTemplate">
-                    <div class="qustion-content">
+                    <div class="qustion-content" id="replyContentId">
                         <div class="question-replyer" id="replyer">
                             专家
                         </div>
+                        <span class="question_label question_lable_description" ><span class="question_label question_lable_description" id="proNum">500</span> 人赞</span>
                         <div class="question_description">
                             <p id="replyerDesc">传统药片的弊端在于它进入胃以后胃需要花三到四个小时去消化和分解，但由于胃部强酸环境会破坏其营养成分，所以最终被你身体吸收的钙可能只有原来含量的20%-40%。我给我家人用的是等渗钙， 它具有与身体血液和泪液的相等的渗透压，不需要经过胃的消化，直接被小肠吸收，这样钙的利用率就提高到了90%。所以一般用几次腿部抽经就会明显改善。</p>
                         </div>
                         <div class="question_label">
                             <span class="reply-time" id="replyTime">编辑于 2016-05-12 19:18:05</span>
                             <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
-                            <i class="question-reply-ico"></i>
+                            <i class="question-reply-ico" onclick="showCommentDiv(this)"></i>
                             <span class="question_lable_description" id="replyNum">500 条评论</span>
                             <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
                             <span class="support-ico"></span>
-                            <span class="question_lable_description" id="proNum">500 人赞同</span>
-                            <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
-                            <span class="disagreement-ico"></span>
-                            <span class="question_lable_description" id="inverseNum">100 人反对</span>
+                            <a class="question_lable_description"  onclick="pro(this)">赞</a>
                         </div>
-                        <div class="question-reply-comment">
-                            <div class="commentContainer">
+                        <div class="question-reply-comment none" id="commentContainerId" data-id = "1" >
+                            <div class="commentContainer" >
                             </div>
                             <div class="paging">
                                 <nav>
@@ -250,6 +226,7 @@
                     <div class="question-replyer">
                         专家
                     </div>
+                    <span class="question_label question_lable_description">500 人赞同</span>
                     <div class="question_description">
                         <p>传统药片的弊端在于它进入胃以后胃需要花三到四个小时去消化和分解，但由于胃部强酸环境会破坏其营养成分，所以最终被你身体吸收的钙可能只有原来含量的20%-40%。我给我家人用的是等渗钙， 它具有与身体血液和泪液的相等的渗透压，不需要经过胃的消化，直接被小肠吸收，这样钙的利用率就提高到了90%。所以一般用几次腿部抽经就会明显改善。</p>
                     </div>
@@ -277,10 +254,11 @@
                                 <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
                                 <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
                                 <span class="support-ico"></span>
-                                <span class="question_lable_description">500 人赞同</span>
-                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
-                                <span class="disagreement-ico"></span>
-                                <span class="question_lable_description">100 人反对</span>
+                                <a class="question_lable_description">赞</a>
+                                <span class="commentStyle">
+                                    <span class="support-ico"></span>
+                                    <span class="question_lable_description">500 人赞同</span>
+                                </span>
                             </div>
                         </div>
                         <div class="reply-item ">

@@ -2,7 +2,6 @@
  * Created by Administrator on 2016/5/23 0023.
  */
 
-
 $(document).ready(function(){
 
     //判断是否登录
@@ -17,6 +16,7 @@ $(document).ready(function(){
         success : function(msg) {
             if (msg.result == true){
                 user = msg.user ; //给全局对象user赋值
+                setNav(user);    //设置导航栏
             }
             else{
                 window.location.href='../html/login.html';  //回到登录页面让用户登录
@@ -25,6 +25,7 @@ $(document).ready(function(){
 
         }
     });
+
 
     //用户退出
     $("#loginOutBtn").click(function(){
@@ -45,6 +46,19 @@ $(document).ready(function(){
             }
         });
     });
-
 });
+
+function setNav(user){
+
+    if(user.userType==1){ //学生
+        var showPublishTaskBtn = document.getElementById("showPublishTaskBtn");
+        if(showPublishTaskBtn)
+            showPublishTaskBtn.class = "none";
+
+        var showUploadMaterialBtn = document.getElementById("showUploadMaterialBtn");
+        if(showUploadMaterialBtn)
+            showUploadMaterialBtn.class = "none";
+    }
+    document.getElementById("userBtn").innerHTML = user.userName;
+}
 

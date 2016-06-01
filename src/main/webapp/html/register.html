@@ -88,7 +88,25 @@
     </form>
 
 </div> <!-- /container -->
-
+<!-- 按钮触提醒模态框 -->
+<button  style="display: none" data-toggle="modal" data-target="#remindModal" id="remindModalBtn">
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="remindModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" style="">
+    <div class="modal-dialog" style="width: 300px;margin-top:250px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="remindModalLabel" style="text-align: center">
+                    模态框（Modal）标题
+                </h4>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

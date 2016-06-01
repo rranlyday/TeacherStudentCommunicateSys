@@ -66,7 +66,7 @@
                 </li>
 
                 <!--发布作业按钮-->
-                <li style="margin-top: 8px ;margin-right: 30px;">
+                <li style="margin-top: 8px ;margin-right: 30px;" id="showPublishTaskBtn">
                     <button class="btn btn-primary " data-toggle="modal"
                             data-target="#task">
                         发布作业
@@ -74,7 +74,7 @@
                 </li>
 
                 <!--上传资料按钮-->
-                <li style="margin-top: 8px ;margin-right: 30px;">
+                <li style="margin-top: 8px ;margin-right: 30px;" id="showUploadMaterialBtn">
                     <button class="btn btn-primary " data-toggle="modal"
                             data-target="#material">
                         上传资料
@@ -84,7 +84,7 @@
                 <!--个人资料按钮-->
                 <li>
                     <div class="btn-group" style="margin-top:8px">
-                        <button type="button" class="btn btn-primary">欢迎，余方焱</button>
+                        <button type="button" class="btn btn-primary" id="userBtn">欢迎，余方焱</button>
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
@@ -93,7 +93,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="#">我的主页</a></li>
                             <li><a href="#">切换用户</a></li>
-                            <li><a href="#">更改密码</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#updatePasswordModal">更改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">退出</a></li>
                         </ul>
@@ -186,11 +186,13 @@
                 </div>
                 <div class="task_content" id="taskContainer">
                     <template id="taskTemplate">
-                        <a><div class="task_item">
-                            <span class="task_no" id="tNo">1</span>
-                            <span class="task_title" id="tTitle">第五章课后作业</span>
-                            <span class="task_date" id="tDate">2016-05-22</span>
-                        </div></a>
+                        <a class="taskItem">
+                            <div id ="viewTaskA" class="task_item">
+                                <span class="task_no" id="tNo">1</span>
+                                <span class="task_title" id="tTitle">第五章课后作业</span>
+                                <span class="task_date" id="tDate">2016-05-22</span>
+                            </div>
+                        </a>
                     </template>
                 </div>
                 <div class="task_page">
@@ -280,7 +282,7 @@
                     </div>
                     <div class="question_editor">
                         <div class="input-group">
-                            <textarea type="text" class="input_lable" id = "publishQuestionDesc" aria-describedby="basic-addon1"></textarea>
+                            <textarea type="text" class="input_lable input_content_height" id = "publishQuestionDesc" aria-describedby="basic-addon1"></textarea>
                         </div>
                     </div>
                 </div>
@@ -332,7 +334,7 @@
                     </div>
                     <div class="question_editor">
                         <div class="input-group">
-                            <textarea type="text" class="input_lable"  id = "taskDesc" aria-describedby="basic-addon1"></textarea>
+                            <textarea type="text" class="input_lable input_content_height"  id = "taskDesc" aria-describedby="basic-addon1"></textarea>
                         </div>
                     </div>
                 </div>
@@ -363,7 +365,7 @@
                     上传资料
                 </h4>
             </div>
-            <form  action="/materialController/uploadMaterial.do" method="post" enctype="multipart/form-data" >
+            <form  id="materialForm" enctype="multipart/form-data" >
                 <div class="modal-body">
                     <div class="publish_question_container">
                     <div class="question_editor_labels">
@@ -374,7 +376,7 @@
                     </div>
                     <div class="question_editor">
                         <div class="input-group">
-                            <textarea type="text" class=" input_lable input_lable_height"  aria-describedby="basic-addon1"></textarea>
+                            <textarea type="text" class=" input_lable input_lable_height" name="materialName" aria-describedby="basic-addon1"></textarea>
                         </div>
                     </div>
                 </div>
@@ -384,18 +386,23 @@
                             <span class="question_lable">
                             </span>
                     </div>
+                        <br/>
                     <div class="question_editor">
                         <div class="input-group">
                             <input type="file"  name="file" size="15"  input enctype="multipart/form-data" maxlength="10">
                         </div>
                     </div>
+                        <div class="none">
+                            <input  id="psId" name="problemSquareId"><input>
+                      </div>
+
                 </div>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-default"
+                <button id = "cancleUploadMaterialBtn" type="button" class="btn btn-default"
                         data-dismiss="modal">关闭
                 </button>
-                <button type="submit" class="btn btn-primary">
+                <button  id="uploadMaterialBtn" type="button" class="btn btn-primary">
                     上传
                 </button>
             </div>
@@ -404,18 +411,118 @@
     </div><!-- /.modal -->
 </div>
 
+<!-- 查看作业模态框（Modal） -->
+<div class="modal fade" id="showTask" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" >
+                    查看作业
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span>作业标题：</span>
+                            <span class="question_lable">
+                            </span>
+                    </div>
+                    <div class="question_editor">
+                        <div class="input-group">
+                            <textarea type="text" disabled="disabled" id="viewTaskTitle" class=" input_lable input_lable_height"  aria-describedby="basic-addon1"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span>作业描述</span>
+                            <span class="question_lable">
+                            </span>
+                    </div>
+                    <div class="question_editor">
+                        <div class="input-group">
+                            <textarea type="text" disabled="disabled" id="viewTaskDesc" class="input_lable input_content_height"  aria-describedby="basic-addon1"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 更改密码模态框（Modal） -->
+<div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 400px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" >
+                    更改密码
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span>原密码：</span>
+                        <span style="float: right"> <input type="password" id="password" class="password"  aria-describedby="basic-addon1"/></span>
+                    </div>
+                </div>
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span >新密码：</span>
+                        <span style="float: right"> <input type="password" id="newPassword" class="password"  aria-describedby="basic-addon1"/></span>
+                    </div>
+                </div>
+                <div class="publish_question_container">
+                    <div class="question_editor_labels">
+                        <span>确认密码：</span>
+                        <span style="float: right"> <input type="password" id="conformPassword" class="password"  aria-describedby="basic-addon1"/></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="cancleUpdatePasswordBtn"
+                            data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" id="updatePasswordBtn" class="btn btn-primary">
+                        更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+<button class="btn btn-primary " data-toggle="modal" id="showTaskBtn"
+        data-target="#showTask">查看作业
+</button>
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="../js/jquery-1.12.3.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-
+<script src="../js/jquery-form.js"></script>
 <!--通用js-->
 <script src="../js/common.js"></script>
 
 <script language="javascript" type="text/javascript" src="../js/question.js" charset="gb2312"></script>
 
-<script language="javascript" type="text/javascript" src="../js/jqPaginator.js"  ></script>
+<script language="javascript" type="text/javascript" src="../js/updatePassword.js" charset="gb2312"></script>
+
+<script language="javascript" type="text/javascript" src="../js/jqPaginator.js" ></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 import service.QuestionReplyService;
+import service.QuestionService;
 import service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,9 @@ public class QuestionReplyController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    QuestionService questionService;
+
     //Ìí¼Ó»Ø´ð
     @RequestMapping(value="/addQuestionReply",method = RequestMethod.POST)
     public ModelAndView addQuestionReply(Integer questionId,String replyDescription,HttpServletRequest request) {
@@ -42,6 +46,7 @@ public class QuestionReplyController {
             User user  = (User)request.getSession().getAttribute("user");
             Integer responderId = user.getId();
             if (questionReplyService.addQuestionReply(questionId,responderId,replyDescription) > 0){
+                questionService.addReplyNum(questionId,1);
                 map.put("result",Boolean.TRUE);
             }else{
                 map.put("result",Boolean.FALSE);

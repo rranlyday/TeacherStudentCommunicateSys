@@ -52,4 +52,11 @@ public class QuestionServiceImpl implements QuestionService {
     public Question searchQuestionById(Integer id) {
         return questionMapper.selectByPrimaryKey(id);
     }
+
+    public int addReplyNum(Integer questionId, Integer num) {
+        Question question = questionMapper.selectByPrimaryKey(questionId);
+        int replyNumber = question.getReplyNumber()+num;
+        question.setReplyNumber(replyNumber);
+        return questionMapper.updateByPrimaryKeySelective(question);
+    }
 }

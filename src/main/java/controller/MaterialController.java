@@ -1,10 +1,13 @@
 package controller;
 
 import model.Material;
-import model.ProblemSquare;
 import model.User;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,9 +19,10 @@ import service.MaterialService;
 import util.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,13 +38,15 @@ public class MaterialController {
     @Autowired
     MaterialService materialService;
 
-    //ÉÏ´«×ÊÁÏ
+    //ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½
     @RequestMapping(value="/uploadMaterial",method = RequestMethod.POST)
     public ModelAndView uploadMaterial(@RequestParam("file") CommonsMultipartFile[] files, Integer problemSquareId,
                                        String materialName,HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
+        System.out.println("problemSquareId:"+problemSquareId);
+        System.out.println("materialName:"+materialName);
         try {
             User user = (User)request.getSession().getAttribute("user");
             int userId = user.getId();
@@ -53,7 +59,7 @@ public class MaterialController {
                         String filePath = "/material/" + StringUtil.refileName() + files[modelAndView].getOriginalFilename();
                         System.out.println(filePath);
                         FileOutputStream os = new FileOutputStream(StringUtil.getSysPath() + filePath);
-                        ByteArrayInputStream in = (ByteArrayInputStream) files[modelAndView].getInputStream();
+                        FileInputStream in = (FileInputStream) files[modelAndView].getInputStream();
                         int b = 0;
                         while ((b = in.read()) != -1) {
                             os.write(b);
@@ -65,7 +71,7 @@ public class MaterialController {
                         filePathList.add(filePath);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        System.out.println("ÉÏ´«³ö´í");
+                        System.out.println("ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½");
                         throw  new Exception(e);
                     }
                 }
@@ -88,7 +94,7 @@ public class MaterialController {
 
 
 
-    //É¾³ý×ÊÁÏ
+    //É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     @RequestMapping(value="/deleteMaterial",method = RequestMethod.POST)
     public ModelAndView deleteMaterial(Integer materialId,HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
@@ -110,7 +116,7 @@ public class MaterialController {
         }
     }
 
-    //²éÑ¯×ÊÁÏ
+    //ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
     @RequestMapping(value="/searchMaterial",method = RequestMethod.POST)
     public ModelAndView searchMaterial(Integer problemSquareId,Integer curPage,Integer pageSize) {
         ModelAndView mav = new ModelAndView();
@@ -130,7 +136,7 @@ public class MaterialController {
         }
     }
 
-    //²éÑ¯×ÊÁÏById
+    //ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ById
     @RequestMapping(value="/searchMaterialById",method = RequestMethod.POST)
     public ModelAndView searchMaterialById(Integer materialId) {
         ModelAndView mav = new ModelAndView();
@@ -148,5 +154,19 @@ public class MaterialController {
             mav.setView(view);
             return mav;
         }
+    }
+
+    @RequestMapping("/download")
+    public ResponseEntity<byte[]> download(Integer materialId) throws IOException {
+        Material material = materialService.searchMaterialById(materialId);
+        File file = null;
+        if(material != null){
+
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        headers.setContentDispositionFormData("attachment", "dict.txt");
+        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
+                headers, HttpStatus.CREATED);
     }
 }

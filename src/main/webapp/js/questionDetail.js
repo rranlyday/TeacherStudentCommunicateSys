@@ -54,7 +54,9 @@ function setTop(){
         document.getElementById("questionDescription").innerHTML  = questionDTO.question.questionDescription;
         document.getElementById("replyNumber").innerHTML  = questionDTO.question.replyNumber;
         var date = new Date(questionDTO.question.questionTime);
-        document.getElementById("questionTime").innerHTML  = getTimeStr(date);
+        var time = getTimeStr(date).trim();
+        console.log(time);
+        document.getElementById("questionTime").innerHTML  = time;
     }
 }
 
@@ -92,8 +94,9 @@ function showReply(curPage,pageSize){
             template.content.querySelector("#replyTime").innerHTML  = getTimeStr(new Date(questionReplyDTO.questionReply.replyTime));
             template.content.querySelector("#replyNum").innerHTML  = questionReplyDTO.questionReply.replyNumber;
             template.content.querySelector("#proNum").innerHTML  = questionReplyDTO.questionReply.proNum;
-            template.content.querySelector("#inverseNum").innerHTML  = questionReplyDTO.questionReply.inverseNum;
+            template.content.querySelector("#replyContentId").dataset.id = questionReplyDTO.questionReply.id;
             var  commentContainer = template.content.querySelector(".commentContainer");
+
             commentContainer.innerHTML = "";                                   //清空评论
             commentContainer.id = questionReplyDTO.questionReply.id ;          //为修改埋下伏笔
             var  comment = showComment(questionReplyDTO.questionReply.id,0,8);
@@ -202,3 +205,68 @@ function addReply(){
         });
     });
 }
+
+function showCommentDiv(i){
+    console.log(i);
+    var replyContainer = i.parentNode.parentNode;
+    var commentContainer =  replyContainer.querySelector("#commentContainerId");
+    if(commentContainer.dataset.id==1){
+        commentContainer.style.display = "none";
+        commentContainer.dataset.id = 2;
+    }else if(commentContainer.dataset.id==2){
+        commentContainer.style.display = "block";
+        commentContainer.dataset.id = 1;
+    }
+}
+
+function pro(a){
+    var replyContainer = a.parentNode.parentNode;
+    var proNum = replyContainer.querySelector("#proNum").innerHTML;
+    var pnum = parseInt(proNum);
+    var replyId = replyContainer.dataset.id;
+    var content = a.innerHTML;
+    var  num = -1;
+    if(content == "赞"){
+        a.innerHTML = "取消赞" ;
+        pnum++;
+        num=1;
+    }else{
+        a.innerHTML = "赞";
+        pnum--;
+    }
+    replyContainer.querySelector("#proNum").innerHTML = pnum;
+
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/questionReplyController/addProNum.do',
+        async : false,
+        data : {
+            questionReplyId:replyId,
+            num:1
+        },
+        dataType : 'json',
+        success : function(msg) {
+
+        },error: function(msg){
+            alert("网络超时!");
+        }
+    });
+}
+
+
+function hasClass( elements,cName ){
+    return !!elements.className.match( new RegExp( "(\\s|^)" + cName + "(\\s|$)") );
+};
+
+function addClass( elements,cName ){
+    if( !hasClass( elements,cName ) ){
+        elements.className += " " + cName;
+    };
+};
+
+function removeClass( elements,cName ){
+    if( hasClass( elements,cName ) ){
+        elements.className = elements.className.replace( new RegExp( "(\\s|^)" + cName + "(\\s|$)" ), " " );
+    };
+};

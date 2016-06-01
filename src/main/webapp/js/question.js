@@ -18,6 +18,10 @@ $(document).ready(function(){
 
     showMaterial(0,5);
 
+    document.getElementById("psId").value = GetUrlParam("id");
+
+    uploadMaterial();
+
     $(".tcdPageCode").createPage({
         pageCount:getProblemSquarePageNum(pageSize),
         current:1,
@@ -268,7 +272,6 @@ function getProblemSquarePageNum(pageSize){
 
 
 function showTask(taskCurPage,taskPagSize){
-
     var  problemSquareId = GetUrlParam("id");
     var taskList = null ;
     $.ajax({
@@ -295,16 +298,56 @@ function showTask(taskCurPage,taskPagSize){
     });
     if(taskList){
         console.log(taskList);
-       // $("#taskContainer").empty();
         taskList.forEach(function(task,index){
             var temp = document.querySelector("#taskTemplate");
             temp.content.querySelector("#tNo").innerHTML  = index+1;
             temp.content.querySelector("#tTitle").innerHTML  = task.taskTitle;
             temp.content.querySelector("#tDate").innerHTML  = getDate(new Date(task.pulishTime));
+            temp.content.querySelector("#viewTaskA").dataset.id = task.id;
             document.querySelector("#taskContainer").appendChild(temp.content.cloneNode(true));   //加进去
         });
     }
+    var arr = document.getElementsByClassName("taskItem");
+    for(var i = 0; i < arr.length ; i++){
+        arr[i].onclick  = function(){
+            var taskId = this.querySelector("#viewTaskA").dataset.id;
+            viewTask(taskId);
+        }
+    }
 }
+
+function viewTask(taskId){
+    console.log("coming!!!!")
+    var  task = null;
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/taskController/searchTaskById.do',
+        async : false,
+        data :{
+            taskId:taskId
+        },
+        dataType : 'json',
+        success : function(msg) {
+            if (msg.result == true){
+                task = msg.task;
+            }
+            else{
+                console.log("获取作业失败！")
+            }
+        },error: function(msg){
+           alert("网络错误！");
+        }
+    });
+
+
+    if(task){
+        $("#viewTaskTitle").html(task.taskTitle) ;
+        $("#viewTaskDesc").html(task.taskDecription);
+        $('#showTaskBtn').trigger("click");
+    }
+}
+
 
 function showMaterial(materialCurPage,materialPagSize){
     var  problemSquareId = GetUrlParam("id");
@@ -336,10 +379,34 @@ function showMaterial(materialCurPage,materialPagSize){
         materialList.forEach(function(material,index){
             var temp = document.querySelector("#materialTemplate");
             temp.content.querySelector("#mNo").innerHTML  = index+1;
-            temp.content.querySelector("#mTitle").innerHTML  = material.taskTitle;
+            temp.content.querySelector("#mTitle").innerHTML  = material.materialName;
             temp.content.querySelector("#mDate").innerHTML  = getDate(new Date(material.uploadTime));
             document.querySelector("#materialContainer").appendChild(temp.content.cloneNode(true));   //加进去
         })
     }
 }
+function uploadMaterial(){
 
+    $("#uploadMaterialBtn").click(function(){
+        $("#materialForm").submit(function () {
+            console.log("开始上传！");
+            $("#materialForm").ajaxSubmit({
+                type: "post",
+                url: "/materialController/uploadMaterial.do",
+                success: function (msg) {
+                    if(msg.result == true){
+                        console.log("上传成功！");
+                        $("#cancleUploadMaterialBtn").click();
+                    }else{
+                        console.log("上传失败！");
+                    }
+                },
+                error: function (msg) {
+                    alert("文件上传失败");
+                }
+            });
+            return false;
+        });
+        $("#materialForm").submit();
+    })
+}

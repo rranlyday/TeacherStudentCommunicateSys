@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService{
             return  -1;
         User user = userMapper.selectByPrimaryKey(userId);
         if (password.equals(user.getPassword())){
-            user.setPassword(password);
+            user.setPassword(newPassword);
             return userMapper.updateByPrimaryKey(user);
         }else{
             return  -2;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap 实例 - 模态框（Modal）插件事件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<h2>模态框（Modal）插件事件</h2>
+
+<!-- 按钮触提醒模态框 -->
+<button  data-toggle="modal" data-target="#remindModal">
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="remindModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" style="">
+    <div class="modal-dialog" style="width: 300px;margin-top:250px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="remindModalLabel" style="text-align: center">
+                    模态框（Modal）标题
+                </h4>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    remindMessage("密码错误!")
+    function remindMessage(message){
+        $("#remindModal").click(function(){
+            $("#remindModalLabel").innerHTML=  message ;
+        });
+    }
+</script>
+
+</body>
+</html>

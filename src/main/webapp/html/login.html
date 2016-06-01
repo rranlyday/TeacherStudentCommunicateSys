@@ -41,7 +41,7 @@
 
 <body class="bgb">
 
-<div class="container" style="margin-left: 30px;margin-top: 20px">
+<div class="container" style="margin-left: 30px;margin-top: 20px;display: inline-block;float: left">
     <form class="form-signin">
        <h2 class="form-signin-heading">欢迎访问师生互动教学系统</h2>
         <div class="sigin_container">
@@ -62,24 +62,38 @@
                 </span>
             </div>
             <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> 记住密码
-                </label>
-            </div>
+            <label>
+                <input type="checkbox" value="remember-me" id="rememberPwd"> 记住密码
+            </label>
+        </div>
             <button class="btn btn-lg btn-primary " id="loginBtn" style="width:200px" type="button">登录</button>
             <button class="btn btn-lg " id = "registerBtn" style="width: 150px;float: right" type="button">注册</button>
         </div>
-
     </form>
-
 </div> <!-- /container -->
-
-
-
+<!-- 按钮触提醒模态框 -->
+<button  style="display: none" data-toggle="modal" data-target="#remindModal" id="remindModalBtn">
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="remindModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" style="">
+    <div class="modal-dialog" style="width: 300px;margin-top:250px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title"  style="text-align: center">
+                    <span id="remindModalLabel"></span>
+                </h4>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
 
 <!--引入登录模块js-->
-<script src="../js/login.js"></script>
+<script language="javascript" type="text/javascript" src="../js/login.js" charset="gb2312"></script>
 
 </body></html>

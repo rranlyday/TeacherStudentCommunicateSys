@@ -19,11 +19,12 @@
 }
 
 .question_editor{
-    width: 500px;
+    width: 300px;
 }
 
 .input_lable{
     width:550px;
+    max-width:550px ;
     height:60px;
     line-height: inherit;
     text-align: inherit;
@@ -33,9 +34,22 @@
     height: 30px !important;
 }
 
+.input_content_height{
+    height: 160px !important;
+}
+
 .modal-bottom{
     margin-right: 30px;
 }
+.password{
+    width:250px;
+    max-width:250px ;
+    height:60px;
+    line-height: inherit;
+    text-align: inherit;
+    height: 30px !important;
+}
+
 
 .question_lable{
     color: #999;

@@ -13,7 +13,9 @@ import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 import service.UserService;
 import util.StringUtil;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
@@ -31,19 +33,23 @@ public class UserController{
     @Autowired
     private UserService userService;
 
-
     @RequestMapping(value="/login",method = RequestMethod.POST)
-    public ModelAndView login(String loginName, String password,
-                              HttpServletRequest request) {
+    public ModelAndView login(String loginName, String password,Boolean rememberPwd,
+                              HttpServletRequest request,HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
-
         try {
             User user = userService.login(loginName, password);
             if (user != null && user.getId() != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
+                if (rememberPwd){
+                    Cookie loginNameCookie = new Cookie("loginName",user.getLoginName());
+                    Cookie pwdCookie = new Cookie("password",user.getPassword());
+                    response.addCookie(loginNameCookie);
+                    response.addCookie(pwdCookie);
+                }
                 map.put("result", Boolean.TRUE);
                 map.put("message", "success");
                 map.put("user",user);
@@ -52,6 +58,39 @@ public class UserController{
                 map.put("result", Boolean.FALSE);
                 map.put("message", "用户名或密码填写错误！");
             }
+        } catch (Exception e) {
+            map.put("result", Boolean.FALSE);
+            map.put("message", "执行出现出错！");
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
+    @RequestMapping(value="/getLoginInfo",method = RequestMethod.POST)
+    public ModelAndView getLoginInfo(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
+        try {
+            Cookie []cookies = request.getCookies();
+            String loginName = null;
+            String password = null;
+            if (cookies != null){
+                for (Cookie cookie:cookies){
+                    if ("loginName".equals(cookie.getName())){
+                        loginName = cookie.getValue();
+                    }
+                    if ("passwordaaa".equals(cookie.getName())){
+                        password = cookie.getValue();
+                    }
+                }
+            }
+            map.put("loginName",loginName);
+            map.put("password",password);
+            map.put("result", Boolean.TRUE);
         } catch (Exception e) {
             map.put("result", Boolean.FALSE);
             map.put("message", "执行出现出错！");
@@ -163,10 +202,14 @@ public class UserController{
         try {
             User user =  (User)request.getSession().getAttribute("user");
             int userId = user.getId();
-            if (userService.updatePassword(userId,password,newPassword)>0){
+            int rs = userService.updatePassword(userId,password,newPassword);
+            if (rs>0){
                 map.put("result",Boolean.TRUE);
             }else{
                 map.put("result",Boolean.FALSE);
+                if (rs == -2){
+                    map.put("message","密码错误!");
+                }
             }
         } catch (Exception e) {
             map.put("result",Boolean.FALSE);

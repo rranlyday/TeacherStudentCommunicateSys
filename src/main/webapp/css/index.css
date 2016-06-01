@@ -202,6 +202,7 @@
     vertical-align: top;
     margin-left: 5px;
     margin-right:5px ;
+    height:15px;
 }
 .question_lable_description span{
 }
@@ -287,7 +288,12 @@
     height:12px;
     display: inline-block;
 }
-
+.supported{
+    background: url("../pic/proed.png") no-repeat;
+    width:15px;
+    height:12px;
+    display: inline-block;
+}
 .disagreement-ico{
     background: url("../pic/disagrement.png") no-repeat;
     width:15px;
@@ -331,8 +337,8 @@
 }
 
 .atention_word {
-    background:RGB(51,122,183);
-    color: #dddddd;
+    /*background:RGB(51,122,183);*/
+   /* color: #dddddd;*/
 }
 
 .paging{
@@ -346,6 +352,7 @@
     border: 1px solid #ccc;
     height: 280px;
     margin-top: 30px;
+    padding: 10px;
 }
 
 .task_headline{
@@ -416,4 +423,7 @@
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 5px;
+}
+.commentStyle{
+    float: right;
 }
