@@ -305,7 +305,9 @@
     margin-top: 10px;
     margin-right: 50px;
     padding-left: 20px;
+    max-height: 630px;
     border: 1px solid #ccc;
+    overflow-y :auto
 }
 .reply-replier{
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;

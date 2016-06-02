@@ -17,4 +17,6 @@ public interface ReplyQuestionReplyService {
     int addInverseNum(Integer replyQuestionReplyId,Integer num);
 
     List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(Integer questionReplyId,Integer curPage,Integer pageSize);
+
+    List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(Integer questionReplyId);
 }

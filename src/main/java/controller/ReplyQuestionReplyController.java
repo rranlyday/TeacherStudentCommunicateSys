@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
+import service.QuestionReplyService;
 import service.ReplyQuestionReplyService;
 import service.UserService;
 
@@ -29,6 +30,9 @@ public class ReplyQuestionReplyController {
     ReplyQuestionReplyService replyQuestionReplyService;
 
     @Autowired
+    QuestionReplyService questionReplyService;
+
+    @Autowired
     UserService userService;
 
     @RequestMapping(value="/addReplyQuestionReply",method = RequestMethod.POST)
@@ -40,6 +44,7 @@ public class ReplyQuestionReplyController {
             User user = (User)request.getSession().getAttribute("user");
             int responderId = user.getId();
             if(replyQuestionReplyService.addReplyQuestionReply(questionReplyId,responderId,replyDescription)>0){
+                questionReplyService.addReplyNum(questionReplyId,1);
                 map.put("result", Boolean.TRUE);
             }else{
                 map.put("result", Boolean.FALSE);
@@ -127,7 +132,7 @@ public class ReplyQuestionReplyController {
         Map map = new HashMap();
         try {
             List<ReplyQuestionReply> replyQuestionReplyList =
-                    replyQuestionReplyService.searchReplyQuestionReplyOrderByTime(questionReplyId,curPage,pageSize);
+                    replyQuestionReplyService.searchReplyQuestionReplyOrderByTime(questionReplyId);
             List<ReplyQuestionReplyDTO> replyQuestionReplyDTOList = new ArrayList<ReplyQuestionReplyDTO>();
             for (ReplyQuestionReply replyQuestionReply :replyQuestionReplyList){
                 User user = userService.selectById(replyQuestionReply.getResponderId());

@@ -97,9 +97,9 @@ function showReply(curPage,pageSize){
             template.content.querySelector("#replyContentId").dataset.id = questionReplyDTO.questionReply.id;
             var  commentContainer = template.content.querySelector(".commentContainer");
 
-            commentContainer.innerHTML = "";                                   //清空评论
-            commentContainer.id = questionReplyDTO.questionReply.id ;          //为修改埋下伏笔
-            var  comment = showComment(questionReplyDTO.questionReply.id,0,8);
+            commentContainer.id = questionReplyDTO.questionReply.id ;
+
+            var  comment = showComment(questionReplyDTO.questionReply.id);
             if(comment){
                 comment.forEach(function(replyQuestionReplyDTO,index){      //添加评论
                     var commentTemplate =  document.querySelector("#commentTemplate");
@@ -116,7 +116,7 @@ function showReply(curPage,pageSize){
     }
 }
 
-function showComment(replyId,curPage,pageSize){
+function showComment(replyId){
     var comment = null;
     $.ajax({
         type : "post",
@@ -124,9 +124,7 @@ function showComment(replyId,curPage,pageSize){
         url : '/replyQuestionReplyController/searchReplyQuestionReplyOrderByTime.do',
         async : false,
         data : {
-            questionReplyId:replyId,
-            curPage:curPage,
-            pageSize:pageSize
+            questionReplyId:replyId
         },
         dataType : 'json',
         success : function(msg) {
@@ -248,6 +246,35 @@ function pro(a){
         dataType : 'json',
         success : function(msg) {
 
+        },error: function(msg){
+            alert("网络超时!");
+        }
+    });
+}
+
+function addComment(button){
+    var replyContent = button.parentNode.parentNode.parentNode;
+    var content = replyContent.querySelector("#commentContent")
+    var replyDescription = content.value ;
+    var replyId = replyContent.dataset.id;
+
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/replyQuestionReplyController/addReplyQuestionReply.do',
+        async : false,
+        data : {
+            questionReplyId:replyId,
+            replyDescription:replyDescription
+        },
+        dataType : 'json',
+        success : function(msg) {
+            if(msg.result==true){
+                content.value = "";
+                remindMessage("评论成功")
+            }else{
+                remindMessage("评论失败！请稍后再试！")
+            }
         },error: function(msg){
             alert("网络超时!");
         }

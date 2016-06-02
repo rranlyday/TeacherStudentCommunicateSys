@@ -191,32 +191,11 @@
                         <div class="question-reply-comment none" id="commentContainerId" data-id = "1" >
                             <div class="commentContainer" >
                             </div>
-                            <div class="paging">
-                                <nav>
-                                    <ul class="pagination">
-                                        <li>
-                                            <a href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li>
-                                            <a href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
                             <div class="reply_comment_container">
                                 <div>
-                                    <input type="text"   class="reply_commet_input" placeholder="写下你的评论" aria-describedby="basic-addon1"> </input>
+                                    <input type="text" class="reply_commet_input" id="commentContent" placeholder="写下你的评论" aria-describedby="basic-addon1"> </input>
                                 </div>
-                                <button class="reply_commet_button"> 评论 </button>
+                                <button class="reply_commet_button" onclick="addComment(this)">评论</button>
                             </div>
                         </div>
                     </div>
@@ -666,26 +645,56 @@
                                 <span class="question_lable_description">100 人反对</span>
                             </div>
                         </div>
-                        <div class="paging">
-                            <nav>
-                                <ul class="pagination">
-                                    <li>
-                                        <a href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li>
-                                        <a href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
+                        </div>
+                        <div class="reply-item ">
+                            <div class="reply-replier">
+                                <a href="">我是高手</a>
+                            </div>
+                            <div class="question_description">
+                                <p>说得好</p>
+                            </div>
+                            <div class="question_label">
+                                <span class="reply-time">编辑于 2016-05-12 19:18:05</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="support-ico"></span>
+                                <span class="question_lable_description">500 人赞同</span>
+                                <em>&nbsp;&nbsp;&nbsp;&nbsp</em>
+                                <span class="disagreement-ico"></span>
+                                <span class="question_lable_description">100 人反对</span>
+                            </div>
                         </div>
                         <div class="reply_comment_container">
                             <div>
@@ -696,19 +705,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="paging">
-                    <nav>
-                        <ul class="pagination">
-                            <li><a href="#">上一页</a></li>
-                            <li class="active"> <a href="#">1 <span class="sr-only">(current)</span></a></li>
-                            <li> <a href="#">2<span class="sr-only">(current)</span></a></li>
-                            <li> <a href="#">3 <span class="sr-only">(current)</span></a></li>
-                            <li> <a href="#">4 <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">下一页</a></li>
-                        </ul>
-                    </nav>
+                <div class="">
+                    <button style="width:600px">更多</button>
                 </div>
-
                 <div class="reply_input_container">
                     <div class="reply_input">
                         <textarea type="text"   class="reply_input" id ="replyInput" placeholder="写下你的回答" aria-describedby="basic-addon1"> </textarea>

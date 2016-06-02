@@ -71,5 +71,13 @@ public class QuestionReplyServiceImpl implements QuestionReplyService{
         int pageNum = MathUtil.numToPageTotal(count,pageSize);
         return pageNum;
     }
+
+    public int addReplyNum(Integer questionReplyId, Integer num) {
+        QuestionReply questionReply = questionReplyMapper.selectByPrimaryKey(questionReplyId);
+        int count = questionReply.getReplyNumber();
+        int replyNum = count + num;
+        questionReply.setReplyNumber(replyNum);
+        return questionReplyMapper.updateByPrimaryKeySelective(questionReply);
+    }
 }
 

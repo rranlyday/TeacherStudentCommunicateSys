@@ -31,4 +31,6 @@ public interface ReplyQuestionReplyMapper {
     List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(@Param("questionReplyId")Integer questionReplyId,
                                                                  @Param("beginPos")Integer beginPos,
                                                                  @Param("pageSize") Integer pageSize);
+
+    List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(Integer questionReplyId);
 }

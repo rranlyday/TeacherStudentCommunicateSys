@@ -26,4 +26,6 @@ public interface QuestionReplyService {
 
     int getPageNum(Integer questionId,int pageSize);
 
+    int addReplyNum(Integer questionReplyId,Integer num);
+
 }
