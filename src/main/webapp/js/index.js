@@ -144,5 +144,17 @@ function getTimeStr(date){
 }
 
 
+ function search(){
+     var condition = $("#searchCondition").val();
+     if(condition == null && condition ===""){
+         remindMessage("ÇëÊäÈëËÑË÷ÄÚÈİ£¡");
+     }else{
 
+     }
+ }
+
+function remindMessage(message){
+    document.getElementById("remindModalLabel").innerHTML = message ;
+    $('#remindModalBtn').trigger("click");
+}
 

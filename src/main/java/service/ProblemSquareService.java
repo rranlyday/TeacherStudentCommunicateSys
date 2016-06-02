@@ -27,4 +27,6 @@ public interface ProblemSquareService {
 
     ProblemSquare getProblemSquareById(Integer id);
 
+    int getProblemSquareIdByQuestionId(int questionId);
+
 }

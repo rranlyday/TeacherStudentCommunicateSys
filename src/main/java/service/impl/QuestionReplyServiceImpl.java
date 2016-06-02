@@ -62,8 +62,7 @@ public class QuestionReplyServiceImpl implements QuestionReplyService{
     }
 
     public List<QuestionReply> searchQuestionReplyByQuestionIdOrderByTime(Integer questionId, int curPage, int pageSize) {
-        int beginPos = curPage * pageSize;
-        return questionReplyMapper.searchQuestionReplyByQuestionIdOrderByTime(questionId,beginPos,pageSize);
+        return questionReplyMapper.searchQuestionReplyByQuestionIdOrderByTime(questionId,curPage,pageSize);
     }
 
     public int getPageNum(Integer questionId, int pageSize) {

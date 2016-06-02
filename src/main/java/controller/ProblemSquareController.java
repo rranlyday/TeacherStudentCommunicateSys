@@ -91,7 +91,6 @@ public class ProblemSquareController {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
-        System.out.println("I am coming!!");
         try {
             System.out.println("pageNum: "+pageNum);
             System.out.println("pageSize: "+pageSize);
@@ -146,10 +145,8 @@ public class ProblemSquareController {
         Map map = new HashMap();
         try {
             int problemSquareTotal = problemSquareService.selectProblemSquareCount(condition);
-            System.out.print("problemSquareTotal: "+problemSquareTotal);
             int pageTotal = MathUtil.numToPageTotal(problemSquareTotal, pageSize);
             map.put("pageTotal",pageTotal);
-            System.out.println("pageTotal: "+pageTotal);
             map.put("result", Boolean.TRUE);
         } catch (Exception e) {
             map.put("result", Boolean.FALSE);
@@ -163,14 +160,17 @@ public class ProblemSquareController {
 
 
     @RequestMapping(value = "/attentionProblemSquare", method = RequestMethod.POST)
-    public ModelAndView attentionProblemSquare(Integer problemSquareId, HttpServletRequest request) {
+    public ModelAndView attentionProblemSquare(Integer problemSquareId, Integer questionId,HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         HashMap map = new HashMap();
-        System.out.println("开始上传！");
+        if (questionId != null){
+            problemSquareId = problemSquareService.getProblemSquareIdByQuestionId(questionId);
+        }
         try {
             int userId = ((User) (request.getSession().getAttribute("user"))).getId();
             if (userProblemSquareService.addAttention(userId, problemSquareId) > 0) {   //关注
+                problemSquareService.addAttentionNum(problemSquareId,1);
                 map.put("result", Boolean.TRUE);
             } else {
                 map.put("result", Boolean.FALSE);
@@ -186,13 +186,17 @@ public class ProblemSquareController {
     }
 
     @RequestMapping(value = "/cancleAttentionProblemSquare", method = RequestMethod.POST)
-    public ModelAndView cancleAttentionProblemSquare(Integer problemSquareId, HttpServletRequest request) {
+    public ModelAndView cancleAttentionProblemSquare(Integer problemSquareId, Integer questionId ,HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         HashMap map = new HashMap();
+        if (questionId != null){
+            problemSquareId = problemSquareService.getProblemSquareIdByQuestionId(questionId);
+        }
         try {
             int userId = ((User) (request.getSession().getAttribute("user"))).getId();
             if (userProblemSquareService.cancelAttention(userId, problemSquareId) > 0) {  //取消关注
+                problemSquareService.addAttentionNum(problemSquareId,-1);
                 map.put("result", Boolean.TRUE);
             } else {
                 map.put("result", Boolean.FALSE);
@@ -224,4 +228,32 @@ public class ProblemSquareController {
             return mav;
         }
     }
+
+    @RequestMapping(value = "/searchUserAttention", method = RequestMethod.POST)
+    public ModelAndView searchUserAttention(Integer problemSquareId, Integer questionId ,HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        HashMap map = new HashMap();
+        System.out.println("11111111");
+        try {
+            if (questionId != null){
+                problemSquareId = problemSquareService.getProblemSquareIdByQuestionId(questionId);
+            }
+            int userId = ((User) (request.getSession().getAttribute("user"))).getId();
+            if (userProblemSquareService.searchUserAttention(userId,problemSquareId)==1){
+                map.put("att", Boolean.TRUE);
+            }else {
+                map.put("att", Boolean.FALSE);
+            }
+            map.put("result", Boolean.TRUE);
+        }catch (Exception e) {
+            map.put("result", Boolean.FALSE);
+            e.printStackTrace();
+        } finally {
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
+        }
+    }
+
 }

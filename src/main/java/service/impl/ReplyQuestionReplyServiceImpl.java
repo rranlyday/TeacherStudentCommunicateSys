@@ -53,7 +53,7 @@ public class ReplyQuestionReplyServiceImpl implements ReplyQuestionReplyService{
     public List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(Integer questionReplyId, Integer curPage,
                                                                         Integer pageSize) {
         int beginPos = curPage * pageSize ;
-        return replyQuestionReplyMapper.searchReplyQuestionReplyOrderByTime(questionReplyId,beginPos,pageSize);
+        return replyQuestionReplyMapper.searchReplyQuestionReplyOrderByTimePaging(questionReplyId,beginPos,pageSize);
     }
 
     public List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(Integer questionReplyId) {

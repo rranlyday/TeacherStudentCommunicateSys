@@ -126,7 +126,7 @@
                             <div class="card_title">
                                 <span class="card_title_name" id="qsTitle" >经济管理概论</span>
                                 <span class="islike_focus"></span>
-                                <span class="atention-text"><a class="atention_word" id = "qsAttention">关注</a></span>
+                                <span class="atention-text"><a class="atention_word" id = "qsAttention" onclick="attention(this)">关注</a></span>
                                 <span class="atention_message_container">
                                     <span class="card_numLabel">关注:</span>
                                     <span class="card_menNum" id = "qsAttentionNum">200</span>
@@ -504,10 +504,31 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
+</div>
 
 <button class="btn btn-primary " data-toggle="modal" id="showTaskBtn"
         data-target="#showTask">查看作业
 </button>
+
+<!-- 按钮触提醒模态框 -->
+<button  style="display: none" data-toggle="modal" data-target="#remindModal" id="remindModalBtn">
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="remindModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" style="">
+    <div class="modal-dialog" style="width: 300px;margin-top:250px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title"  style="text-align: center">
+                    <span id="remindModalLabel"></span>
+                </h4>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -531,6 +552,6 @@
 
 <!--分页js-->
 <script   language="javascript" type="text/javascript" src="../js/page.js" charset="gb2312"></script>
-
+<script language="javascript" type="text/javascript" src="../js/attention.js" charset="gb2312" ></script>
 </body>
 </html>

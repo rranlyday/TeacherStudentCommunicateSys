@@ -29,4 +29,6 @@ public interface ProblemSquareMapper {
     int updateByPrimaryKey(ProblemSquare record);
 
     List<ProblemSquare> selectProblemSquareOrderByTime(@Param("beginNum")int beginNum, @Param("sizeNum")int sizeNum);
+
+    List<ProblemSquare> selectProblemSquareByCondition(@Param("beginNum")int beginNum, @Param("sizeNum")int sizeNum,@Param("condition")String condition);
 }

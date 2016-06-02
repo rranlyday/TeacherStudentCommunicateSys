@@ -31,4 +31,6 @@ public interface UserProblemSquareMapper {
     int updateByPrimaryKey(UserProblemSquare record);
 
     int cancelAttention(UserProblemSquare userProblemSquare);
+
+    List<UserProblemSquare> searchUserAttention(UserProblemSquare record);
 }

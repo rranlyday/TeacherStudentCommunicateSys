@@ -132,8 +132,8 @@ public class QuestionReplyController {
     }
 
     //获取问题的回答数量
-    @RequestMapping(value="/getPageNum",method = RequestMethod.POST)
-    public ModelAndView getPageNum(Integer questionReplyId,Integer pageSize) {
+    @RequestMapping(value="/getRelyNum",method = RequestMethod.POST)
+    public ModelAndView getRelyNum(Integer questionReplyId,Integer pageSize) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
@@ -154,13 +154,16 @@ public class QuestionReplyController {
 
     //根据时间查询回答
     @RequestMapping(value="/searchByTime",method = RequestMethod.POST)
-    public ModelAndView searchByTime(Integer questionId,Integer curPage,Integer pageSize) {
+    public ModelAndView searchByTime(Integer questionId,Integer curPos,Integer pageSize) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
         try {
+            if (curPos == null){
+                curPos = 0;
+            }
             List<QuestionReply> questionReplyList =
-                    questionReplyService.searchQuestionReplyByQuestionIdOrderByTime(questionId,curPage,pageSize);
+                    questionReplyService.searchQuestionReplyByQuestionIdOrderByTime(questionId,curPos,pageSize);
             List<QuestionReplyDTO> questionReplyDTOList = new ArrayList<QuestionReplyDTO>();
             for (QuestionReply questionReply:questionReplyList){
                 User user = userService.selectById(questionReply.getResponderId());

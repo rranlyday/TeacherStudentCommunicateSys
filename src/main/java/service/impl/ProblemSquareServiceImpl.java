@@ -1,7 +1,10 @@
 package service.impl;
 
 import dao.ProblemSquareMapper;
+import dao.QuestionMapper;
 import model.ProblemSquare;
+import model.Question;
+import model.QuestionReply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.ProblemSquareService;
@@ -18,6 +21,9 @@ public class ProblemSquareServiceImpl implements ProblemSquareService {
 
     @Autowired
     ProblemSquareMapper problemSquareMapper;
+
+    @Autowired
+    QuestionMapper questionMapper;
 
     public int bulidProblemSquare(ProblemSquare p) {
 
@@ -41,7 +47,8 @@ public class ProblemSquareServiceImpl implements ProblemSquareService {
     public List<ProblemSquare> selectProblemSquareOrderByTime(int pageNum, int size,String condition) {
         if (condition == null)
              return selectProblemSquareOrderByTime(pageNum,size);
-        return  null;
+        int beginPos = pageNum*size ;
+        return  problemSquareMapper.selectProblemSquareByCondition(beginPos,size,condition);
 
   }
 
@@ -81,5 +88,10 @@ public class ProblemSquareServiceImpl implements ProblemSquareService {
 
     public ProblemSquare getProblemSquareById(Integer id) {
         return problemSquareMapper.selectByPrimaryKey(id);
+    }
+
+    public int getProblemSquareIdByQuestionId(int questionId) {
+        Question question = questionMapper.selectByPrimaryKey(questionId);
+        return question.getProblemSquareId();
     }
 }

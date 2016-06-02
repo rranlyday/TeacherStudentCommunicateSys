@@ -108,9 +108,9 @@
                 <div class="row">
                     <div class="col-lg-10">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="寻找你感兴趣的问题广场">
+                            <input type="text" id="searchCondition" class="form-control" placeholder="寻找你感兴趣的问题广场">
                           <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">搜索</button>
+                            <button class="btn btn-default" type="button" onclick="search()">搜索</button>
                           </span>
                         </div>
                         <!-- /input-group -->
@@ -147,156 +147,6 @@
                 </div>
             </template>
             <div class="row" id = "qsContainer">
-              <!--  <div class="col-xs-4 col-lg-3">
-                    <div class="thumbnail">
-                        &lt;!&ndash;<div class="list-group">&ndash;&gt;
-                        <img src="../pic/1.jpg" alt="图片">
-                        <div class="caption">
-                            <div class="headline"> <a href=""> 高数 </a> </div>
-                            <div class="description">
-                                让我们一起来感受数学之美吧！
-                            </div>
-                            <div class="myfont">
-                                <div class="attention_message_container">
-                                    <span class="attention_icon"></span>
-                                    <span class="attention_peopel">200</span>
-                                    <span class="message_icon"></span>
-                                    <span class="message_num ">500</span>
-                                </div>
-                                <div class="author_time_container">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    <span class="author">赵松泉</span>
-                                    <span class="glyphicon glyphicon-time"></span>
-                                    <span class="time">2016-05-17</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4 col-lg-3">
-                    <div class="thumbnail">
-                        &lt;!&ndash;<div class="list-group">&ndash;&gt;
-                        <img src="../pic/1.jpg" alt="图片">
-                        <div class="caption">
-                            <div class="headline"> <a href=""> 高数 </a> </div>
-                            <div class="description">
-                                让我们一起来感受数学之美吧！
-                            </div>
-                            <div class="attention_message_container">
-                                <span class="attention_icon"></span>
-                                <span class="attention_peopel myfont">200</span>
-                                <span class="message_icon"></span>
-                                <span class="message_num myfont">500</span>
-                            </div>
-                            <div class="author_time_container">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <span class="author myfont">赵松泉</span>
-                                <span class="glyphicon glyphicon-time"></span>
-                                <span class="time myfont">2016-05-17</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4 col-lg-3">
-                    <div class="thumbnail">
-                        &lt;!&ndash;<div class="list-group">&ndash;&gt;
-                        <img src="../pic/1.jpg" alt="图片">
-                        <div class="caption">
-                            <div class="headline"> <a href=""> 高数 </a> </div>
-                            <div class="description">
-                                让我们一起来感受数学之美吧！
-                            </div>
-                            <div class="attention_message_container">
-                                <span class="attention_icon"></span>
-                                <span class="attention_peopel myfont">200</span>
-                                <span class="message_icon"></span>
-                                <span class="message_num myfont">500</span>
-                            </div>
-                            <div class="author_time_container">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <span class="author myfont">赵松泉</span>
-                                <span class="glyphicon glyphicon-time"></span>
-                                <span class="time myfont">2016-05-17</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4 col-lg-3">
-                    <div class="thumbnail">
-                        &lt;!&ndash;<div class="list-group">&ndash;&gt;
-                        <img src="../pic/1.jpg" alt="图片">
-                        <div class="caption">
-                            <div class="headline"> <a href=""> 高数 </a> </div>
-                            <div class="description">
-                                让我们一起来感受数学之美吧！
-                            </div>
-                            <div class="attention_message_container">
-                                <span class="attention_icon"></span>
-                                <span class="attention_peopel myfont">200</span>
-                                <span class="message_icon"></span>
-                                <span class="message_num myfont">500</span>
-                            </div>
-                            <div class="author_time_container">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <span class="author myfont">赵松泉</span>
-                                <span class="glyphicon glyphicon-time"></span>
-                                <span class="time myfont">2016-05-17</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4 col-lg-3">
-                    <div class="thumbnail">
-                        &lt;!&ndash;<div class="list-group">&ndash;&gt;
-                        <img src="../pic/1.jpg" alt="图片">
-                        <div class="caption">
-                            <div class="headline"> <a href=""> 高数 </a> </div>
-                            <div class="description">
-                                让我们一起来感受数学之美吧！
-                            </div>
-                            <div class="attention_message_container">
-                                <span class="attention_icon"></span>
-                                <span class="attention_peopel myfont">200</span>
-                                <span class="message_icon"></span>
-                                <span class="message_num myfont">500</span>
-                            </div>
-                            <div class="author_time_container">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <span class="author myfont">赵松泉</span>
-                                <span class="glyphicon glyphicon-time"></span>
-                                <span class="time myfont">2016-05-17</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4 col-lg-3">
-                    <div class="thumbnail">
-                        &lt;!&ndash;<div class="list-group">&ndash;&gt;
-                        <img src="../pic/1.jpg" alt="图片">
-                        <div class="caption">
-                            <div class="headline"> <a href=""> 高数 </a> </div>
-                            <div class="description">
-                                让我们一起来感受数学之美吧！
-                            </div>
-                            <div class="attention_message_container">
-                                <span class="attention_icon"></span>
-                                <span class="attention_peopel myfont">200</span>
-                                <span class="message_icon"></span>
-                                <span class="message_num myfont">500</span>
-                            </div>
-                            <div class="author_time_container">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <span class="author myfont">赵松泉</span>
-                                <span class="glyphicon glyphicon-time"></span>
-                                <span class="time myfont">2016-05-17</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>-->
             </div>
             <div class="tcdPageCode"></div>
             <!--/row-->
@@ -317,6 +167,7 @@
         </div><!--/.sidebar-offcanvas-->
 
     </div>    <!--/.col-xs-12.col-sm-9-->
+
     <hr>
    <!--row row-offcanvas row-offcanvas-right-->
     <footer>
@@ -395,7 +246,25 @@
 
     </div><!-- /.modal -->
 </div>
-
+<!-- 按钮触提醒模态框 -->
+<button  style="display: none" data-toggle="modal" data-target="#remindModal" id="remindModalBtn">
+</button>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="remindModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" style="">
+    <div class="modal-dialog" style="width: 300px;margin-top:250px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title"  style="text-align: center">
+                    <span id="remindModalLabel"></span>
+                </h4>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <!-- Bootstrap core JavaScript

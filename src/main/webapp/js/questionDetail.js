@@ -1,10 +1,14 @@
 /**
  * Created by Administrator on 2016/5/28 0028.
  */
+var replyCur = 8;
+var replyTotal = 0;
+var replyStep = 3;
+
 $(document).ready(function(){
     setTop();
     addReply();
-    showReply(0,20);
+    showReply(0,8);
 });
 
 function getUrlParam(name) {
@@ -53,6 +57,7 @@ function setTop(){
         document.getElementById("questioner").innerHTML  = questionDTO.user.userName;
         document.getElementById("questionDescription").innerHTML  = questionDTO.question.questionDescription;
         document.getElementById("replyNumber").innerHTML  = questionDTO.question.replyNumber;
+        replyTotal = questionDTO.question.replyNumber;
         var date = new Date(questionDTO.question.questionTime);
         var time = getTimeStr(date).trim();
         console.log(time);
@@ -60,7 +65,7 @@ function setTop(){
     }
 }
 
-function showReply(curPage,pageSize){
+function showReply(curPos,pageSize){
     var questionReplyDTOList = null;
     var id = getUrlParam("questionId");
     $.ajax({
@@ -70,7 +75,7 @@ function showReply(curPage,pageSize){
         async : false,
         data : {
             questionId:id,
-            curPage:curPage,
+            curPage:curPos,
             pageSize:pageSize
         },
         dataType : 'json',
@@ -96,18 +101,14 @@ function showReply(curPage,pageSize){
             template.content.querySelector("#proNum").innerHTML  = questionReplyDTO.questionReply.proNum;
             template.content.querySelector("#replyContentId").dataset.id = questionReplyDTO.questionReply.id;
             var  commentContainer = template.content.querySelector(".commentContainer");
-
-            commentContainer.id = questionReplyDTO.questionReply.id ;
-
             var  comment = showComment(questionReplyDTO.questionReply.id);
+            console.log(comment);
             if(comment){
                 comment.forEach(function(replyQuestionReplyDTO,index){      //添加评论
                     var commentTemplate =  document.querySelector("#commentTemplate");
                     commentTemplate.content.querySelector("#commenter").innerHTML  = replyQuestionReplyDTO.user.userName;
                     commentTemplate.content.querySelector("#commentDesc").innerHTML  =replyQuestionReplyDTO.replyQuestionReply.replyDescription;
                     commentTemplate.content.querySelector("#commentTime").innerHTML  = getTimeStr(new Date(replyQuestionReplyDTO.replyQuestionReply.relpyTime));
-                    commentTemplate.content.querySelector("#commentProNum").innerHTML  = replyQuestionReplyDTO.replyQuestionReply.replyProNum;
-                    commentTemplate.content.querySelector("#commentInverseNum").innerHTML  = replyQuestionReplyDTO.replyQuestionReply.replyInverseNum;
                     commentContainer.appendChild(commentTemplate.content.cloneNode(true));
                 });
             }
@@ -138,6 +139,7 @@ function showComment(replyId){
             alert("网络超时!");
         }
     });
+    return comment;
 }
 function getTimeStr(date){
     var year = date.getFullYear();
@@ -192,10 +194,10 @@ function addReply(){
             dataType : 'json',
             success : function(msg) {
                 if (msg.result == true){
-                    console.log("回答成功！");
+                    remindMessage("回答成功！")
                 }
                 else{
-                    console.log("回答失败！")
+                    remindMessage("回答失败！网络异常，请稍后再试");
                 }
             },error: function(msg){
                 alert("网络超时!");
@@ -205,7 +207,6 @@ function addReply(){
 }
 
 function showCommentDiv(i){
-    console.log(i);
     var replyContainer = i.parentNode.parentNode;
     var commentContainer =  replyContainer.querySelector("#commentContainerId");
     if(commentContainer.dataset.id==1){
@@ -281,6 +282,15 @@ function addComment(button){
     });
 }
 
+function showMore(){
+    if(replyCur < replyTotal){
+        showReply(replyCur,replyStep);
+        replyCur += replyStep ;
+    }else{
+        remindMessage("已经到底了！");
+    }
+}
+
 
 function hasClass( elements,cName ){
     return !!elements.className.match( new RegExp( "(\\s|^)" + cName + "(\\s|$)") );
@@ -297,3 +307,9 @@ function removeClass( elements,cName ){
         elements.className = elements.className.replace( new RegExp( "(\\s|^)" + cName + "(\\s|$)" ), " " );
     };
 };
+
+
+function remindMessage(message){
+    document.getElementById("remindModalLabel").innerHTML = message ;
+    $('#remindModalBtn').trigger("click");
+}

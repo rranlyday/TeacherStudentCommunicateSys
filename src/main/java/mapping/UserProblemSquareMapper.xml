@@ -186,4 +186,12 @@
     problem_square_id = #{problemSquareId,jdbcType=INTEGER}
   </delete>
 
+  <select id="searchUserAttention" resultMap="BaseResultMap" parameterType="model.UserProblemSquare" >
+    select
+    <include refid="Base_Column_List" />
+    from user_problem_square
+    where user_id = #{userId,jdbcType=INTEGER} AND
+    problem_square_id = #{problemSquareId,jdbcType=INTEGER}
+  </select>
+
 </mapper>

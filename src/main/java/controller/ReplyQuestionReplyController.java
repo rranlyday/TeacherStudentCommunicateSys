@@ -126,13 +126,14 @@ public class ReplyQuestionReplyController {
     }
 
     @RequestMapping(value="/searchReplyQuestionReplyOrderByTime",method = RequestMethod.POST)
-    public ModelAndView searchReplyQuestionReplyOrderByTime(Integer questionReplyId,Integer curPage,Integer pageSize) {
+    public ModelAndView searchReplyQuestionReplyOrderByTime(Integer questionReplyId) {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         Map map = new HashMap();
         try {
             List<ReplyQuestionReply> replyQuestionReplyList =
                     replyQuestionReplyService.searchReplyQuestionReplyOrderByTime(questionReplyId);
+
             List<ReplyQuestionReplyDTO> replyQuestionReplyDTOList = new ArrayList<ReplyQuestionReplyDTO>();
             for (ReplyQuestionReply replyQuestionReply :replyQuestionReplyList){
                 User user = userService.selectById(replyQuestionReply.getResponderId());

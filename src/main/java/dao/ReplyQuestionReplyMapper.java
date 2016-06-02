@@ -28,7 +28,7 @@ public interface ReplyQuestionReplyMapper {
 
     int updateByPrimaryKey(ReplyQuestionReply record);
 
-    List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(@Param("questionReplyId")Integer questionReplyId,
+    List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTimePaging(@Param("questionReplyId")Integer questionReplyId,
                                                                  @Param("beginPos")Integer beginPos,
                                                                  @Param("pageSize") Integer pageSize);
 
