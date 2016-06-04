@@ -157,15 +157,18 @@ public class MaterialController {
     }
 
     @RequestMapping("/download")
-    public ResponseEntity<byte[]> download(Integer materialId) throws IOException {
+    public ResponseEntity<byte[]> download(Integer materialId,HttpServletRequest request) throws IOException {
         Material material = materialService.searchMaterialById(materialId);
         File file = null;
         if(material != null){
-
+            String path = material.getStorageAddress().substring(1);
+            String filePath =request.getSession().getServletContext().getRealPath("/")+ path;
+            file = new File(filePath);
         }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        headers.setContentDispositionFormData("attachment", "dict.txt");
+        String name = material.getStorageAddress().substring(10);
+        headers.setContentDispositionFormData("attachment", name);
         return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
                 headers, HttpStatus.CREATED);
     }

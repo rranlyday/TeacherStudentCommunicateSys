@@ -116,7 +116,7 @@ function entryPage(curPage,pageSize){
 function removeAllChild() {
     var div = document.getElementById("#qsContainer");
     console.log(div);
-    while(div.hasChildNodes()) //当div下还存在子节点时 循环继续
+    while(div.hasChildNodes())   //当div下还存在子节点时 循环继续
     {
         div.removeChild(div.firstChild);
     }

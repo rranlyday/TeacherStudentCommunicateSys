@@ -72,7 +72,6 @@ public class ProblemSquareController {
                         HttpSession session = request.getSession();
                         User user = (User) session.getAttribute("user");
                         problemSquare.setOwnerId(user.getId());
-
                         problemSquareService.bulidProblemSquare(problemSquare);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -164,10 +163,11 @@ public class ProblemSquareController {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         HashMap map = new HashMap();
-        if (questionId != null){
-            problemSquareId = problemSquareService.getProblemSquareIdByQuestionId(questionId);
-        }
+
         try {
+            if (questionId != null){
+                problemSquareId = problemSquareService.getProblemSquareIdByQuestionId(questionId);
+            }
             int userId = ((User) (request.getSession().getAttribute("user"))).getId();
             if (userProblemSquareService.addAttention(userId, problemSquareId) > 0) {   //关注
                 problemSquareService.addAttentionNum(problemSquareId,1);
@@ -190,10 +190,11 @@ public class ProblemSquareController {
         ModelAndView mav = new ModelAndView();
         MappingJacksonJsonView view = new MappingJacksonJsonView();
         HashMap map = new HashMap();
-        if (questionId != null){
-            problemSquareId = problemSquareService.getProblemSquareIdByQuestionId(questionId);
-        }
+
         try {
+            if (questionId != null){
+                problemSquareId = problemSquareService.getProblemSquareIdByQuestionId(questionId);
+            }
             int userId = ((User) (request.getSession().getAttribute("user"))).getId();
             if (userProblemSquareService.cancelAttention(userId, problemSquareId) > 0) {  //取消关注
                 problemSquareService.addAttentionNum(problemSquareId,-1);

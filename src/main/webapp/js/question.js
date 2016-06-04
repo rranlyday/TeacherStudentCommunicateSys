@@ -301,6 +301,10 @@ function showTask(taskCurPage,taskPagSize){
         taskList.forEach(function(task,index){
             var temp = document.querySelector("#taskTemplate");
             temp.content.querySelector("#tNo").innerHTML  = index+1;
+            if(task.taskTitle.length > 4){
+                task.taskTitle=task.taskTitle.substr(0,4);
+                task.taskTitle += "...";
+            }
             temp.content.querySelector("#tTitle").innerHTML  = task.taskTitle;
             temp.content.querySelector("#tDate").innerHTML  = getDate(new Date(task.pulishTime));
             temp.content.querySelector("#viewTaskA").dataset.id = task.id;
@@ -339,8 +343,6 @@ function viewTask(taskId){
            alert("ÍøÂç´íÎó£¡");
         }
     });
-
-
     if(task){
         $("#viewTaskTitle").html(task.taskTitle) ;
         $("#viewTaskDesc").html(task.taskDecription);
@@ -379,6 +381,11 @@ function showMaterial(materialCurPage,materialPagSize){
         materialList.forEach(function(material,index){
             var temp = document.querySelector("#materialTemplate");
             temp.content.querySelector("#mNo").innerHTML  = index+1;
+            if(material.materialName.length > 4){
+                material.materialName=material.materialName.substr(0,4);
+                material.materialName += "...";
+            }
+            temp.content.querySelector("#aaa").dataset.id = material.id;
             temp.content.querySelector("#mTitle").innerHTML  = material.materialName;
             temp.content.querySelector("#mDate").innerHTML  = getDate(new Date(material.uploadTime));
             document.querySelector("#materialContainer").appendChild(temp.content.cloneNode(true));   //¼Ó½øÈ¥
@@ -409,4 +416,34 @@ function uploadMaterial(){
         });
         $("#materialForm").submit();
     })
+}
+
+function downloadMaterial(a){
+
+    var materialId = a.dataset.id ;
+    console.log(materialId)
+    var material = null;
+    $.ajax({
+        type : "post",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        url : '/materialController/searchMaterialById.do',
+        async : false,
+        data :{
+            materialId:materialId,
+        },
+        dataType : 'json',
+        success : function(msg) {
+            if (msg.result == true){
+             material = msg.material;
+            }
+        },error: function(msg){
+            console.log("ÍøÂç´íÎó£¡");
+        }
+    });
+    if(material){
+        $("#materialDesc").html(material.materialName) ;
+        document.getElementById("loadBtn").href = material.storageAddress;
+        $('#downloadBtn').trigger("click");
+        console.log(material.storageAddress);
+    }
 }
