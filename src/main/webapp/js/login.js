@@ -63,6 +63,8 @@ function loginInfo(){
             if (msg.result == true){
                 loginName = msg.loginName;
                 password = msg.password;
+                console.log(loginName);
+                console.log(password);
             }
         },error: function(msg){
             remindMessage("Õ¯¬Á“Ï≥££°");

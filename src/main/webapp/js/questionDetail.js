@@ -142,9 +142,10 @@ function showComment(replyId){
     return comment;
 }
 function getTimeStr(date){
+
     var year = date.getFullYear();
     var month = date.getMonth()+1;
-    var day =  date.getDay();
+    var day =  date.getDate();
     var hours = date.getHours();
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
@@ -194,6 +195,7 @@ function addReply(){
             dataType : 'json',
             success : function(msg) {
                 if (msg.result == true){
+                    $("#replyInput").val("");
                     remindMessage("回答成功！")
                 }
                 else{
@@ -258,7 +260,9 @@ function addComment(button){
     var content = replyContent.querySelector("#commentContent")
     var replyDescription = content.value ;
     var replyId = replyContent.dataset.id;
+    var replyQuestionReplyDTO = null;
 
+    console.log(replyId);
     $.ajax({
         type : "post",
         contentType : "application/x-www-form-urlencoded;charset=UTF-8",
@@ -272,6 +276,7 @@ function addComment(button){
         success : function(msg) {
             if(msg.result==true){
                 content.value = "";
+                replyQuestionReplyDTO = msg.replyQuestionReplyDTO;
                 remindMessage("评论成功")
             }else{
                 remindMessage("评论失败！请稍后再试！")
@@ -280,6 +285,16 @@ function addComment(button){
             alert("网络超时!");
         }
     });
+    if(replyQuestionReplyDTO){
+        var comment = button.parentNode.parentNode;
+        var commentTemplate =  document.querySelector("#commentTemplate");
+        commentTemplate.content.querySelector("#commenter").innerHTML  = replyQuestionReplyDTO.user.userName;
+        commentTemplate.content.querySelector("#commentDesc").innerHTML  =replyQuestionReplyDTO.replyQuestionReply.replyDescription;
+        commentTemplate.content.querySelector("#commentTime").innerHTML  = getTimeStr(new Date(replyQuestionReplyDTO.replyQuestionReply.relpyTime));
+        var childs = comment.childNodes
+        var first = childs[0];
+        comment.insertBefore(commentTemplate.content.cloneNode(true),first);
+    }
 }
 
 function showMore(){

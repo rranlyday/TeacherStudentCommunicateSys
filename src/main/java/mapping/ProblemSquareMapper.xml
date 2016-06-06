@@ -270,10 +270,16 @@
     select
     <include refid="Base_Column_List" />
     from problem_square
-    where problem_square_name LIKE %#{condition,jdbcType=VARCHAR}%
-    or problem_square_description LIKE %#{condition,jdbcType=VARCHAR}%
+    where problem_square_name LIKE #{condition,jdbcType=VARCHAR}
+    or problem_square_description LIKE #{condition,jdbcType=VARCHAR}
     order by build_time
     LIMIT #{beginNum,jdbcType=INTEGER}, #{sizeNum,jdbcType=INTEGER};
+  </select>
+
+  <select id="selectProblemSquareCount" parameterType="java.lang.String" resultType="java.lang.Integer" >
+    select count(*) from problem_square
+    where problem_square_name LIKE #{condition,jdbcType=VARCHAR}
+    or problem_square_description LIKE #{condition,jdbcType=VARCHAR}
   </select>
 
 </mapper>

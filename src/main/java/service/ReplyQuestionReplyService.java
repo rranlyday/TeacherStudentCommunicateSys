@@ -19,4 +19,6 @@ public interface ReplyQuestionReplyService {
     List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(Integer questionReplyId,Integer curPage,Integer pageSize);
 
     List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(Integer questionReplyId);
+
+    ReplyQuestionReply searchReplyQuestionReplyById(int id);
 }

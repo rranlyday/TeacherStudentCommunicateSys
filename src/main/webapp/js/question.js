@@ -41,16 +41,6 @@ $(document).ready(function(){
         }
     });
 
-    $.jqPaginator('#materialPage', {
-        totalPages: 5,
-        visiblePages: 4,
-        currentPage: 1,
-        prev: '<li class="prev"><a href="javascript:;">《</a></li>',
-        next: '<li class="next"><a href="javascript:;">》</a></li>',
-        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-        onPageChange: function (num, type) {
-        }
-    });
 
 })
 
@@ -151,10 +141,14 @@ function addTask(){
             dataType : 'json',
             success : function(msg) {
                 if (msg.result == true){
-                    console.log("发布作业成功！")
+                    $("#taskTitle").empty();
+                    $("#taskDesc").empty();
+                    remindMessage("发布作业成功！");
+                    $('#close1').trigger("click");
+
                 }
                 else{
-                    console.log("发布作业失败！")
+                    remindMessage("发布作业失败！")
                 }
             },error: function(msg){
                 alert("网络超时!");
@@ -185,11 +179,11 @@ function addQuestion(){
             dataType : 'json',
             success : function(msg) {
                 if (msg.result == true){
-                    console.log("提问成功！");
                    $("#publishQuestionCancleBtn").click();
+                    remindMessage("提问成功！");
                 }
                 else{
-                    console.log("提问失败！")
+                    remindMessage("网络异常，请稍后再试！");
                 }
             },error: function(msg){
                 alert("网络超时!");
@@ -209,7 +203,7 @@ function GetUrlParam(name) {
 function getTimeStr(date){
     var year = date.getFullYear();
     var month = date.getMonth()+1;
-    var day =  date.getDay();
+    var day =  date.getDate();
     var hours = date.getHours();
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
@@ -230,7 +224,7 @@ function getTimeStr(date){
 function getDate(date){
     var year = date.getFullYear();
     var month = date.getMonth()+1;
-    var day =  date.getDay();
+    var day =  date.getDate();
     var hours = date.getHours();
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
@@ -395,6 +389,16 @@ function showMaterial(materialCurPage,materialPagSize){
 function uploadMaterial(){
 
     $("#uploadMaterialBtn").click(function(){
+        var progress = 10;
+        function f(){
+            progress += 1;
+            document.getElementById("progressBar").style.width = progress+"%";
+            if(progress < 100){
+                setTimeout(f,100);
+            }
+        }
+        setTimeout(f,100);
+        var suc = false;
         $("#materialForm").submit(function () {
             console.log("开始上传！");
             $("#materialForm").ajaxSubmit({
@@ -402,10 +406,8 @@ function uploadMaterial(){
                 url: "/materialController/uploadMaterial.do",
                 success: function (msg) {
                     if(msg.result == true){
-                        console.log("上传成功！");
-                        $("#cancleUploadMaterialBtn").click();
+                        suc = true;
                     }else{
-                        console.log("上传失败！");
                     }
                 },
                 error: function (msg) {
@@ -415,6 +417,17 @@ function uploadMaterial(){
             return false;
         });
         $("#materialForm").submit();
+        function ff(){
+            if(suc == true && progress==100){
+                $("#cancleUploadMaterialBtn").click();
+                remindMessage("上传成功！")
+            }else if(suc == false && progress==100){
+                setTimeout(ff,100);
+            } else if(progress<100){
+                setTimeout(ff,100);
+            }
+        }
+        ff();
     })
 }
 

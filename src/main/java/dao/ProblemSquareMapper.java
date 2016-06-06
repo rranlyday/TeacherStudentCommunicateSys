@@ -31,4 +31,6 @@ public interface ProblemSquareMapper {
     List<ProblemSquare> selectProblemSquareOrderByTime(@Param("beginNum")int beginNum, @Param("sizeNum")int sizeNum);
 
     List<ProblemSquare> selectProblemSquareByCondition(@Param("beginNum")int beginNum, @Param("sizeNum")int sizeNum,@Param("condition")String condition);
+
+    int selectProblemSquareCount(String condition);
 }

@@ -14,6 +14,8 @@ $(document).ready(function(){
     //设置中间数据，动态加载
    // setMid();
 
+
+
     //进入页面时动态加载问题广场
     entryPage(0,pageSize);
 
@@ -24,6 +26,7 @@ $(document).ready(function(){
             entryPage(curPage-1,pageSize) ;
         }
     });
+
 });
 
 //设置导航栏
@@ -81,7 +84,7 @@ function setMid(problemSquareDto) {
     document.querySelector('#qsContainer').appendChild(template.content.cloneNode(true)); //加进去
 }
 
-function entryPage(curPage,pageSize){
+function entryPage(curPage,pageSize,condition){
     $.ajax({
         type : "post",
         contentType : "application/x-www-form-urlencoded;charset=UTF-8",
@@ -89,7 +92,8 @@ function entryPage(curPage,pageSize){
         async : false,
         data : {
             pageNum:curPage,
-            pageSize:pageSize
+            pageSize:pageSize,
+            condition:condition
         },
         dataType : 'json',
         success : function(msg) {
@@ -125,7 +129,7 @@ function removeAllChild() {
 function getTimeStr(date){
     var year = date.getFullYear();
     var month = date.getMonth()+1;
-    var day =  date.getDay();
+    var day =  date.getDate();
     var hours = date.getHours();
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
@@ -146,10 +150,11 @@ function getTimeStr(date){
 
  function search(){
      var condition = $("#searchCondition").val();
-     if(condition == null && condition ===""){
+     if(condition == null && condition ==""){
          remindMessage("请输入搜索内容！");
      }else{
-
+          //进入页面时动态加载问题广场
+         entryPage(0,8,condition);
      }
  }
 
@@ -158,3 +163,26 @@ function remindMessage(message){
     $('#remindModalBtn').trigger("click");
 }
 
+function create(){
+
+        $("#materialForm").submit(function () {
+            console.log("开始上传！");
+            $("#materialForm").ajaxSubmit({
+                type: "post",
+                url: "/problemSquareController/build.do",
+                success: function (msg) {
+                    if(msg.result == true){
+                        remindMessage("新建问题广场成功！")
+                        $("#cancleUploadMaterialBtn").click();
+                    }else{
+                        remindMessage("新建问题广场失败！");
+                    }
+                },
+                error: function (msg) {
+                    alert("网络异常!");
+                }
+            });
+            return false;
+        });
+        $("#materialForm").submit();
+}

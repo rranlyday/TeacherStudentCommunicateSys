@@ -59,4 +59,8 @@ public class ReplyQuestionReplyServiceImpl implements ReplyQuestionReplyService{
     public List<ReplyQuestionReply> searchReplyQuestionReplyOrderByTime(Integer questionReplyId) {
         return replyQuestionReplyMapper.searchReplyQuestionReplyOrderByTime(questionReplyId);
     }
+
+    public ReplyQuestionReply searchReplyQuestionReplyById(int id) {
+        return replyQuestionReplyMapper.selectByPrimaryKey(id);
+    }
 }

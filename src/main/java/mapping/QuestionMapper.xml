@@ -248,7 +248,7 @@
     <include refid="Base_Column_List" />
     from question
     WHERE problem_square_id  = #{problemSquareId,jdbcType=INTEGER}
-    ORDER BY question_time
+    ORDER BY question_time DESC
     limit  #{beginPos,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
   </select>
 

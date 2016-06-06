@@ -48,13 +48,19 @@ public class ProblemSquareServiceImpl implements ProblemSquareService {
         if (condition == null)
              return selectProblemSquareOrderByTime(pageNum,size);
         int beginPos = pageNum*size ;
+        condition = "%"+condition+"%";
         return  problemSquareMapper.selectProblemSquareByCondition(beginPos,size,condition);
 
   }
 
     public int selectProblemSquareCount(String condition) {
-        return selectProblemSquareCount();
+        if (condition == null||condition.trim().equals("")){
+            return selectProblemSquareCount();
+        }else {
+            return problemSquareMapper.selectProblemSquareCount(condition);
+        }
     }
+
 
     public int addQuestionNum(Integer problemSquareId,Integer questionNum) {
         ProblemSquare problemSquare = problemSquareMapper.selectByPrimaryKey(problemSquareId);

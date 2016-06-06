@@ -42,6 +42,9 @@ public class ProblemSquareController {
 
     @RequestMapping(value = "/build", method = RequestMethod.POST)
     public ModelAndView build(@RequestParam("file") CommonsMultipartFile[] files, String problemSquareName, String problemSquareDescription, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        MappingJacksonJsonView view = new MappingJacksonJsonView();
+        Map map = new HashMap();
         try {
             for (int modelAndView = 0; modelAndView < files.length; ++modelAndView) {
                 System.out.println("fileName---------->" + files[modelAndView].getOriginalFilename());
@@ -73,15 +76,19 @@ public class ProblemSquareController {
                         User user = (User) session.getAttribute("user");
                         problemSquare.setOwnerId(user.getId());
                         problemSquareService.bulidProblemSquare(problemSquare);
+                        map.put("result", Boolean.TRUE);
+
                     } catch (Exception e) {
+                        map.put("result", Boolean.FALSE);
                         e.printStackTrace();
                         System.out.println("上传出错");
                     }
                 }
             }
         } finally {
-            ModelAndView modelAndView1 = new ModelAndView("/html/index");
-            return modelAndView1;
+            view.setAttributesMap(map);
+            mav.setView(view);
+            return mav;
         }
     }
 

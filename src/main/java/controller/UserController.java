@@ -83,7 +83,7 @@ public class UserController{
                     if ("loginName".equals(cookie.getName())){
                         loginName = cookie.getValue();
                     }
-                    if ("passwordaaa".equals(cookie.getName())){
+                    if ("password".equals(cookie.getName())){
                         password = cookie.getValue();
                     }
                 }

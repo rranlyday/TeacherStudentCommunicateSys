@@ -38,7 +38,6 @@ public class MaterialController {
     @Autowired
     MaterialService materialService;
 
-    //�ϴ�����
     @RequestMapping(value="/uploadMaterial",method = RequestMethod.POST)
     public ModelAndView uploadMaterial(@RequestParam("file") CommonsMultipartFile[] files, Integer problemSquareId,
                                        String materialName,HttpServletRequest request) {
@@ -56,7 +55,13 @@ public class MaterialController {
                 if (!files[modelAndView].isEmpty()) {
                     int pre = (int) System.currentTimeMillis();
                     try {
-                        String filePath = "/material/" + StringUtil.refileName() + files[modelAndView].getOriginalFilename();
+                        String nameP = "";
+                        String  []name = files[modelAndView].getOriginalFilename().split("\\.");
+                        if (name[1] != null){
+                            nameP = "."+name[1];
+                        }
+
+                        String filePath = "/material/" + StringUtil.refileName() +nameP;
                         System.out.println(filePath);
                         FileOutputStream os = new FileOutputStream(StringUtil.getSysPath() + filePath);
                         FileInputStream in = (FileInputStream) files[modelAndView].getInputStream();
@@ -71,7 +76,6 @@ public class MaterialController {
                         filePathList.add(filePath);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        System.out.println("�ϴ�����");
                         throw  new Exception(e);
                     }
                 }
@@ -94,7 +98,6 @@ public class MaterialController {
 
 
 
-    //ɾ������
     @RequestMapping(value="/deleteMaterial",method = RequestMethod.POST)
     public ModelAndView deleteMaterial(Integer materialId,HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
@@ -116,7 +119,6 @@ public class MaterialController {
         }
     }
 
-    //��ѯ����
     @RequestMapping(value="/searchMaterial",method = RequestMethod.POST)
     public ModelAndView searchMaterial(Integer problemSquareId,Integer curPage,Integer pageSize) {
         ModelAndView mav = new ModelAndView();
@@ -135,8 +137,7 @@ public class MaterialController {
             return mav;
         }
     }
-
-    //��ѯ����ById
+    
     @RequestMapping(value="/searchMaterialById",method = RequestMethod.POST)
     public ModelAndView searchMaterialById(Integer materialId) {
         ModelAndView mav = new ModelAndView();

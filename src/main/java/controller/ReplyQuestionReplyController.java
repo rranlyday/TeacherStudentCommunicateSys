@@ -43,9 +43,15 @@ public class ReplyQuestionReplyController {
         try {
             User user = (User)request.getSession().getAttribute("user");
             int responderId = user.getId();
-            if(replyQuestionReplyService.addReplyQuestionReply(questionReplyId,responderId,replyDescription)>0){
+            int id = replyQuestionReplyService.addReplyQuestionReply(questionReplyId,responderId,replyDescription);
+            if(id>0){
                 questionReplyService.addReplyNum(questionReplyId,1);
+                ReplyQuestionReply replyQuestionReply = replyQuestionReplyService.searchReplyQuestionReplyById(id);
+                ReplyQuestionReplyDTO replyQuestionReplyDTO = new ReplyQuestionReplyDTO();
+                replyQuestionReplyDTO.setUser(user);
+                replyQuestionReplyDTO.setReplyQuestionReply(replyQuestionReply);
                 map.put("result", Boolean.TRUE);
+                map.put("replyQuestionReplyDTO",replyQuestionReplyDTO);
             }else{
                 map.put("result", Boolean.FALSE);
             }

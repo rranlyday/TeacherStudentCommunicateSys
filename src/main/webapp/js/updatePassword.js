@@ -10,15 +10,15 @@ $(document).ready(function(){
         var conformPassword = $("#conformPassword").val();
 
         if(password==null ||password===""){
-            console.log("请输入密码！");
+            remindMessage("请输入密码！");
             return false;
         }
         if(newPassword != conformPassword){
-            console.log("两次密码不一致！")
+            remindMessage("两次密码不一致！");
             return false;
         }
         if(newPassword.length < 6){
-            console.log("密码长度太短");
+            remindMessage("密码长度太短");
             return false;
         }
         $.ajax({
@@ -33,15 +33,20 @@ $(document).ready(function(){
             dataType : 'json',
             success : function(msg) {
                 if (msg.result == true){
-                    console.log("更改密码成功！")
+                    remindMessage("更改密码成功!");
                     $("#cancleUpdatePasswordBtn").click();  //关闭对话框
             }
                 else{
-                    console.log(msg.message);
+                    remindMessage(msg.message);
                 }
             },error: function(msg){
-                console.log("网络错误！");
+                alert("网络错误！");
             }
         });
     });
 });
+
+function remindMessage(message){
+    document.getElementById("remindModalLabel").innerHTML = message ;
+    $('#remindModalBtn').trigger("click");
+}

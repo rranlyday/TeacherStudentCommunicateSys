@@ -40,6 +40,8 @@
     color: #666;
     font-size: 14px;
     padding: 4px 0 0;
+    height: 48px;
+    overflow: hidden
 }
 .author_time_container{
     margin-top: 10px;
